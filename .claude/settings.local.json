@@ -27,7 +27,10 @@
       "Bash(findstr \"LISTENING\")",
       "WebFetch(domain:www.languagereactor.com)",
       "Bash(xargs grep:*)",
-      "Bash(xargs wc:*)"
+      "Bash(xargs wc:*)",
+      "Bash(~/.claude/skills/gstack/bin/gstack-review-log:*)",
+      "Bash(rmdir lr-clone:*)",
+      "Bash(rm -rf lr-clone)"
     ]
   }
 }

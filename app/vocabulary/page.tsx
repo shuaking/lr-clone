@@ -3,25 +3,23 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Trash2, BookOpen, Clock, Video } from "lucide-react";
-import { getSavedVocabulary, removeVocabulary, SavedVocabulary } from "@/lib/vocabulary-storage";
+import { useVocabularyStore } from "@/lib/stores/vocabulary-store";
+import { useAuthStore } from "@/lib/stores/auth-store";
+import { DataMigrationTool } from "@/components/data-migration-tool";
 
 export default function VocabularyPage() {
-  const [vocabulary, setVocabulary] = useState<SavedVocabulary[]>([]);
+  const { vocabulary, loadVocabulary, removeWord } = useVocabularyStore();
+  const { user, initialize } = useAuthStore();
   const [filter, setFilter] = useState<'all' | 'recent'>('all');
 
   useEffect(() => {
+    initialize();
     loadVocabulary();
-  }, []);
+  }, [initialize, loadVocabulary]);
 
-  const loadVocabulary = () => {
-    const items = getSavedVocabulary();
-    setVocabulary(items);
-  };
-
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm('确定要删除这个单词吗？')) {
-      removeVocabulary(id);
-      loadVocabulary();
+      await removeWord(id);
     }
   };
 
@@ -73,6 +71,13 @@ export default function VocabularyPage() {
 
       {/* 主内容 */}
       <main className="mx-auto max-w-6xl px-6 py-8">
+        {/* 数据迁移工具 */}
+        {user && (
+          <div className="mb-6">
+            <DataMigrationTool />
+          </div>
+        )}
+
         {/* 筛选器 */}
         <div className="mb-6 flex items-center gap-3">
           <button

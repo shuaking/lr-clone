@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { DictionaryResult } from "@/lib/dictionary-api";
-import { saveVocabulary, isWordSaved, removeVocabulary } from "@/lib/vocabulary-storage";
+import { useVocabularyStore } from "@/lib/stores/vocabulary-store";
 import { recordActivity } from "@/lib/learning-stats";
 import { BookmarkPlus, BookmarkCheck, Volume2 } from "lucide-react";
 
@@ -21,6 +21,8 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
   const [loading, setLoading] = useState(true);
   const [saved, setSaved] = useState(false);
   const [savedItemId, setSavedItemId] = useState<string | null>(null);
+
+  const { saveWord, removeWord, isWordSaved } = useVocabularyStore();
 
   useEffect(() => {
     if (videoId) {
@@ -41,9 +43,9 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
     }
 
     fetchTranslation();
-  }, [word, videoId]);
+  }, [word, videoId, isWordSaved]);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!videoId || !context || timestamp === undefined) {
       toast.error('无法保存：缺少视频信息');
       return;
@@ -51,12 +53,12 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
 
     try {
       if (saved && savedItemId) {
-        removeVocabulary(savedItemId);
+        await removeWord(savedItemId);
         setSaved(false);
         setSavedItemId(null);
         toast.success('已取消保存');
       } else {
-        const item = saveVocabulary({
+        const item = await saveWord({
           word,
           translation: result?.translation || word,
           context,
