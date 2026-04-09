@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__augment-context-engine__codebase-retrieval",
+      "mcp__fast-context__fast_context_search",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(mkdir -p ~/.gstack)",
+      "Bash(rm -f ~/.gstack/last-update-check)",
+      "Bash(rm -f ~/.gstack/update-snoozed)",
+      "Bash([ -f CLAUDE.md ])",
+      "Bash(~/.claude/skills/gstack/bin/gstack-config set:*)",
+      "Bash(curl -s \"https://youtube-transcript-api.vercel.app/api/transcript?videoId=dQw4w9WgXcQ&lang=en\")",
+      "Bash(rm:*)",
+      "Bash(curl -s http://localhost:3004/app)",
+      "Bash(curl -I http://localhost:3004/app)",
+      "Bash(mv:*)",
+      "Bash(sed -i 's/console\\\\.log\\(/log\\(/g' components/video-learning-interface-sync.tsx)",
+      "Bash(sed -i 's/console\\\\.error\\(/logError\\(/g' components/video-learning-interface-sync.tsx)",
+      "WebSearch",
+      "Bash(curl -s \"http://localhost:3005/api/transcript?videoId=dQw4w9WgXcQ&lang=en\")",
+      "Bash(curl -s \"http://localhost:3005/app\")",
+      "Bash(curl:*)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \":300[0-9]\")",
+      "Bash(findstr \"LISTENING\")",
+      "WebFetch(domain:www.languagereactor.com)",
+      "Bash(xargs grep:*)",
+      "Bash(xargs wc:*)"
+    ]
+  }
+}

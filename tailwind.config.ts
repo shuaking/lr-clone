@@ -1,0 +1,23 @@
+import type { Config } from "tailwindcss";
+const config: Config = {
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./lib/**/*.{js,ts,jsx,tsx,mdx}"],
+  theme: {
+    extend: {
+      colors: {
+        background: "#0b1020",
+        panel: "#11172a",
+        line: "rgba(255,255,255,0.09)",
+        ink: "#f6f7fb",
+        muted: "#9aa3b2",
+        brand: "#7c9cff",
+        accent: "#78f0c8"
+      },
+      boxShadow: { glow: "0 18px 60px rgba(124, 156, 255, 0.16)" },
+      backgroundImage: {
+        hero: "radial-gradient(circle at top, rgba(124,156,255,0.18), transparent 32%), linear-gradient(180deg, #0b1020 0%, #0a0f1b 100%)"
+      }
+    }
+  },
+  plugins: []
+};
+export default config;

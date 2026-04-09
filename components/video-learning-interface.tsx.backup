@@ -1,0 +1,323 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Play, Pause, Volume2, Settings, Maximize, ChevronLeft, ChevronRight, BookmarkPlus, RefreshCw } from "lucide-react";
+import { WordPopup } from "./word-popup";
+import { fetchYouTubeSubtitles, translateSubtitles, cacheSubtitles, getCachedSubtitles } from "@/lib/youtube-subtitles";
+
+interface Subtitle {
+  id: string;
+  start: number;
+  end: number;
+  text: string;
+  translation?: string;
+}
+
+interface VideoLearningInterfaceProps {
+  videoId: string;
+  title: string;
+  subtitles?: Subtitle[];
+}
+
+export function VideoLearningInterface({ videoId, title, subtitles = [] }: VideoLearningInterfaceProps) {
+  const [selectedSubtitle, setSelectedSubtitle] = useState<string | null>(null);
+  const [showTranslation, setShowTranslation] = useState(true);
+  const [selectedWord, setSelectedWord] = useState<{ word: string; x: number; y: number } | null>(null);
+  const [loadedSubtitles, setLoadedSubtitles] = useState<Subtitle[]>([]);
+  const [isLoadingSubtitles, setIsLoadingSubtitles] = useState(false);
+  const [subtitleError, setSubtitleError] = useState<string | null>(null);
+
+  // 加载字幕
+  useEffect(() => {
+    loadSubtitles();
+  }, [videoId]);
+
+  const loadSubtitles = async () => {
+    // 如果传入了字幕，直接使用
+    if (subtitles.length > 0) {
+      setLoadedSubtitles(subtitles);
+      return;
+    }
+
+    // 检查缓存
+    const cached = getCachedSubtitles(videoId);
+    if (cached && cached.length > 0) {
+      setLoadedSubtitles(cached.map((sub, idx) => ({
+        ...sub,
+        id: `sub-${idx}`
+      })));
+      return;
+    }
+
+    // 从 YouTube 获取
+    setIsLoadingSubtitles(true);
+    setSubtitleError(null);
+
+    try {
+      const subs = await fetchYouTubeSubtitles(videoId);
+
+      if (subs.length === 0) {
+        setSubtitleError('此视频没有可用字幕');
+        setLoadedSubtitles(getMockSubtitles());
+        return;
+      }
+
+      // 翻译字幕
+      const translated = await translateSubtitles(subs);
+
+      const formattedSubs = translated.map((sub, idx) => ({
+        id: `sub-${idx}`,
+        start: sub.start,
+        end: sub.end,
+        text: sub.text,
+        translation: (sub as any).translation
+      }));
+
+      setLoadedSubtitles(formattedSubs);
+      cacheSubtitles(videoId, formattedSubs);
+    } catch (error) {
+      console.error('Failed to load subtitles:', error);
+      setSubtitleError('字幕加载失败，使用示例字幕');
+      setLoadedSubtitles(getMockSubtitles());
+    } finally {
+      setIsLoadingSubtitles(false);
+    }
+  };
+
+  // 模拟字幕数据（作为后备）
+  const getMockSubtitles = (): Subtitle[] => [
+    {
+      id: "1",
+      start: 0,
+      end: 3,
+      text: "Every year, millions of people set a language learning goal.",
+      translation: "每年，数百万人设定语言学习目标。"
+    },
+    {
+      id: "2",
+      start: 3,
+      end: 6,
+      text: "They make a plan. They sign up for a course, download an app, hire a tutor.",
+      translation: "他们制定计划。他们报名参加课程，下载APP，聘请导师。"
+    },
+    {
+      id: "3",
+      start: 6,
+      end: 9,
+      text: "They start with real motivation and real effort.",
+      translation: "他们以真正的动力和真正的努力开始。"
+    },
+    {
+      id: "4",
+      start: 9,
+      end: 12,
+      text: "And then life gets busy. Deadline, a difficult week, a family disruption.",
+      translation: "然后生活变得忙碌。截止日期，艰难的一周，家庭混乱。"
+    },
+    {
+      id: "5",
+      start: 12,
+      end: 15,
+      text: "And everything collapses. When that happens, most people give up.",
+      translation: "一切都崩溃了。当这种情况发生时，大多数人都会放弃。"
+    },
+    {
+      id: "6",
+      start: 15,
+      end: 18,
+      text: "But what if there was a different way? What if you could learn naturally?",
+      translation: "但如果有不同的方法呢？如果你可以自然地学习呢？"
+    },
+    {
+      id: "7",
+      start: 18,
+      end: 21,
+      text: "By watching content you actually enjoy, in the language you want to learn.",
+      translation: "通过观看你真正喜欢的内容，用你想学习的语言。"
+    },
+    {
+      id: "8",
+      start: 21,
+      end: 24,
+      text: "That's the idea behind Language Reactor. Learn through entertainment.",
+      translation: "这就是 Language Reactor 背后的理念。通过娱乐学习。"
+    }
+  ];
+
+  const handleSubtitleClick = (subtitle: Subtitle) => {
+    setSelectedSubtitle(subtitle.id);
+  };
+
+  const handleWordClick = (word: string, event: React.MouseEvent) => {
+    event.stopPropagation();
+    const rect = (event.target as HTMLElement).getBoundingClientRect();
+    setSelectedWord({
+      word: word.replace(/[.,!?;:]/g, ''),
+      x: rect.left,
+      y: rect.bottom
+    });
+  };
+
+  return (
+    <div className="flex h-screen bg-[#0a0e1a]">
+      {/* 左侧导航 */}
+      <aside className="w-16 border-r border-white/5 bg-[#0d1117] flex flex-col items-center py-4 gap-4">
+        <button className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/20 text-brand transition hover:bg-brand/30">
+          <Play size={20} />
+        </button>
+        <button className="flex h-12 w-12 items-center justify-center rounded-xl text-muted transition hover:bg-white/5">
+          <Volume2 size={20} />
+        </button>
+        <button className="flex h-12 w-12 items-center justify-center rounded-xl text-muted transition hover:bg-white/5">
+          <BookmarkPlus size={20} />
+        </button>
+        <button className="flex h-12 w-12 items-center justify-center rounded-xl text-muted transition hover:bg-white/5">
+          <Settings size={20} />
+        </button>
+      </aside>
+
+      {/* 中间视频区域 */}
+      <main className="flex-1 flex flex-col">
+        {/* 视频播放器 */}
+        <div className="relative aspect-video bg-black">
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="h-full w-full"
+          />
+        </div>
+
+        {/* 视频信息 */}
+        <div className="border-b border-white/5 bg-[#0d1117] p-4">
+          <h1 className="text-lg font-semibold text-white">{title}</h1>
+          <div className="mt-2 flex items-center gap-4 text-sm text-muted">
+            <button className="transition hover:text-white">保存视频</button>
+            <button className="transition hover:text-white">添加到播放列表</button>
+            <button className="transition hover:text-white">分享</button>
+          </div>
+        </div>
+
+        {/* 控制栏 */}
+        <div className="flex items-center justify-between border-b border-white/5 bg-[#0d1117] px-4 py-3">
+          <div className="flex items-center gap-2">
+            <button className="rounded-lg bg-white/5 p-2 transition hover:bg-white/10">
+              <ChevronLeft size={16} />
+            </button>
+            <span className="text-sm text-muted">字幕导航</span>
+            <button className="rounded-lg bg-white/5 p-2 transition hover:bg-white/10">
+              <ChevronRight size={16} />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-2 text-sm text-muted">
+              <input
+                type="checkbox"
+                checked={showTranslation}
+                onChange={(e) => setShowTranslation(e.target.checked)}
+                className="rounded"
+              />
+              显示翻译
+            </label>
+            <button
+              onClick={loadSubtitles}
+              disabled={isLoadingSubtitles}
+              className="flex items-center gap-2 rounded-lg bg-white/5 px-3 py-1.5 text-sm transition hover:bg-white/10 disabled:opacity-50"
+            >
+              <RefreshCw size={14} className={isLoadingSubtitles ? 'animate-spin' : ''} />
+              重新加载字幕
+            </button>
+          </div>
+        </div>
+
+        {/* 学习提示 */}
+        <div className="border-b border-white/5 bg-[#0d1117] p-4">
+          <div className="flex items-start gap-3 rounded-2xl bg-brand/10 p-3">
+            <BookmarkPlus className="text-brand" size={18} />
+            <div className="flex-1 text-xs">
+              <p className="font-medium text-white">学习提示</p>
+              <p className="mt-1 text-muted">
+                点击右侧字幕中的任意单词查看翻译和发音，点击书签图标保存单词。
+                {subtitleError && <span className="text-yellow-400"> {subtitleError}</span>}
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* 右侧字幕区域 */}
+      <aside className="w-[420px] border-l border-white/5 bg-[#0d1117] flex flex-col">
+        <div className="border-b border-white/5 p-4">
+          <h2 className="font-semibold text-white">字幕文本</h2>
+          <p className="mt-1 text-sm text-muted">
+            {isLoadingSubtitles ? '正在加载字幕...' : '点击单词查看翻译 · 点击句子跳转播放'}
+          </p>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4 space-y-3">
+          {isLoadingSubtitles ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand border-t-transparent" />
+            </div>
+          ) : (
+            loadedSubtitles.map((subtitle) => (
+              <div
+                key={subtitle.id}
+                onClick={() => handleSubtitleClick(subtitle)}
+                className={`cursor-pointer rounded-2xl border p-4 transition ${
+                  selectedSubtitle === subtitle.id
+                    ? 'border-brand bg-brand/10'
+                    : 'border-white/5 bg-white/5 hover:border-white/10 hover:bg-white/[0.07]'
+                }`}
+              >
+                {/* 原文 */}
+                <p className="text-white leading-relaxed text-[15px]">
+                  {subtitle.text.split(' ').map((word, idx) => (
+                    <span
+                      key={idx}
+                      className="cursor-pointer transition hover:text-brand hover:underline"
+                      onClick={(e) => handleWordClick(word, e)}
+                    >
+                      {word}{' '}
+                    </span>
+                  ))}
+                </p>
+
+                {/* 翻译 */}
+                {showTranslation && subtitle.translation && (
+                  <p className="mt-3 pt-3 border-t border-white/5 text-sm text-muted leading-relaxed">
+                    {subtitle.translation}
+                  </p>
+                )}
+
+                {/* 时间戳 */}
+                <div className="mt-3 flex items-center gap-2 text-xs text-muted">
+                  <span className="rounded bg-white/5 px-2 py-0.5">{formatTime(subtitle.start)}</span>
+                  <span>→</span>
+                  <span className="rounded bg-white/5 px-2 py-0.5">{formatTime(subtitle.end)}</span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </aside>
+
+      {/* 单词翻译弹窗 */}
+      {selectedWord && (
+        <WordPopup
+          word={selectedWord.word}
+          position={{ x: selectedWord.x, y: selectedWord.y }}
+          onClose={() => setSelectedWord(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+function formatTime(seconds: number): string {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+}

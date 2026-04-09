@@ -1,0 +1,243 @@
+[2026-04-09T02:53:03.514Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T02:54:08.930Z] [error] %o
+
+%s ReferenceError: Cannot access 'initPlayer' before initialization
+    at VideoLearningInterface (webpack-internal:///(app-pages-browser)/./components/video-learning-interface-sync.tsx:79:9)
+    at react-stack-bottom-frame (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:22339:20)
+    at renderWithHooks (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:5731:22)
+    at updateFunctionComponent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:7992:19)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:9657:18)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:544:16)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14986:22)
+    at workLoopSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14816:41)
+    at renderRootSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14794:11)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14329:46)
+    at performSyncWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15857:7)
+    at flushSyncWorkAcrossRoots_impl (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15719:21)
+    at processRootScheduleInMicrotask (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15753:7)
+    at eval (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15873:13) The above error occurred in the <VideoLearningInterface> component. It was handled by the <ReactDevOverlay> error boundary.
+[2026-04-09T02:55:01.127Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T02:55:02.492Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T02:55:02.774Z] [warning] [Fast Refresh] performing full reload because your application had an unrecoverable error
+[2026-04-09T02:55:04.027Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T02:55:40.400Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T02:55:41.466Z] [log] [Fast Refresh] done in 1067ms
+[2026-04-09T02:55:52.997Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T02:56:42.110Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T02:56:42.879Z] [error] ./components/video-learning-interface-sync.tsx
+Module parse failed: Identifier 'onPlayerReady' has already been declared (94:10)
+|         videoId
+|     ]);
+>     const onPlayerReady = useCallback({
+|         "VideoLearningInterface.useCallback[onPlayerReady]": ()=>{
+|             console.log('Player ready, starting time update interval');
+
+Import trace for requested module:
+./components/video-learning-interface-sync.tsx
+./app/app/page.tsx
+[2026-04-09T02:57:09.323Z] [error] ./components/video-learning-interface-sync.tsx
+Module parse failed: Identifier 'onPlayerReady' has already been declared (97:10)
+|         videoId
+|     ]);
+>     const onPlayerReady = useCallback({
+|         "VideoLearningInterface.useCallback[onPlayerReady]": ()=>{
+|             console.log('Player ready, starting time update interval');
+
+Import trace for requested module:
+./components/video-learning-interface-sync.tsx
+./app/app/page.tsx
+[2026-04-09T02:57:09.921Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T02:57:10.026Z] [log] [Fast Refresh] done in 104ms
+[2026-04-09T02:57:10.578Z] [log] [Fast Refresh] done in 657ms
+[2026-04-09T02:57:11.157Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-09T02:57:11.888Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T02:57:21.530Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T02:58:42.408Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T03:00:48.076Z] [error] Failed to fetch YouTube subtitles: TypeError: data.map is not a function
+    at captureStackTrace (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/capture-stack-trace.js:13:23)
+    at console.error (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:51:62)
+    at fetchYouTubeSubtitles (webpack-internal:///(app-pages-browser)/./lib/youtube-subtitles.ts:30:17)
+    at async loadSubtitles (webpack-internal:///(app-pages-browser)/./components/video-learning-interface-sync.tsx:202:26)
+[2026-04-09T03:00:48.439Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T03:00:48.441Z] [warning] Unrecognized feature: 'web-share'.
+[2026-04-09T03:00:48.479Z] [error] Failed to fetch YouTube subtitles: TypeError: data.map is not a function
+    at captureStackTrace (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/capture-stack-trace.js:13:23)
+    at console.error (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:51:62)
+    at fetchYouTubeSubtitles (webpack-internal:///(app-pages-browser)/./lib/youtube-subtitles.ts:30:17)
+    at async loadSubtitles (webpack-internal:///(app-pages-browser)/./components/video-learning-interface-sync.tsx:202:26)
+[2026-04-09T03:00:48.710Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:00:50.108Z] [log] Player ready, starting time update interval
+[2026-04-09T03:16:20.724Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T03:16:22.091Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T03:16:22.109Z] [log] [Fast Refresh] done in 1384ms
+[2026-04-09T03:16:22.360Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:16:22.607Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:16:22.870Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:16:23.121Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:16:23.368Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:16:23.617Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:16:24.266Z] [log] Player ready, starting time update interval
+[2026-04-09T03:19:02.420Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T03:23:02.799Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T03:39:11.646Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T03:39:12.654Z] [log] [Fast Refresh] done in 1008ms
+[2026-04-09T03:39:46.319Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T03:45:37.589Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T03:45:37.589Z] [warning] Unrecognized feature: 'web-share'.
+[2026-04-09T03:45:37.848Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T03:45:38.508Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T03:45:38.517Z] [log] Player ready, starting time update interval
+[2026-04-09T03:45:38.819Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T04:00:06.416Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T04:00:07.378Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T04:00:07.819Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T04:00:07.830Z] [log] [Fast Refresh] done in 450ms
+[2026-04-09T04:00:08.075Z] [log] [Fast Refresh] done in 697ms
+[2026-04-09T04:00:08.076Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:00:08.337Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:00:08.584Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:00:08.833Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:00:09.079Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:00:09.327Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:00:10.036Z] [log] Player ready, starting time update interval
+[2026-04-09T04:01:13.813Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T04:02:47.267Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T04:02:47.268Z] [warning] Unrecognized feature: 'web-share'.
+[2026-04-09T04:02:47.535Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:02:47.787Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:02:48.034Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T04:02:48.693Z] [log] Player ready, starting time update interval
+[2026-04-09T04:02:48.706Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T04:02:49.302Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T05:05:44.064Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T05:05:45.246Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T05:05:45.586Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T05:05:45.591Z] [log] [Fast Refresh] done in 334ms
+[2026-04-09T05:05:45.827Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:05:45.858Z] [log] [Fast Refresh] done in 615ms
+[2026-04-09T05:05:46.085Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:05:46.333Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:05:47.044Z] [log] Player ready, starting time update interval
+[2026-04-09T05:08:50.211Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T05:14:22.044Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T05:14:22.045Z] [warning] Unrecognized feature: 'web-share'.
+[2026-04-09T05:14:22.313Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:14:23.033Z] [log] Player ready, starting time update interval
+[2026-04-09T05:14:39.278Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T05:14:39.531Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T05:15:33.758Z] [error] Failed to load resource: net::ERR_NETWORK_CHANGED
+[2026-04-09T05:37:50.427Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T05:37:51.279Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
+[2026-04-09T05:37:51.296Z] [log] [Fast Refresh] done in 868ms
+[2026-04-09T05:37:51.548Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:37:51.796Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:37:52.059Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:37:52.308Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:37:52.557Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:37:52.804Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:37:53.343Z] [log] Player ready, starting time update interval
+[2026-04-09T05:41:08.294Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T05:45:26.816Z] [log] Initializing YouTube player for video: jNQXAC9IVRw
+[2026-04-09T05:45:26.816Z] [warning] Unrecognized feature: 'web-share'.
+[2026-04-09T05:45:26.864Z] [warning] Invalid subtitle data format: {success: false, videoId: jNQXAC9IVRw, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T05:45:27.087Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
+[2026-04-09T05:45:27.181Z] [warning] Invalid subtitle data format: {success: false, videoId: jNQXAC9IVRw, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
+[2026-04-09T05:45:27.693Z] [log] Player ready, starting time update interval
+[2026-04-09T05:59:10.417Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T05:59:11.166Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T05:59:11.599Z] [log] [Fast Refresh] done in 432ms
+[2026-04-09T05:59:12.017Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-09T05:59:12.800Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-09T05:59:38.991Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T05:59:39.973Z] [log] [Fast Refresh] done in 983ms
+[2026-04-09T06:00:11.834Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:00:12.703Z] [log] [Fast Refresh] done in 863ms
+[2026-04-09T06:00:52.861Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:00:52.989Z] [error] ./components/video-learning-interface-sync.tsx
+Error:   x Expected ',', got ';'
+     ,-[D:\code\languagereactor.com\lr-clone\components\video-learning-interface-sync.tsx:510:1]
+ 507 |           }
+ 508 |         ];
+ 509 |     }
+ 510 |   };
+     :    ^
+ 511 | 
+ 512 |   // 点击字幕跳转到对应时间
+ 513 |   const handleSubtitleClick = (subtitle: Subtitle) => {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/video-learning-interface-sync.tsx
+./app/app/page.tsx
+[2026-04-09T06:02:12.297Z] [error] ./components/video-learning-interface-sync.tsx
+Error:   x Expected ',', got ';'
+     ,-[D:\code\languagereactor.com\lr-clone\components\video-learning-interface-sync.tsx:510:1]
+ 507 |           }
+ 508 |         ];
+ 509 |     }
+ 510 |   };
+     :    ^
+ 511 | 
+ 512 |   // 点击字幕跳转到对应时间
+ 513 |   const handleSubtitleClick = (subtitle: Subtitle) => {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/video-learning-interface-sync.tsx
+./app/app/page.tsx
+[2026-04-09T06:02:12.303Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:02:12.935Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:02:13.028Z] [log] [Fast Refresh] done in 106ms
+[2026-04-09T06:02:13.542Z] [log] [Fast Refresh] done in 619ms
+[2026-04-09T06:02:47.422Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:02:48.309Z] [log] [Fast Refresh] done in 888ms
+[2026-04-09T06:03:28.640Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:03:29.261Z] [log] [Fast Refresh] done in 620ms
+[2026-04-09T06:04:01.647Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:04:02.181Z] [log] [Fast Refresh] done in 533ms
+[2026-04-09T06:04:30.092Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:04:30.603Z] [log] [Fast Refresh] done in 510ms
+[2026-04-09T06:05:00.532Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:05:00.988Z] [log] [Fast Refresh] done in 455ms
+[2026-04-09T06:05:23.754Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:05:24.404Z] [log] [Fast Refresh] done in 650ms
+[2026-04-09T06:05:49.887Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:05:50.381Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:05:50.442Z] [log] [Fast Refresh] done in 61ms
+[2026-04-09T06:05:51.108Z] [log] [Fast Refresh] done in 728ms
+[2026-04-09T06:06:27.934Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:06:28.709Z] [log] [Fast Refresh] done in 776ms
+[2026-04-09T06:06:59.473Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:07:00.420Z] [log] [Fast Refresh] done in 946ms
+[2026-04-09T06:07:29.064Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:07:29.703Z] [log] [Fast Refresh] done in 638ms
+[2026-04-09T06:07:58.213Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:07:58.909Z] [log] [Fast Refresh] done in 696ms
+[2026-04-09T06:08:23.942Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:08:24.509Z] [log] [Fast Refresh] done in 566ms
+[2026-04-09T06:08:46.797Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:08:47.584Z] [log] [Fast Refresh] done in 786ms
+[2026-04-09T06:09:13.823Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:09:14.647Z] [log] [Fast Refresh] done in 823ms
+[2026-04-09T06:09:47.054Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:09:47.723Z] [log] [Fast Refresh] done in 665ms
+[2026-04-09T06:10:12.513Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:10:13.226Z] [log] [Fast Refresh] done in 714ms
+[2026-04-09T06:10:35.552Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:10:35.956Z] [log] [Fast Refresh] done in 404ms
+[2026-04-09T06:11:08.227Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:11:08.883Z] [log] [Fast Refresh] done in 656ms
+[2026-04-09T06:11:27.291Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:11:27.990Z] [log] [Fast Refresh] done in 697ms
+[2026-04-09T06:11:59.848Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:12:00.366Z] [log] [Fast Refresh] done in 517ms
+[2026-04-09T06:12:34.703Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:12:35.564Z] [log] [Fast Refresh] done in 861ms
+[2026-04-09T06:13:08.443Z] [log] [Fast Refresh] rebuilding
+[2026-04-09T06:13:09.217Z] [log] [Fast Refresh] done in 775ms
