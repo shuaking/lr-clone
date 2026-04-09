@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { DictionaryResult } from "@/lib/dictionary-api";
 import { useVocabularyStore } from "@/lib/stores/vocabulary-store";
 import { recordActivity } from "@/lib/learning-stats";
+import { getWordFrequency } from "@/lib/word-frequency";
+import { speakWord, VoiceAccent } from "@/lib/speech-synthesis";
 import { BookmarkPlus, BookmarkCheck, Volume2 } from "lucide-react";
 
 interface WordPopupProps {
@@ -23,6 +25,7 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
   const [savedItemId, setSavedItemId] = useState<string | null>(null);
 
   const { saveWord, removeWord, isWordSaved } = useVocabularyStore();
+  const frequencyInfo = getWordFrequency(word);
 
   useEffect(() => {
     if (videoId) {
@@ -83,11 +86,12 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
     }
   };
 
-  const handleSpeak = () => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = 'en-US';
-      speechSynthesis.speak(utterance);
+  const handleSpeak = async () => {
+    try {
+      await speakWord(word, { accent: VoiceAccent.US, rate: 0.9 });
+    } catch (error) {
+      console.error('Speech error:', error);
+      toast.error('发音失败');
     }
   };
 
@@ -109,8 +113,20 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
         ) : result ? (
           <>
             <div className="mb-4 flex items-start justify-between">
-              <div>
-                <h3 className="text-xl font-semibold text-white">{result.word}</h3>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xl font-semibold text-white">{result.word}</h3>
+                  <span
+                    className="rounded-md px-2 py-0.5 text-xs font-medium"
+                    style={{
+                      backgroundColor: `${frequencyInfo.color}20`,
+                      color: frequencyInfo.color,
+                    }}
+                    title={frequencyInfo.description}
+                  >
+                    {frequencyInfo.label}
+                  </span>
+                </div>
                 {result.phonetic && (
                   <p className="mt-1 text-sm text-muted">{result.phonetic}</p>
                 )}

@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, Trash2, BookOpen, Clock, Video } from "lucide-react";
+import { ArrowLeft, Trash2, BookOpen, Clock, Video, Brain, Download } from "lucide-react";
 import { useVocabularyStore } from "@/lib/stores/vocabulary-store";
 import { useAuthStore } from "@/lib/stores/auth-store";
 import { DataMigrationTool } from "@/components/data-migration-tool";
+import { getWordFrequency } from "@/lib/word-frequency";
+import { getDueWords, calculateReviewStats } from "@/lib/sm2-algorithm";
+import { exportAllWords } from "@/lib/anki-export";
+import { toast } from "sonner";
 
 export default function VocabularyPage() {
   const { vocabulary, loadVocabulary, removeWord } = useVocabularyStore();
@@ -26,6 +30,22 @@ export default function VocabularyPage() {
   const filteredVocabulary = filter === 'recent'
     ? vocabulary.slice(0, 50)
     : vocabulary;
+
+  const dueWords = getDueWords(vocabulary);
+  const reviewStats = calculateReviewStats(vocabulary);
+
+  const handleExport = () => {
+    try {
+      exportAllWords(vocabulary);
+      toast.success(`成功导出 ${vocabulary.length} 个单词到 CSV 文件`);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error('导出失败');
+      }
+    }
+  };
 
   const formatTimestamp = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -61,9 +81,30 @@ export default function VocabularyPage() {
               <div className="h-6 w-px bg-white/10" />
               <h1 className="text-xl font-semibold text-white">我的词汇表</h1>
             </div>
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <BookOpen size={16} />
-              <span>{vocabulary.length} 个单词</span>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 text-sm text-muted">
+                <BookOpen size={16} />
+                <span>{vocabulary.length} 个单词</span>
+              </div>
+              {vocabulary.length > 0 && (
+                <button
+                  onClick={handleExport}
+                  className="flex items-center gap-2 rounded-lg bg-white/5 px-4 py-2 text-sm text-muted transition hover:bg-white/10 hover:text-white"
+                  title="导出到 Anki"
+                >
+                  <Download size={16} />
+                  <span>导出</span>
+                </button>
+              )}
+              {dueWords.length > 0 && (
+                <Link
+                  href="/review"
+                  className="flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand/90"
+                >
+                  <Brain size={16} />
+                  <span>开始复习 ({dueWords.length})</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -75,6 +116,28 @@ export default function VocabularyPage() {
         {user && (
           <div className="mb-6">
             <DataMigrationTool />
+          </div>
+        )}
+
+        {/* 复习统计 */}
+        {vocabulary.length > 0 && (
+          <div className="mb-6 grid grid-cols-4 gap-4">
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-sm text-muted">待复习</p>
+              <p className="text-2xl font-bold text-brand">{reviewStats.due}</p>
+            </div>
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-sm text-muted">新单词</p>
+              <p className="text-2xl font-bold text-white">{reviewStats.new}</p>
+            </div>
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-sm text-muted">学习中</p>
+              <p className="text-2xl font-bold text-orange-400">{reviewStats.learning}</p>
+            </div>
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-sm text-muted">已掌握</p>
+              <p className="text-2xl font-bold text-green-400">{reviewStats.mature}</p>
+            </div>
           </div>
         )}
 
@@ -126,6 +189,21 @@ export default function VocabularyPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3">
                       <h3 className="text-xl font-semibold text-white">{item.word}</h3>
+                      {(() => {
+                        const freq = getWordFrequency(item.word);
+                        return (
+                          <span
+                            className="rounded-md px-2 py-0.5 text-xs font-medium"
+                            style={{
+                              backgroundColor: `${freq.color}20`,
+                              color: freq.color,
+                            }}
+                            title={freq.description}
+                          >
+                            {freq.label}
+                          </span>
+                        );
+                      })()}
                       <span className="text-sm text-muted">{formatDate(item.savedAt)}</span>
                     </div>
                     <p className="mt-2 text-base text-slate-300">{item.translation}</p>
