@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from 'next-intl';
 import Link from "next/link";
 import { VideoLearningInterface } from "@/components/video-learning-interface-sync";
 import { SavedWordsList } from "@/components/saved-words-list";
@@ -11,6 +12,9 @@ import { ArrowLeft, BookOpen, Heart, History, Settings } from "lucide-react";
 type View = "video" | "saved" | "favorites" | "history" | "settings";
 
 export default function AppPage() {
+  const t = useTranslations('catalog');
+  const tSettings = useTranslations('settings');
+  const tCommon = useTranslations('common');
   const [currentView, setCurrentView] = useState<View>("video");
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [showVideoList, setShowVideoList] = useState(true);
@@ -26,7 +30,7 @@ export default function AppPage() {
             <div>
               <Link href="/" className="mb-4 inline-flex items-center gap-2 text-muted transition hover:text-white">
                 <ArrowLeft size={20} />
-                返回首页
+                {tCommon('cancel')}
               </Link>
               <h1 className="text-3xl font-semibold">选择学习视频</h1>
               <p className="mt-2 text-muted">选择一个视频开始学习</p>
@@ -151,7 +155,7 @@ export default function AppPage() {
               }`}
             >
               <Settings size={18} />
-              Settings
+              {tSettings('title')}
             </button>
           </nav>
         </aside>

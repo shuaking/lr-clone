@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from 'next-intl';
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Brain, Download } from "lucide-react";
 import { useVocabularyStore } from "@/lib/stores/vocabulary-store";
@@ -13,6 +14,8 @@ import { exportAllWords } from "@/lib/anki-export";
 import { toast } from "sonner";
 
 export default function VocabularyPage() {
+  const t = useTranslations('vocabulary');
+  const tCommon = useTranslations('common');
   const { vocabulary, loadVocabulary, removeWord } = useVocabularyStore();
   const { user, initialize } = useAuthStore();
   const [filter, setFilter] = useState<'all' | 'recent'>('all');
@@ -50,12 +53,12 @@ export default function VocabularyPage() {
   const handleExport = () => {
     try {
       exportAllWords(vocabulary);
-      toast.success(`成功导出 ${vocabulary.length} 个单词到 CSV 文件`);
+      toast.success(t('total', { count: vocabulary.length }) + ' 导出成功');
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
       } else {
-        toast.error('导出失败');
+        toast.error(tCommon('error'));
       }
     }
   };
@@ -87,18 +90,18 @@ export default function VocabularyPage() {
               <Link
                 href="/"
                 className="flex items-center gap-2 text-muted transition hover:text-white"
-                aria-label="返回首页"
+                aria-label={tCommon('cancel')}
               >
                 <ArrowLeft size={20} aria-hidden="true" />
-                <span>返回</span>
+                <span>{tCommon('cancel')}</span>
               </Link>
               <div className="h-6 w-px bg-white/10" aria-hidden="true" />
-              <h1 className="text-xl font-semibold text-white">我的词汇表</h1>
+              <h1 className="text-xl font-semibold text-white">{t('title')}</h1>
             </div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 text-sm text-muted" aria-live="polite">
                 <BookOpen size={16} aria-hidden="true" />
-                <span>{vocabulary.length} 个单词</span>
+                <span>{t('total', { count: vocabulary.length })}</span>
               </div>
               {vocabulary.length > 0 && (
                 <button
@@ -107,7 +110,7 @@ export default function VocabularyPage() {
                   aria-label="导出到 Anki (CSV 格式)"
                 >
                   <Download size={16} aria-hidden="true" />
-                  <span>导出</span>
+                  <span>{tCommon('save')}</span>
                 </button>
               )}
               {dueWords.length > 0 && (
@@ -166,7 +169,7 @@ export default function VocabularyPage() {
             }`}
             aria-pressed={filter === 'all'}
           >
-            全部
+            {t('filter.all')}
           </button>
           <button
             onClick={() => setFilter('recent')}
@@ -185,8 +188,8 @@ export default function VocabularyPage() {
         {filteredVocabulary.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
             <BookOpen size={48} className="text-muted" aria-hidden="true" />
-            <p className="mt-4 text-lg text-muted">还没有保存任何单词</p>
-            <p className="mt-2 text-sm text-muted">在视频学习时点击单词即可保存</p>
+            <p className="mt-4 text-lg text-muted">{t('empty')}</p>
+            <p className="mt-2 text-sm text-muted">{t('emptyHint')}</p>
             <Link
               href="/"
               className="mt-6 rounded-lg bg-brand px-6 py-3 text-white transition hover:bg-brand/90"
@@ -211,10 +214,10 @@ export default function VocabularyPage() {
 
       <ConfirmDialog
         isOpen={deleteDialog.isOpen}
-        title="删除单词"
+        title={tCommon('delete')}
         message={`确定要删除单词"${deleteDialog.word}"吗？此操作无法撤销。`}
-        confirmLabel="删除"
-        cancelLabel="取消"
+        confirmLabel={tCommon('delete')}
+        cancelLabel={tCommon('cancel')}
         variant="danger"
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}

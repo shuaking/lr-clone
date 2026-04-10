@@ -1,0 +1,112 @@
+{
+  "common": {
+    "appName": "Language Reactor Clone",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All"
+  },
+  "nav": {
+    "features": "Features",
+    "content": "Content",
+    "phrasepump": "PhrasePump",
+    "vocabulary": "Vocabulary",
+    "stats": "Stats",
+    "app": "App",
+    "login": "Login",
+    "openApp": "Open App"
+  },
+  "home": {
+    "hero": {
+      "title": "Learn Languages Through Videos",
+      "subtitle": "Make language learning fun and effective with interactive subtitles and smart tools",
+      "cta": "Start Learning"
+    }
+  },
+  "catalog": {
+    "title": "YouTube Learning Content",
+    "subtitle": "Learn English from curated YouTube videos",
+    "category": "Category",
+    "difficulty": "Difficulty",
+    "searchPlaceholder": "Search videos...",
+    "noResults": "No videos found",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "video": {
+    "subtitles": "Subtitle Text",
+    "loading": "Loading subtitles...",
+    "autoHighlight": "Current playback auto-highlights",
+    "noSubtitles": "No subtitle data",
+    "controls": {
+      "navigation": "Subtitle Navigation",
+      "prev": "Previous Subtitle",
+      "next": "Next Subtitle",
+      "autoPause": "Auto-pause after each sentence",
+      "playbackRate": "Playback Speed",
+      "subtitleDelay": "Subtitle Delay",
+      "subtitleMode": "Subtitle Mode",
+      "both": "Bilingual",
+      "original": "Original",
+      "translation": "Translation",
+      "loop": "Loop",
+      "fontSize": "Font Size",
+      "reset": "Reset",
+      "reload": "Reload"
+    },
+    "tips": {
+      "title": "Learning Tips",
+      "clickSubtitle": "Click subtitle to jump to playback",
+      "clickWord": "Click word to see translation",
+      "shortcuts": {
+        "space": "Play/Pause",
+        "arrows": "Switch sentences",
+        "esc": "Close popup"
+      }
+    }
+  },
+  "vocabulary": {
+    "title": "My Vocabulary",
+    "subtitle": "Manage your saved words and phrases",
+    "total": "{count} words total",
+    "search": "Search vocabulary...",
+    "filter": {
+      "all": "All",
+      "learning": "Learning",
+      "familiar": "Familiar",
+      "mastered": "Mastered"
+    },
+    "empty": "No vocabulary saved yet",
+    "emptyHint": "Click words while learning videos to save them",
+    "context": "Context",
+    "savedAt": "Saved at",
+    "jumpToVideo": "Jump to video"
+  },
+  "stats": {
+    "title": "Learning Statistics",
+    "overview": "Learning Overview",
+    "totalWords": "Total Words",
+    "studyTime": "Study Time",
+    "currentStreak": "Current Streak",
+    "achievements": "Achievements",
+    "recentActivity": "Recent Activity",
+    "dailyGoal": "Daily Goal"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Interface Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}

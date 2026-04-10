@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import { useTranslations } from 'next-intl';
 import { getAllVideos, categories, difficulties, ContentItem } from "@/lib/content-data";
 import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { useSubtitlePreloader } from "@/hooks/useSubtitlePreloader";
 import { Play, Clock, Eye } from "lucide-react";
 
 export function ContentCatalog() {
+  const t = useTranslations('catalog');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedDifficulty, setSelectedDifficulty] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -67,6 +69,15 @@ export function ContentCatalog() {
 
   useSubtitlePreloader(preloadVideoIds);
 
+  const getDifficultyLabel = (difficulty: string) => {
+    switch (difficulty) {
+      case 'beginner': return t('beginner');
+      case 'intermediate': return t('intermediate');
+      case 'advanced': return t('advanced');
+      default: return difficulty;
+    }
+  };
+
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'beginner': return 'text-green-400';
@@ -80,15 +91,15 @@ export function ContentCatalog() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-semibold">YouTube 学习内容</h1>
-        <p className="mt-2 text-muted">从精选的 YouTube 视频中学习英语</p>
+        <h1 className="text-3xl font-semibold">{t('title')}</h1>
+        <p className="mt-2 text-muted">{t('subtitle')}</p>
       </div>
 
       {/* Filters */}
       <div className="space-y-4">
         <input
           type="text"
-          placeholder="搜索视频或频道..."
+          placeholder={t('searchPlaceholder')}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-brand/50"
@@ -164,7 +175,21 @@ export function ContentCatalog() {
                 {item.title}
               </h3>
 
-              <p className="mb-3 text-sm text-muted">{item.channel}</p>
+              <p className="mb-2 text-sm text-muted">{item.channel}</p>
+
+              {/* 标签 */}
+              {item.tags && item.tags.length > 0 && (
+                <div className="mb-3 flex flex-wrap gap-1">
+                  {item.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-brand/10 px-2 py-0.5 text-xs text-brand"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               <div className="flex items-center justify-between text-xs text-muted">
                 <div className="flex items-center gap-3">
@@ -173,7 +198,7 @@ export function ContentCatalog() {
                     {item.views}
                   </span>
                   <span className={`font-medium ${getDifficultyColor(item.difficulty)}`}>
-                    {item.difficulty}
+                    {getDifficultyLabel(item.difficulty)}
                   </span>
                 </div>
                 <span className="rounded-full bg-white/5 px-2 py-1">
@@ -187,7 +212,7 @@ export function ContentCatalog() {
 
       {filteredContent.length === 0 && (
         <div className="flex min-h-[40vh] items-center justify-center">
-          <p className="text-muted">没有找到匹配的内容</p>
+          <p className="text-muted">{t('noResults')}</p>
         </div>
       )}
 

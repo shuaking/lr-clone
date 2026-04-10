@@ -1,0 +1,112 @@
+{
+  "common": {
+    "appName": "Language Reactor Clone",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "close": "关闭",
+    "search": "搜索",
+    "filter": "筛选",
+    "all": "全部"
+  },
+  "nav": {
+    "features": "功能",
+    "content": "内容",
+    "phrasepump": "PhrasePump",
+    "vocabulary": "词汇表",
+    "stats": "统计",
+    "app": "应用",
+    "login": "登录",
+    "openApp": "打开应用"
+  },
+  "home": {
+    "hero": {
+      "title": "通过视频学习语言",
+      "subtitle": "使用交互式字幕和智能工具，让语言学习变得有趣高效",
+      "cta": "开始学习"
+    }
+  },
+  "catalog": {
+    "title": "YouTube 学习内容",
+    "subtitle": "从精选的 YouTube 视频中学习英语",
+    "category": "分类",
+    "difficulty": "难度",
+    "searchPlaceholder": "搜索视频...",
+    "noResults": "没有找到视频",
+    "beginner": "初级",
+    "intermediate": "中级",
+    "advanced": "高级"
+  },
+  "video": {
+    "subtitles": "字幕文本",
+    "loading": "正在加载字幕...",
+    "autoHighlight": "当前播放会自动高亮",
+    "noSubtitles": "没有字幕数据",
+    "controls": {
+      "navigation": "字幕导航",
+      "prev": "上一句字幕",
+      "next": "下一句字幕",
+      "autoPause": "每句后自动暂停",
+      "playbackRate": "播放速度",
+      "subtitleDelay": "字幕延迟",
+      "subtitleMode": "字幕模式",
+      "both": "双语",
+      "original": "原文",
+      "translation": "译文",
+      "loop": "循环",
+      "fontSize": "字体",
+      "reset": "重置",
+      "reload": "重新加载"
+    },
+    "tips": {
+      "title": "学习提示",
+      "clickSubtitle": "点击字幕跳转播放",
+      "clickWord": "点击单词查看翻译",
+      "shortcuts": {
+        "space": "播放/暂停",
+        "arrows": "切换句子",
+        "esc": "关闭弹窗"
+      }
+    }
+  },
+  "vocabulary": {
+    "title": "我的词汇表",
+    "subtitle": "管理你保存的单词和短语",
+    "total": "共 {count} 个词汇",
+    "search": "搜索词汇...",
+    "filter": {
+      "all": "全部",
+      "learning": "学习中",
+      "familiar": "熟悉",
+      "mastered": "已掌握"
+    },
+    "empty": "还没有保存任何词汇",
+    "emptyHint": "在视频学习时点击单词即可保存",
+    "context": "上下文",
+    "savedAt": "保存于",
+    "jumpToVideo": "跳转到视频"
+  },
+  "stats": {
+    "title": "学习统计",
+    "overview": "学习概览",
+    "totalWords": "累计单词",
+    "studyTime": "学习时长",
+    "currentStreak": "连续天数",
+    "achievements": "成就",
+    "recentActivity": "最近活动",
+    "dailyGoal": "每日目标"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "界面语言",
+    "theme": "主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统"
+  }
+}

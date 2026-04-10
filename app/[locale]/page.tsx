@@ -1,16 +1,21 @@
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 import { PlayCircle, Languages, BookOpenText, PanelRightOpen } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FeatureCard } from "@/components/feature-card";
 import { features } from "@/lib/mock";
-const surfaceItems = [
-  { icon: PlayCircle, label: "Video subtitle control" },
-  { icon: Languages, label: "Word hover translation" },
-  { icon: BookOpenText, label: "Reader for imported text" },
-  { icon: PanelRightOpen, label: "Study sidebar + saved words" }
-];
+
 export default function HomePage() {
+  const t = useTranslations('home.hero');
+
+  const surfaceItems = [
+    { icon: PlayCircle, label: "Video subtitle control" },
+    { icon: Languages, label: "Word hover translation" },
+    { icon: BookOpenText, label: "Reader for imported text" },
+    { icon: PanelRightOpen, label: "Study sidebar + saved words" }
+  ];
+
   return (
     <>
       <SiteHeader />
@@ -18,11 +23,11 @@ export default function HomePage() {
         <section className="grid-bg relative overflow-hidden border-b border-white/5">
           <div className="container grid gap-14 py-20 md:grid-cols-[1.15fr_.85fr] md:py-28">
             <div>
-              <span className="badge mb-6">Learn from videos, websites, and imported text</span>
-              <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">A near-identical learning app shell you can reskin later.</h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">This starter copies the structure and feel of a premium language-learning product: dark hero, feature-led sections, app dashboard, pricing, and a split reading experience.</p>
+              <span className="badge mb-6">{t('subtitle')}</span>
+              <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">{t('title')}</h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{t('subtitle')}</p>
               <div className="mt-9 flex flex-wrap gap-4">
-                <Link href="/app" className="rounded-full bg-white px-6 py-3 font-medium text-slate-900">Open app shell</Link>
+                <Link href="/app" className="rounded-full bg-white px-6 py-3 font-medium text-slate-900">{t('cta')}</Link>
                 <Link href="/pricing" className="rounded-full border border-white/10 px-6 py-3 font-medium text-white">View pricing</Link>
               </div>
               <div className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">

@@ -1,0 +1,112 @@
+{
+  "common": {
+    "appName": "Language Reactor Clone",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "close": "閉じる",
+    "search": "検索",
+    "filter": "フィルター",
+    "all": "すべて"
+  },
+  "nav": {
+    "features": "機能",
+    "content": "コンテンツ",
+    "phrasepump": "PhrasePump",
+    "vocabulary": "単語帳",
+    "stats": "統計",
+    "app": "アプリ",
+    "login": "ログイン",
+    "openApp": "アプリを開く"
+  },
+  "home": {
+    "hero": {
+      "title": "動画で言語を学ぶ",
+      "subtitle": "インタラクティブな字幕とスマートツールで、楽しく効果的な言語学習を",
+      "cta": "学習を始める"
+    }
+  },
+  "catalog": {
+    "title": "YouTube学習コンテンツ",
+    "subtitle": "厳選されたYouTube動画で英語を学ぶ",
+    "category": "カテゴリー",
+    "difficulty": "難易度",
+    "searchPlaceholder": "動画を検索...",
+    "noResults": "動画が見つかりません",
+    "beginner": "初級",
+    "intermediate": "中級",
+    "advanced": "上級"
+  },
+  "video": {
+    "subtitles": "字幕テキスト",
+    "loading": "字幕を読み込み中...",
+    "autoHighlight": "現在の再生位置を自動ハイライト",
+    "noSubtitles": "字幕データがありません",
+    "controls": {
+      "navigation": "字幕ナビゲーション",
+      "prev": "前の字幕",
+      "next": "次の字幕",
+      "autoPause": "各文の後に自動一時停止",
+      "playbackRate": "再生速度",
+      "subtitleDelay": "字幕遅延",
+      "subtitleMode": "字幕モード",
+      "both": "二言語",
+      "original": "原文",
+      "translation": "翻訳",
+      "loop": "ループ",
+      "fontSize": "フォントサイズ",
+      "reset": "リセット",
+      "reload": "再読み込み"
+    },
+    "tips": {
+      "title": "学習のヒント",
+      "clickSubtitle": "字幕をクリックして再生位置にジャンプ",
+      "clickWord": "単語をクリックして翻訳を表示",
+      "shortcuts": {
+        "space": "再生/一時停止",
+        "arrows": "文を切り替え",
+        "esc": "ポップアップを閉じる"
+      }
+    }
+  },
+  "vocabulary": {
+    "title": "マイ単語帳",
+    "subtitle": "保存した単語とフレーズを管理",
+    "total": "合計 {count} 語",
+    "search": "単語を検索...",
+    "filter": {
+      "all": "すべて",
+      "learning": "学習中",
+      "familiar": "慣れている",
+      "mastered": "習得済み"
+    },
+    "empty": "まだ単語が保存されていません",
+    "emptyHint": "動画学習中に単語をクリックして保存",
+    "context": "コンテキスト",
+    "savedAt": "保存日時",
+    "jumpToVideo": "動画にジャンプ"
+  },
+  "stats": {
+    "title": "学習統計",
+    "overview": "学習概要",
+    "totalWords": "累計単語数",
+    "studyTime": "学習時間",
+    "currentStreak": "連続日数",
+    "achievements": "実績",
+    "recentActivity": "最近のアクティビティ",
+    "dailyGoal": "1日の目標"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "インターフェース言語",
+    "theme": "テーマ",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム"
+  }
+}

@@ -14,6 +14,7 @@ export interface ContentItem {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   channel: string;
   category: string;
+  tags?: string[]; // 可选标签
 }
 
 export const mockYouTubeContent: ContentItem[] = [
@@ -25,7 +26,8 @@ export const mockYouTubeContent: ContentItem[] = [
     views: '1.4B',
     difficulty: 'beginner',
     channel: 'Rick Astley',
-    category: 'Music'
+    category: 'Music',
+    tags: ['pop', 'classic', 'lyrics']
   },
   {
     id: 'jNQXAC9IVRw',
@@ -35,7 +37,8 @@ export const mockYouTubeContent: ContentItem[] = [
     views: '280M',
     difficulty: 'beginner',
     channel: 'jawed',
-    category: 'Conversation'
+    category: 'Conversation',
+    tags: ['daily-life', 'short', 'casual']
   },
   {
     id: '9bZkp7q19f0',
@@ -45,7 +48,8 @@ export const mockYouTubeContent: ContentItem[] = [
     views: '5B',
     difficulty: 'intermediate',
     channel: 'officialpsy',
-    category: 'Music'
+    category: 'Music',
+    tags: ['k-pop', 'dance', 'culture']
   },
   {
     id: 'kJQP7kiw5Fk',
@@ -55,7 +59,8 @@ export const mockYouTubeContent: ContentItem[] = [
     views: '4.5B',
     difficulty: 'intermediate',
     channel: 'Luis Fonsi',
-    category: 'Music'
+    category: 'Music',
+    tags: ['latin', 'romance', 'lyrics']
   },
   {
     id: 'OPf0YbXqDm0',
@@ -65,7 +70,8 @@ export const mockYouTubeContent: ContentItem[] = [
     views: '1.2B',
     difficulty: 'intermediate',
     channel: 'Mark Ronson',
-    category: 'Music'
+    category: 'Music',
+    tags: ['funk', 'dance', 'upbeat']
   },
   {
     id: 'RgKAFK5djSk',
@@ -75,7 +81,8 @@ export const mockYouTubeContent: ContentItem[] = [
     views: '900M',
     difficulty: 'intermediate',
     channel: 'Maroon 5',
-    category: 'Music'
+    category: 'Music',
+    tags: ['pop', 'romance', 'wedding']
   }
 ];
 
