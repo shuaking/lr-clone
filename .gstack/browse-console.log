@@ -1,243 +1,495 @@
-[2026-04-09T02:53:03.514Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T02:54:08.930Z] [error] %o
-
-%s ReferenceError: Cannot access 'initPlayer' before initialization
-    at VideoLearningInterface (webpack-internal:///(app-pages-browser)/./components/video-learning-interface-sync.tsx:79:9)
-    at react-stack-bottom-frame (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:22339:20)
-    at renderWithHooks (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:5731:22)
-    at updateFunctionComponent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:7992:19)
-    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:9657:18)
-    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:544:16)
-    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14986:22)
-    at workLoopSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14816:41)
-    at renderRootSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14794:11)
-    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14329:46)
-    at performSyncWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15857:7)
-    at flushSyncWorkAcrossRoots_impl (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15719:21)
-    at processRootScheduleInMicrotask (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15753:7)
-    at eval (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15873:13) The above error occurred in the <VideoLearningInterface> component. It was handled by the <ReactDevOverlay> error boundary.
-[2026-04-09T02:55:01.127Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T02:55:02.492Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T02:55:02.774Z] [warning] [Fast Refresh] performing full reload because your application had an unrecoverable error
-[2026-04-09T02:55:04.027Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T02:55:40.400Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T02:55:41.466Z] [log] [Fast Refresh] done in 1067ms
-[2026-04-09T02:55:52.997Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T02:56:42.110Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T02:56:42.879Z] [error] ./components/video-learning-interface-sync.tsx
-Module parse failed: Identifier 'onPlayerReady' has already been declared (94:10)
-|         videoId
-|     ]);
->     const onPlayerReady = useCallback({
-|         "VideoLearningInterface.useCallback[onPlayerReady]": ()=>{
-|             console.log('Player ready, starting time update interval');
-
-Import trace for requested module:
-./components/video-learning-interface-sync.tsx
-./app/app/page.tsx
-[2026-04-09T02:57:09.323Z] [error] ./components/video-learning-interface-sync.tsx
-Module parse failed: Identifier 'onPlayerReady' has already been declared (97:10)
-|         videoId
-|     ]);
->     const onPlayerReady = useCallback({
-|         "VideoLearningInterface.useCallback[onPlayerReady]": ()=>{
-|             console.log('Player ready, starting time update interval');
-
-Import trace for requested module:
-./components/video-learning-interface-sync.tsx
-./app/app/page.tsx
-[2026-04-09T02:57:09.921Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T02:57:10.026Z] [log] [Fast Refresh] done in 104ms
-[2026-04-09T02:57:10.578Z] [log] [Fast Refresh] done in 657ms
-[2026-04-09T02:57:11.157Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
-[2026-04-09T02:57:11.888Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T02:57:21.530Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T02:58:42.408Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T03:00:48.076Z] [error] Failed to fetch YouTube subtitles: TypeError: data.map is not a function
+[2026-04-10T07:37:01.148Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-10T07:37:01.148Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-10T07:37:01.153Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.153Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 text-brand">LR</div>
+[2026-04-10T07:37:01.160Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.85 (foreground color: #5b7dd4, background color: #1a2540, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.160Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.170Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.171Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 text-brand">LR</div>
+[2026-04-10T07:37:01.172Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.172Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <header class="sticky top-0 z-50 border-b border-white/5 dark:border-white/5 bg-white/80 dark:bg-[#0a0f1b]/80 backdrop-blur">
+[2026-04-10T07:37:01.172Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.172Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <body>
+[2026-04-10T07:37:01.172Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.172Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.172Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.172Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <span class="hidden sm:inline">深色</span>
+[2026-04-10T07:37:01.173Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.173Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.173Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.173Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition bg-brand text-white" aria-label="切换到深色模式" aria-pressed="true">
+[2026-04-10T07:37:01.184Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.184Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.184Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.184Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->1</p>
+[2026-04-10T07:37:01.184Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.184Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.184Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.184Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->1</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.185Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.185Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.186Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.186Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.186Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.186Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
+[2026-04-10T07:37:01.186Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.186Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.186Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.186Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->1</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.186Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.186Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.186Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.187Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.187Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.187Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->2</p>
+[2026-04-10T07:37:01.187Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.187Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.187Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.187Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->2</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.187Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.187Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.187Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.187Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.196Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.196Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
+[2026-04-10T07:37:01.196Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.196Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.196Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.196Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->2</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.196Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.196Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.196Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.196Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.197Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.197Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->3</p>
+[2026-04-10T07:37:01.197Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.197Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.197Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.197Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->3</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.197Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.197Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.197Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.197Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.197Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
+[2026-04-10T07:37:01.198Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.198Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.198Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->3</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.198Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.198Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.198Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.198Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->4</p>
+[2026-04-10T07:37:01.198Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.198Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.199Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.199Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->4</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.199Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.199Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.199Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.199Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.199Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.199Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
+[2026-04-10T07:37:01.204Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:37:01.204Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:37:01.204Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.204Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->4</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
+[2026-04-10T07:37:01.204Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:37:01.204Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
+[2026-04-10T07:37:01.204Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.204Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.204Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.205Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-10T07:37:01.205Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.206Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:37:01.206Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.206Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-10T07:37:01.206Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:37:01.206Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:37:01.206Z] [error] Fix any of the following:
+  No skip link target
+[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
+[2026-04-10T07:37:01.259Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:06.108Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:08.927Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:13.758Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:18.641Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:21.859Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:25.250Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:28.670Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:37:32.241Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:38:37.193Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T07:38:37.644Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T07:38:37.671Z] [log] [Fast Refresh] done in 26ms
+[2026-04-10T07:38:38.270Z] [log] [Fast Refresh] done in 624ms
+[2026-04-10T07:38:57.541Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T07:38:57.785Z] [log] [Fast Refresh] done in 243ms
+[2026-04-10T07:39:58.867Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-10T07:39:59.762Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-10T07:39:59.765Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-10T07:39:59.770Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.770Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T07:39:59.770Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:39:59.770Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:39:59.770Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:39:59.770Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T07:39:59.770Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.770Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.770Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.770Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
+[2026-04-10T07:39:59.770Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:39:59.771Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:39:59.773Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:39:59.775Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
+[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.775Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
+[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.775Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-10T07:39:59.776Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.776Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:39:59.776Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:39:59.776Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.776Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.776Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
+[2026-04-10T07:39:59.776Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:39:59.776Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.777Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.777Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:39:59.777Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:39:59.777Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.777Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.777Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:39:59.778Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:39:59.778Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.778Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.778Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
+[2026-04-10T07:39:59.778Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:39:59.778Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.778Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.778Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
+[2026-04-10T07:39:59.778Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.779Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-10T07:39:59.779Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:39:59.779Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:39:59.779Z] [error] Fix any of the following:
+  No skip link target
+[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
+[2026-04-10T07:39:59.831Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:40:03.115Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:46:30.758Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-10T07:46:31.737Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-10T07:46:31.737Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-10T07:46:31.740Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.740Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
+[2026-04-10T07:46:31.741Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:46:31.741Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:46:31.741Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:46:31.741Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
+[2026-04-10T07:46:31.741Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.741Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.742Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.742Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
+[2026-04-10T07:46:31.742Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.743Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-10T07:46:31.743Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.743Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:46:31.743Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:46:31.743Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.743Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.744Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
+[2026-04-10T07:46:31.745Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:46:31.745Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.745Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.745Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:46:31.745Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:46:31.745Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.747Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.747Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:46:31.747Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:46:31.747Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.747Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.747Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
+[2026-04-10T07:46:31.747Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:46:31.747Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.747Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.747Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
+[2026-04-10T07:46:31.747Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:46:31.747Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.748Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-10T07:46:31.748Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:46:31.748Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:46:31.748Z] [error] Fix any of the following:
+  No skip link target
+[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
+[2026-04-10T07:46:31.792Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:48:04.143Z] [error] Auth error: Error: Supabase not configured
     at captureStackTrace (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/capture-stack-trace.js:13:23)
     at console.error (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:51:62)
-    at fetchYouTubeSubtitles (webpack-internal:///(app-pages-browser)/./lib/youtube-subtitles.ts:30:17)
-    at async loadSubtitles (webpack-internal:///(app-pages-browser)/./components/video-learning-interface-sync.tsx:202:26)
-[2026-04-09T03:00:48.439Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T03:00:48.441Z] [warning] Unrecognized feature: 'web-share'.
-[2026-04-09T03:00:48.479Z] [error] Failed to fetch YouTube subtitles: TypeError: data.map is not a function
-    at captureStackTrace (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/capture-stack-trace.js:13:23)
-    at console.error (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:51:62)
-    at fetchYouTubeSubtitles (webpack-internal:///(app-pages-browser)/./lib/youtube-subtitles.ts:30:17)
-    at async loadSubtitles (webpack-internal:///(app-pages-browser)/./components/video-learning-interface-sync.tsx:202:26)
-[2026-04-09T03:00:48.710Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:00:50.108Z] [log] Player ready, starting time update interval
-[2026-04-09T03:16:20.724Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T03:16:22.091Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T03:16:22.109Z] [log] [Fast Refresh] done in 1384ms
-[2026-04-09T03:16:22.360Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:16:22.607Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:16:22.870Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:16:23.121Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:16:23.368Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:16:23.617Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:16:24.266Z] [log] Player ready, starting time update interval
-[2026-04-09T03:19:02.420Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T03:23:02.799Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T03:39:11.646Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T03:39:12.654Z] [log] [Fast Refresh] done in 1008ms
-[2026-04-09T03:39:46.319Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T03:45:37.589Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T03:45:37.589Z] [warning] Unrecognized feature: 'web-share'.
-[2026-04-09T03:45:37.848Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T03:45:38.508Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T03:45:38.517Z] [log] Player ready, starting time update interval
-[2026-04-09T03:45:38.819Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T04:00:06.416Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T04:00:07.378Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T04:00:07.819Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T04:00:07.830Z] [log] [Fast Refresh] done in 450ms
-[2026-04-09T04:00:08.075Z] [log] [Fast Refresh] done in 697ms
-[2026-04-09T04:00:08.076Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:00:08.337Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:00:08.584Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:00:08.833Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:00:09.079Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:00:09.327Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:00:10.036Z] [log] Player ready, starting time update interval
-[2026-04-09T04:01:13.813Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T04:02:47.267Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T04:02:47.268Z] [warning] Unrecognized feature: 'web-share'.
-[2026-04-09T04:02:47.535Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:02:47.787Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:02:48.034Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T04:02:48.693Z] [log] Player ready, starting time update interval
-[2026-04-09T04:02:48.706Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T04:02:49.302Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T05:05:44.064Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T05:05:45.246Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T05:05:45.586Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T05:05:45.591Z] [log] [Fast Refresh] done in 334ms
-[2026-04-09T05:05:45.827Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:05:45.858Z] [log] [Fast Refresh] done in 615ms
-[2026-04-09T05:05:46.085Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:05:46.333Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:05:47.044Z] [log] Player ready, starting time update interval
-[2026-04-09T05:08:50.211Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T05:14:22.044Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T05:14:22.045Z] [warning] Unrecognized feature: 'web-share'.
-[2026-04-09T05:14:22.313Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:14:23.033Z] [log] Player ready, starting time update interval
-[2026-04-09T05:14:39.278Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T05:14:39.531Z] [warning] Invalid subtitle data format: {success: false, videoId: dQw4w9WgXcQ, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T05:15:33.758Z] [error] Failed to load resource: net::ERR_NETWORK_CHANGED
-[2026-04-09T05:37:50.427Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T05:37:51.279Z] [log] Initializing YouTube player for video: dQw4w9WgXcQ
-[2026-04-09T05:37:51.296Z] [log] [Fast Refresh] done in 868ms
-[2026-04-09T05:37:51.548Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:37:51.796Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:37:52.059Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:37:52.308Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:37:52.557Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:37:52.804Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:37:53.343Z] [log] Player ready, starting time update interval
-[2026-04-09T05:41:08.294Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T05:45:26.816Z] [log] Initializing YouTube player for video: jNQXAC9IVRw
-[2026-04-09T05:45:26.816Z] [warning] Unrecognized feature: 'web-share'.
-[2026-04-09T05:45:26.864Z] [warning] Invalid subtitle data format: {success: false, videoId: jNQXAC9IVRw, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T05:45:27.087Z] [warning] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('http://localhost:3002').
-[2026-04-09T05:45:27.181Z] [warning] Invalid subtitle data format: {success: false, videoId: jNQXAC9IVRw, error: type object 'YouTubeTranscriptApi' has no attribute 'get_transcript', transcript: null}
-[2026-04-09T05:45:27.693Z] [log] Player ready, starting time update interval
-[2026-04-09T05:59:10.417Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T05:59:11.166Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T05:59:11.599Z] [log] [Fast Refresh] done in 432ms
-[2026-04-09T05:59:12.017Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
-[2026-04-09T05:59:12.800Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-09T05:59:38.991Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T05:59:39.973Z] [log] [Fast Refresh] done in 983ms
-[2026-04-09T06:00:11.834Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:00:12.703Z] [log] [Fast Refresh] done in 863ms
-[2026-04-09T06:00:52.861Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:00:52.989Z] [error] ./components/video-learning-interface-sync.tsx
-Error:   x Expected ',', got ';'
-     ,-[D:\code\languagereactor.com\lr-clone\components\video-learning-interface-sync.tsx:510:1]
- 507 |           }
- 508 |         ];
- 509 |     }
- 510 |   };
-     :    ^
- 511 | 
- 512 |   // 点击字幕跳转到对应时间
- 513 |   const handleSubtitleClick = (subtitle: Subtitle) => {
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/video-learning-interface-sync.tsx
-./app/app/page.tsx
-[2026-04-09T06:02:12.297Z] [error] ./components/video-learning-interface-sync.tsx
-Error:   x Expected ',', got ';'
-     ,-[D:\code\languagereactor.com\lr-clone\components\video-learning-interface-sync.tsx:510:1]
- 507 |           }
- 508 |         ];
- 509 |     }
- 510 |   };
-     :    ^
- 511 | 
- 512 |   // 点击字幕跳转到对应时间
- 513 |   const handleSubtitleClick = (subtitle: Subtitle) => {
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/video-learning-interface-sync.tsx
-./app/app/page.tsx
-[2026-04-09T06:02:12.303Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:02:12.935Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:02:13.028Z] [log] [Fast Refresh] done in 106ms
-[2026-04-09T06:02:13.542Z] [log] [Fast Refresh] done in 619ms
-[2026-04-09T06:02:47.422Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:02:48.309Z] [log] [Fast Refresh] done in 888ms
-[2026-04-09T06:03:28.640Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:03:29.261Z] [log] [Fast Refresh] done in 620ms
-[2026-04-09T06:04:01.647Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:04:02.181Z] [log] [Fast Refresh] done in 533ms
-[2026-04-09T06:04:30.092Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:04:30.603Z] [log] [Fast Refresh] done in 510ms
-[2026-04-09T06:05:00.532Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:05:00.988Z] [log] [Fast Refresh] done in 455ms
-[2026-04-09T06:05:23.754Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:05:24.404Z] [log] [Fast Refresh] done in 650ms
-[2026-04-09T06:05:49.887Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:05:50.381Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:05:50.442Z] [log] [Fast Refresh] done in 61ms
-[2026-04-09T06:05:51.108Z] [log] [Fast Refresh] done in 728ms
-[2026-04-09T06:06:27.934Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:06:28.709Z] [log] [Fast Refresh] done in 776ms
-[2026-04-09T06:06:59.473Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:07:00.420Z] [log] [Fast Refresh] done in 946ms
-[2026-04-09T06:07:29.064Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:07:29.703Z] [log] [Fast Refresh] done in 638ms
-[2026-04-09T06:07:58.213Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:07:58.909Z] [log] [Fast Refresh] done in 696ms
-[2026-04-09T06:08:23.942Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:08:24.509Z] [log] [Fast Refresh] done in 566ms
-[2026-04-09T06:08:46.797Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:08:47.584Z] [log] [Fast Refresh] done in 786ms
-[2026-04-09T06:09:13.823Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:09:14.647Z] [log] [Fast Refresh] done in 823ms
-[2026-04-09T06:09:47.054Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:09:47.723Z] [log] [Fast Refresh] done in 665ms
-[2026-04-09T06:10:12.513Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:10:13.226Z] [log] [Fast Refresh] done in 714ms
-[2026-04-09T06:10:35.552Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:10:35.956Z] [log] [Fast Refresh] done in 404ms
-[2026-04-09T06:11:08.227Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:11:08.883Z] [log] [Fast Refresh] done in 656ms
-[2026-04-09T06:11:27.291Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:11:27.990Z] [log] [Fast Refresh] done in 697ms
-[2026-04-09T06:11:59.848Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:12:00.366Z] [log] [Fast Refresh] done in 517ms
-[2026-04-09T06:12:34.703Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:12:35.564Z] [log] [Fast Refresh] done in 861ms
-[2026-04-09T06:13:08.443Z] [log] [Fast Refresh] rebuilding
-[2026-04-09T06:13:09.217Z] [log] [Fast Refresh] done in 775ms
+    at handleSubmit (webpack-internal:///(app-pages-browser)/./app/[locale]/login/page.tsx:60:21)
+[2026-04-10T07:52:04.192Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T07:52:04.192Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T07:52:05.010Z] [log] [Fast Refresh] done in 818ms
+[2026-04-10T07:52:05.021Z] [log] [Fast Refresh] done in 828ms
+[2026-04-10T07:52:47.162Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-10T07:52:47.832Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-10T07:52:47.832Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-10T07:52:47.834Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.834Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T07:52:47.839Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:52:47.839Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:52:47.840Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:52:47.840Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T07:52:47.840Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.841Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.841Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.841Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
+[2026-04-10T07:52:47.841Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:52:47.841Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:52:47.841Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:52:47.841Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
+[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.843Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
+[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.843Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-10T07:52:47.843Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.843Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:52:47.843Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.843Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.844Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
+[2026-04-10T07:52:47.844Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:52:47.844Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.845Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.845Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:52:47.845Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:52:47.845Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.845Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.845Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:52:47.846Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.846Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.846Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
+[2026-04-10T07:52:47.846Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.846Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.846Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
+[2026-04-10T07:52:47.846Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.847Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-10T07:52:47.847Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:52:47.847Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:52:47.848Z] [error] Fix any of the following:
+  No skip link target
+[2026-04-10T07:52:47.848Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.848Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.848Z] [endGroup] console.groupEnd
+[2026-04-10T07:52:47.895Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:52:52.699Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:58:36.276Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-10T07:58:36.911Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-10T07:58:36.913Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-10T07:58:36.913Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.914Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T07:58:36.918Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:58:36.918Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:58:36.919Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:58:36.919Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T07:58:36.919Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.919Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.919Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.919Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
+[2026-04-10T07:58:36.919Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T07:58:36.919Z] [startGroupCollapsed] Related nodes
+[2026-04-10T07:58:36.919Z] [log] Element: %o JSHandle@node
+[2026-04-10T07:58:36.919Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
+[2026-04-10T07:58:36.919Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.920Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
+[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.920Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-10T07:58:36.920Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.920Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:58:36.920Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.920Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.920Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
+[2026-04-10T07:58:36.921Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:58:36.921Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.921Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.921Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:58:36.921Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:58:36.921Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.921Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.921Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T07:58:36.922Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:58:36.922Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.922Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.922Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
+[2026-04-10T07:58:36.922Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:58:36.922Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.922Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.922Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
+[2026-04-10T07:58:36.923Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T07:58:36.923Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.923Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.923Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-10T07:58:36.924Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T07:58:36.924Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T07:58:36.924Z] [error] Fix any of the following:
+  No skip link target
+[2026-04-10T07:58:36.924Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.924Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.924Z] [endGroup] console.groupEnd
+[2026-04-10T07:58:36.970Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T07:58:40.290Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T08:00:19.036Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:00:19.037Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:00:19.818Z] [log] [Fast Refresh] done in 781ms
+[2026-04-10T08:00:19.807Z] [log] [Fast Refresh] done in 771ms
+[2026-04-10T08:00:36.297Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-10T08:00:37.022Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-10T08:00:37.022Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-10T08:00:37.025Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.025Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T08:00:37.027Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T08:00:37.030Z] [startGroupCollapsed] Related nodes
+[2026-04-10T08:00:37.031Z] [log] Element: %o JSHandle@node
+[2026-04-10T08:00:37.031Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-10T08:00:37.031Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.031Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.033Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.033Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
+[2026-04-10T08:00:37.033Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
+[2026-04-10T08:00:37.033Z] [startGroupCollapsed] Related nodes
+[2026-04-10T08:00:37.034Z] [log] Element: %o JSHandle@node
+[2026-04-10T08:00:37.034Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
+[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.034Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
+[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.034Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-10T08:00:37.034Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.034Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T08:00:37.034Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T08:00:37.035Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.035Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.035Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
+[2026-04-10T08:00:37.035Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T08:00:37.035Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.036Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.036Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T08:00:37.037Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T08:00:37.037Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.038Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.038Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-10T08:00:37.038Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T08:00:37.038Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.038Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.038Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
+[2026-04-10T08:00:37.039Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T08:00:37.039Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.039Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.039Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
+[2026-04-10T08:00:37.041Z] [error] Fix any of the following:
+  Some page content is not contained by landmarks
+[2026-04-10T08:00:37.041Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.041Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.042Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-10T08:00:37.042Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-10T08:00:37.042Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-10T08:00:37.043Z] [error] Fix any of the following:
+  No skip link target
+[2026-04-10T08:00:37.043Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.043Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.043Z] [endGroup] console.groupEnd
+[2026-04-10T08:00:37.097Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T08:00:40.843Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-10T08:00:51.742Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:00:51.743Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:00:53.378Z] [log] [Fast Refresh] done in 1631ms
+[2026-04-10T08:00:53.373Z] [log] [Fast Refresh] done in 1625ms
+[2026-04-10T08:08:15.316Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:08:15.928Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:08:15.965Z] [log] [Fast Refresh] done in 36ms
+[2026-04-10T08:08:16.403Z] [log] [Fast Refresh] done in 473ms
+[2026-04-10T08:08:46.565Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:08:47.222Z] [log] [Fast Refresh] done in 655ms
+[2026-04-10T08:11:53.630Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:11:54.753Z] [log] [Fast Refresh] done in 1121ms
+[2026-04-10T08:16:06.220Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:16:07.794Z] [log] [Fast Refresh] done in 1570ms
+[2026-04-10T08:16:12.601Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:16:13.870Z] [log] [Fast Refresh] done in 1268ms
+[2026-04-10T08:27:05.051Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:27:06.117Z] [log] [Fast Refresh] rebuilding
+[2026-04-10T08:27:06.158Z] [log] [Fast Refresh] done in 41ms
+[2026-04-10T08:27:06.832Z] [log] [Fast Refresh] done in 714ms

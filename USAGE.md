@@ -10,7 +10,13 @@
 - **词汇管理** - 保存学习的单词，查看学习历史
 - **Anki 导出** - 将保存的单词导出为 CSV 格式，导入 Anki
 - **PhrasePump** - 听力练习工具，基于已保存词汇生成填空练习
-- **内容目录** - 浏览精选的 YouTube 学习内容（带筛选和搜索）
+- **内容目录** - 浏览精选的 YouTube 学习内容
+- **高级搜索** - 多维度筛选（分类、难度、时长、标签）+ 智能排序
+- **频道浏览** - 12 个精选学习频道，按语言和难度筛选
+- **语言检测** - 自动识别视频语言（支持 8 种语言）
+- **智能推荐** - 根据视频语言自动推荐最佳语言对
+- **语言对选择** - 22 种语言对组合，灵活切换学习语言
+- **学习统计** - 追踪学习进度、成就系统、连续学习记录
 
 ### 🎨 界面特性
 - 深色主题设计
@@ -82,9 +88,58 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 
 ### 内容目录
 1. 访问 `/catalog` 页面
-2. 使用分类和难度筛选内容
-3. 搜索感兴趣的视频
-4. 点击视频卡片查看详情
+2. 使用高级搜索筛选内容：
+   - **分类筛选**: 选择感兴趣的内容类型
+   - **难度筛选**: 选择适合的学习难度
+   - **时长筛选**: 短视频（<5分钟）、中等（5-15分钟）、长视频（>15分钟）
+   - **标签筛选**: 多选标签精确定位内容
+   - **排序方式**: 按相关度、观看次数、时长、难度排序
+3. 查看视频语言标识（左上角 Globe 图标）
+4. 点击视频卡片开始学习
+
+### 频道浏览
+1. 访问 `/channels` 页面
+2. 查看 12 个精选学习频道
+3. 使用搜索框查找特定频道
+4. 按分类和难度筛选频道
+5. 系统自动根据当前语言对筛选相关频道
+6. 点击"访问频道"跳转到 YouTube
+
+### 语言对选择
+1. 在页面右上角找到语言对选择器
+2. 点击下拉菜单查看 22 种语言对组合
+3. 选择你的学习语言对（如：英语→中文）
+4. 系统会自动：
+   - 筛选相关语言的内容
+   - 调整翻译方向
+   - 更新频道推荐
+
+### 智能语言检测
+系统会自动检测视频语言并提供智能建议：
+1. 每个视频卡片显示检测到的语言（支持 8 种语言）
+2. 当大部分视频语言与当前设置不匹配时，显示建议横幅
+3. 点击"切换语言对"一键切换到推荐设置
+4. 或点击"保持当前设置"继续使用当前配置
+
+**支持的语言**：
+- English (英语)
+- 中文 (中文)
+- 日本語 (日语)
+- 한국어 (韩语)
+- ไทย (泰语)
+- Español (西班牙语)
+- Français (法语)
+- Deutsch (德语)
+
+### 学习统计
+1. 访问 `/stats` 页面
+2. 查看学习数据：
+   - 总学习时长
+   - 保存的单词数
+   - 连续学习天数
+   - 完成的练习数
+3. 解锁成就徽章（13 个成就，7 个等级）
+4. 追踪学习进度和里程碑
 
 ## 🛠️ 技术栈
 
@@ -104,26 +159,57 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 lr-clone/
 ├── app/                    # Next.js 页面
-│   ├── page.tsx           # 首页
-│   ├── app/page.tsx       # 应用主界面
-│   ├── catalog/page.tsx   # 内容目录
-│   ├── phrasepump/page.tsx # PhrasePump
-│   ├── pricing/page.tsx   # 定价页面
-│   └── login/page.tsx     # 登录页面
+│   ├── [locale]/          # 多语言路由
+│   │   ├── page.tsx       # 首页
+│   │   ├── app/page.tsx   # 应用主界面
+│   │   ├── catalog/page.tsx   # 内容目录
+│   │   ├── channels/page.tsx  # 频道浏览
+│   │   ├── phrasepump/page.tsx # PhrasePump
+│   │   ├── stats/page.tsx     # 学习统计
+│   │   ├── vocabulary/page.tsx # 词汇管理
+│   │   ├── review/page.tsx    # 复习
+│   │   ├── admin/page.tsx     # 管理后台
+│   │   ├── pricing/page.tsx   # 定价页面
+│   │   └── login/page.tsx     # 登录页面
+│   └── api/               # API 路由
+│       └── transcript/route.ts # 字幕 API
 ├── components/            # React 组件
 │   ├── text-reader.tsx    # 文本阅读器
 │   ├── word-popup.tsx     # 词典弹窗
 │   ├── interactive-text.tsx # 可交互文本
 │   ├── saved-words-list.tsx # 词汇列表
 │   ├── phrase-pump.tsx    # PhrasePump 组件
-│   └── content-catalog.tsx # 内容目录
-├── lib/                   # 工具函数
+│   ├── content-catalog.tsx # 内容目录
+│   ├── channel-browser.tsx # 频道浏览器
+│   ├── advanced-search.tsx # 高级搜索
+│   ├── language-pair-selector.tsx # 语言对选择器
+│   ├── video-learning-interface-sync.tsx # 视频学习界面
+│   └── stats-dashboard.tsx # 统计面板
+├── lib/                   # 工具函数和配置
 │   ├── dictionary-api.ts  # 词典 API
 │   ├── storage.ts         # 本地存储
 │   ├── text-processor.ts  # 文本处理
 │   ├── content-data.ts    # 内容数据
+│   ├── channels-data.ts   # 频道数据
+│   ├── language-pairs.ts  # 语言对配置
+│   ├── language-detection.ts # 语言检测
+│   ├── animations.ts      # 动画配置
+│   ├── stores/            # Zustand 状态管理
+│   │   ├── language-pair-store.ts # 语言对状态
+│   │   └── stats-store.ts # 统计数据状态
 │   └── supabase/          # Supabase 配置
-└── public/                # 静态资源
+│       ├── client.ts      # Supabase 客户端
+│       └── auth.ts        # 认证逻辑
+├── hooks/                 # 自定义 Hooks
+│   └── useSubtitlePreloader.ts # 字幕预加载
+├── messages/              # 国际化文件
+│   ├── zh.json           # 中文
+│   ├── en.json           # 英文
+│   └── ja.json           # 日文
+├── public/                # 静态资源
+│   ├── icons/            # PWA 图标
+│   └── sw.js             # Service Worker
+└── middleware.ts          # Next.js 中间件（认证）
 ```
 
 ## 🔧 自定义配置

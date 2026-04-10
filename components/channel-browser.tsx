@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CHANNELS, CHANNEL_CATEGORIES, getChannelsByLanguage, getChannelsByCategory, getChannelsByDifficulty, type Channel } from "@/lib/channels-data";
 import { useLanguagePairStore } from "@/lib/stores/language-pair-store";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import { Search, Users, Video, Filter } from "lucide-react";
+import { detectLanguage, getLanguageName } from "@/lib/language-detection";
+import { Search, Users, Video, Filter, Globe } from "lucide-react";
 
 export function ChannelBrowser() {
   const { currentPair } = useLanguagePairStore();
@@ -141,6 +142,9 @@ export function ChannelBrowser() {
 }
 
 function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
+  const detectedLang = detectLanguage(channel.name + ' ' + channel.description);
+  const langName = getLanguageName(detectedLang);
+
   return (
     <motion.div
       variants={staggerItem}
@@ -199,6 +203,12 @@ function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
           <span className="px-2 py-1 bg-white/5 rounded-lg text-xs text-muted">
             {channel.category}
           </span>
+          {detectedLang !== 'unknown' && (
+            <span className="flex items-center gap-1 px-2 py-1 bg-brand/10 rounded-lg text-xs text-brand">
+              <Globe className="w-3 h-3" />
+              {langName}
+            </span>
+          )}
         </div>
 
         {/* 标签云 */}
@@ -220,6 +230,6 @@ function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
           访问频道
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }

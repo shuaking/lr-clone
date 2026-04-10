@@ -37,7 +37,10 @@
       "Bash(npx tsc:*)",
       "Bash(taskkill /F /IM node.exe)",
       "Bash(taskkill //F //IM node.exe)",
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "Bash(python:*)",
+      "Bash(node -e ':*)",
+      "Bash(npx next:*)"
     ]
   }
 }

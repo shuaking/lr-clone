@@ -9,12 +9,17 @@ import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { useSubtitlePreloader } from "@/hooks/useSubtitlePreloader";
 import { AdvancedSearch, AdvancedSearchFilters } from "./advanced-search";
 import { staggerContainer, staggerItem, cardHover } from "@/lib/animations";
-import { Play, Clock, Eye, Users } from "lucide-react";
+import { detectVideoLanguage, getLanguageName, suggestLanguagePair, type DetectedLanguage } from "@/lib/language-detection";
+import { useLanguagePairStore } from "@/lib/stores/language-pair-store";
+import { getLanguagePair } from "@/lib/language-pairs";
+import { Play, Clock, Eye, Users, Globe, Lightbulb, X } from "lucide-react";
 
 export function ContentCatalog() {
   const t = useTranslations('catalog');
+  const { currentPair, setLanguagePair } = useLanguagePairStore();
   const [playingVideo, setPlayingVideo] = useState<ContentItem | null>(null);
   const [allVideos, setAllVideos] = useState<ContentItem[]>([]);
+  const [showSuggestion, setShowSuggestion] = useState(true);
 
   // 高级搜索筛选状态
   const [filters, setFilters] = useState<AdvancedSearchFilters>({
@@ -149,6 +154,58 @@ export function ContentCatalog() {
     return result;
   }, [allVideos, filters]);
 
+  // 检测所有视频的语言
+  const videoLanguages = useMemo(() => {
+    const languageMap = new Map<string, DetectedLanguage>();
+    allVideos.forEach(video => {
+      const detectedLang = detectVideoLanguage(video.title, video.channel);
+      languageMap.set(video.id, detectedLang);
+    });
+    return languageMap;
+  }, [allVideos]);
+
+  // 分析筛选后视频的主要语言并提供建议
+  const languageSuggestion = useMemo(() => {
+    if (filteredContent.length === 0) return null;
+
+    // 统计各语言出现次数
+    const langCounts = new Map<DetectedLanguage, number>();
+    filteredContent.forEach(video => {
+      const lang = videoLanguages.get(video.id);
+      if (lang && lang !== 'unknown') {
+        langCounts.set(lang, (langCounts.get(lang) || 0) + 1);
+      }
+    });
+
+    // 找出最常见的语言
+    let dominantLang: DetectedLanguage | null = null;
+    let maxCount = 0;
+    langCounts.forEach((count, lang) => {
+      if (count > maxCount) {
+        maxCount = count;
+        dominantLang = lang;
+      }
+    });
+
+    // 如果主要语言与当前源语言不同，且占比超过50%，则建议切换
+    if (dominantLang && dominantLang !== currentPair.sourceCode && maxCount / filteredContent.length > 0.5) {
+      const suggestedPairId = suggestLanguagePair(dominantLang, currentPair.targetCode);
+      if (suggestedPairId) {
+        const suggestedPair = getLanguagePair(suggestedPairId);
+        if (suggestedPair) {
+          return {
+            dominantLang,
+            dominantLangName: getLanguageName(dominantLang),
+            percentage: Math.round((maxCount / filteredContent.length) * 100),
+            suggestedPair
+          };
+        }
+      }
+    }
+
+    return null;
+  }, [filteredContent, videoLanguages, currentPair]);
+
   // 预加载前 5 个视频的字幕
   const preloadVideoIds = useMemo(() => {
     return filteredContent.slice(0, 5).map(item => item.id);
@@ -191,6 +248,48 @@ export function ContentCatalog() {
         </Link>
       </div>
 
+      {/* 语言建议 */}
+      {languageSuggestion && showSuggestion && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="flex items-start gap-3 p-4 bg-brand/10 border border-brand/20 rounded-xl"
+        >
+          <Lightbulb className="w-5 h-5 text-brand flex-shrink-0 mt-0.5" />
+          <div className="flex-1">
+            <p className="text-sm text-ink">
+              检测到 <span className="font-semibold text-brand">{languageSuggestion.percentage}%</span> 的视频是{' '}
+              <span className="font-semibold">{languageSuggestion.dominantLangName}</span>，
+              建议切换到 <span className="font-semibold">{languageSuggestion.suggestedPair.sourceName} → {languageSuggestion.suggestedPair.targetName}</span> 语言对以获得更好的学习体验。
+            </p>
+            <div className="flex gap-2 mt-2">
+              <button
+                onClick={() => {
+                  setLanguagePair(languageSuggestion.suggestedPair.id);
+                  setShowSuggestion(false);
+                }}
+                className="px-3 py-1 bg-brand hover:bg-brand/90 text-white rounded-lg text-sm font-medium transition"
+              >
+                切换语言对
+              </button>
+              <button
+                onClick={() => setShowSuggestion(false)}
+                className="px-3 py-1 bg-white/5 hover:bg-white/10 text-muted rounded-lg text-sm transition"
+              >
+                保持当前设置
+              </button>
+            </div>
+          </div>
+          <button
+            onClick={() => setShowSuggestion(false)}
+            className="text-muted hover:text-ink transition"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </motion.div>
+      )}
+
       {/* 高级搜索 */}
       <AdvancedSearch
         filters={filters}
@@ -218,8 +317,12 @@ export function ContentCatalog() {
         animate="animate"
       >
         <AnimatePresence mode="popLayout">
-          {filteredContent.map((item, index) => (
-            <motion.div
+          {filteredContent.map((item, index) => {
+            const detectedLang = videoLanguages.get(item.id) || 'unknown';
+            const langName = getLanguageName(detectedLang);
+
+            return (
+              <motion.div
               key={item.id}
               variants={staggerItem}
               custom={index}
@@ -265,6 +368,12 @@ export function ContentCatalog() {
                 <div className="absolute bottom-2 right-2 rounded-lg bg-black/80 px-2 py-1 text-xs text-white">
                   {item.duration}
                 </div>
+                {detectedLang !== 'unknown' && (
+                  <div className="absolute top-2 left-2 flex items-center gap-1 rounded-lg bg-black/80 px-2 py-1 text-xs text-white">
+                    <Globe size={12} />
+                    <span>{langName}</span>
+                  </div>
+                )}
               </div>
 
               <div className="p-4">
@@ -304,7 +413,8 @@ export function ContentCatalog() {
                 </div>
               </div>
             </motion.div>
-          ))}
+          );
+        })}
         </AnimatePresence>
       </motion.div>
 
