@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { getSavedWords, SavedWord } from "@/lib/storage";
 import { recordActivity } from "@/lib/learning-stats";
-import { Play, Pause, RotateCcw, Volume2, CheckCircle, XCircle } from "lucide-react";
+import { PronunciationPractice } from "@/components/pronunciation-practice";
+import { Play, Pause, RotateCcw, Volume2, CheckCircle, XCircle, Mic } from "lucide-react";
 
 interface Exercise {
   id: string;
@@ -20,6 +21,7 @@ export function PhrasePump() {
   const [userInput, setUserInput] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [score, setScore] = useState({ correct: 0, total: 0 });
+  const [showPronunciation, setShowPronunciation] = useState(false);
 
   useEffect(() => {
     generateExercises();
@@ -96,6 +98,7 @@ export function PhrasePump() {
     if (currentIndex < exercises.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setUserInput("");
+      setShowPronunciation(false); // 重置发音练习状态
     }
   };
 
@@ -237,6 +240,33 @@ export function PhrasePump() {
                   </div>
                 </div>
               </div>
+
+              {/* Pronunciation Practice */}
+              {showPronunciation ? (
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="mb-3 flex items-center justify-between">
+                    <h4 className="font-semibold">发音练习</h4>
+                    <button
+                      onClick={() => setShowPronunciation(false)}
+                      className="text-sm text-muted hover:text-white"
+                    >
+                      关闭
+                    </button>
+                  </div>
+                  <PronunciationPractice
+                    text={currentExercise.sentence}
+                    language="en-US"
+                  />
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowPronunciation(true)}
+                  className="flex w-full items-center justify-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-6 py-3 font-medium text-brand transition hover:bg-brand/20"
+                >
+                  <Mic size={20} />
+                  练习发音
+                </button>
+              )}
 
               <button
                 onClick={handleNext}

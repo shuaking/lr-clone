@@ -7,7 +7,11 @@ import { useVocabularyStore } from "@/lib/stores/vocabulary-store";
 import { recordActivity } from "@/lib/learning-stats";
 import { getWordFrequency } from "@/lib/word-frequency";
 import { speakWord, VoiceAccent } from "@/lib/speech-synthesis";
-import { BookmarkPlus, BookmarkCheck, Volume2 } from "lucide-react";
+import { GrammarPanel } from "@/components/grammar-panel";
+import { CulturalNotesPanel } from "@/components/cultural-notes-panel";
+import { BookmarkPlus, BookmarkCheck, Volume2, BookOpen, Globe } from "lucide-react";
+
+type TabType = 'translation' | 'grammar' | 'culture';
 
 interface WordPopupProps {
   word: string;
@@ -23,6 +27,7 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
   const [loading, setLoading] = useState(true);
   const [saved, setSaved] = useState(false);
   const [savedItemId, setSavedItemId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<TabType>('translation');
 
   const { saveWord, removeWord, isWordSaved } = useVocabularyStore();
   const frequencyInfo = getWordFrequency(word);
@@ -99,7 +104,7 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
     <>
       <div className="fixed inset-0 z-40" onClick={onClose} />
       <div
-        className="fixed z-50 w-80 rounded-2xl border border-white/10 bg-[#11182b] p-5 shadow-2xl"
+        className="fixed z-50 w-[480px] max-h-[600px] overflow-y-auto rounded-2xl border border-white/10 bg-[#11182b] shadow-2xl"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
@@ -112,69 +117,122 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
           </div>
         ) : result ? (
           <>
-            <div className="mb-4 flex items-start justify-between">
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-xl font-semibold text-white">{result.word}</h3>
-                  <span
-                    className="rounded-md px-2 py-0.5 text-xs font-medium"
-                    style={{
-                      backgroundColor: `${frequencyInfo.color}20`,
-                      color: frequencyInfo.color,
-                    }}
-                    title={frequencyInfo.description}
-                  >
-                    {frequencyInfo.label}
-                  </span>
+            {/* Header */}
+            <div className="border-b border-white/10 p-5">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xl font-semibold text-white">{result.word}</h3>
+                    <span
+                      className="rounded-md px-2 py-0.5 text-xs font-medium"
+                      style={{
+                        backgroundColor: `${frequencyInfo.color}20`,
+                        color: frequencyInfo.color,
+                      }}
+                      title={frequencyInfo.description}
+                    >
+                      {frequencyInfo.label}
+                    </span>
+                  </div>
+                  {result.phonetic && (
+                    <p className="mt-1 text-sm text-muted">{result.phonetic}</p>
+                  )}
                 </div>
-                {result.phonetic && (
-                  <p className="mt-1 text-sm text-muted">{result.phonetic}</p>
-                )}
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleSpeak}
+                    className="rounded-xl bg-white/5 p-2 transition hover:bg-white/10"
+                    title="发音"
+                  >
+                    <Volume2 size={16} className="text-brand" />
+                  </button>
+                  <button
+                    onClick={handleSave}
+                    className="rounded-xl bg-white/5 p-2 transition hover:bg-white/10"
+                    title={saved ? "已保存" : "保存单词"}
+                  >
+                    {saved ? (
+                      <BookmarkCheck size={16} className="text-accent" />
+                    ) : (
+                      <BookmarkPlus size={16} className="text-brand" />
+                    )}
+                  </button>
+                </div>
               </div>
-              <div className="flex gap-2">
+
+              {/* Tabs */}
+              <div className="mt-4 flex gap-2">
                 <button
-                  onClick={handleSpeak}
-                  className="rounded-xl bg-white/5 p-2 transition hover:bg-white/10"
-                  title="发音"
+                  onClick={() => setActiveTab('translation')}
+                  className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition ${
+                    activeTab === 'translation'
+                      ? 'bg-brand/20 text-brand'
+                      : 'text-muted hover:bg-white/5'
+                  }`}
                 >
-                  <Volume2 size={16} className="text-brand" />
+                  <BookOpen className="h-4 w-4" />
+                  翻译
                 </button>
                 <button
-                  onClick={handleSave}
-                  className="rounded-xl bg-white/5 p-2 transition hover:bg-white/10"
-                  title={saved ? "已保存" : "保存单词"}
+                  onClick={() => setActiveTab('grammar')}
+                  className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition ${
+                    activeTab === 'grammar'
+                      ? 'bg-brand/20 text-brand'
+                      : 'text-muted hover:bg-white/5'
+                  }`}
                 >
-                  {saved ? (
-                    <BookmarkCheck size={16} className="text-accent" />
-                  ) : (
-                    <BookmarkPlus size={16} className="text-brand" />
-                  )}
+                  <BookOpen className="h-4 w-4" />
+                  语法
+                </button>
+                <button
+                  onClick={() => setActiveTab('culture')}
+                  className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition ${
+                    activeTab === 'culture'
+                      ? 'bg-brand/20 text-brand'
+                      : 'text-muted hover:bg-white/5'
+                  }`}
+                >
+                  <Globe className="h-4 w-4" />
+                  文化
                 </button>
               </div>
             </div>
 
-            <div className="space-y-3">
-              <div>
-                <p className="text-sm text-muted">翻译</p>
-                <p className="mt-1 text-base text-white">{result.translation}</p>
-              </div>
+            {/* Content */}
+            <div className="p-5">
+              {activeTab === 'translation' && (
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm text-muted">翻译</p>
+                    <p className="mt-1 text-base text-white">{result.translation}</p>
+                  </div>
 
-              {result.definitions && result.definitions.length > 0 && (
-                <div>
-                  <p className="text-sm text-muted">释义</p>
-                  <ul className="mt-1 space-y-1">
-                    {result.definitions.map((def, i) => (
-                      <li key={i} className="text-sm text-slate-300">• {def}</li>
-                    ))}
-                  </ul>
+                  {result.definitions && result.definitions.length > 0 && (
+                    <div>
+                      <p className="text-sm text-muted">释义</p>
+                      <ul className="mt-1 space-y-1">
+                        {result.definitions.map((def, i) => (
+                          <li key={i} className="text-sm text-slate-300">• {def}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {context && (
+                    <div>
+                      <p className="text-sm text-muted">语境</p>
+                      <p className="mt-1 text-sm italic text-slate-400">{context}</p>
+                    </div>
+                  )}
                 </div>
               )}
 
-              {context && (
-                <div>
-                  <p className="text-sm text-muted">语境</p>
-                  <p className="mt-1 text-sm italic text-slate-400">{context}</p>
-                </div>
+              {activeTab === 'grammar' && (
+                <GrammarPanel word={word} context={context} language="zh" />
+              )}
+
+              {activeTab === 'culture' && (
+                <CulturalNotesPanel word={word} context={context} language="zh" />
               )}
             </div>
           </>

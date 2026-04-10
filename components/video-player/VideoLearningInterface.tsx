@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { BookmarkPlus } from 'lucide-react';
+import { BookmarkPlus, Edit3, X } from 'lucide-react';
 import { useYouTubePlayer } from '@/hooks/useYouTubePlayer';
 import { useSubtitles, Subtitle } from '@/hooks/useSubtitles';
 import { useSubtitleSync } from '@/hooks/useSubtitleSync';
@@ -11,6 +11,8 @@ import { NavigationSidebar } from './NavigationSidebar';
 import { VideoControls } from './VideoControls';
 import { SubtitlePanel } from './SubtitlePanel';
 import { WordPopup } from '../word-popup';
+import { SubtitleEditor } from '../subtitle-editor';
+import { ErrorBoundary } from '../error-boundary';
 
 interface VideoLearningInterfaceProps {
   videoId: string;
@@ -41,6 +43,7 @@ export function VideoLearningInterface({
     timestamp: number;
   } | null>(null);
   const [autoPauseEnabled, setAutoPauseEnabled] = useState(false);
+  const [showSubtitleEditor, setShowSubtitleEditor] = useState(false);
 
   // 播放器设置
   const loopEnabled = usePlayerSettingsStore((state) => state.loopEnabled);
@@ -173,6 +176,13 @@ export function VideoLearningInterface({
             <span>{formatTime(player.currentTime)}</span>
             <button className="transition hover:text-white">保存视频</button>
             <button className="transition hover:text-white">添加到播放列表</button>
+            <button
+              onClick={() => setShowSubtitleEditor(true)}
+              className="flex items-center gap-1.5 transition hover:text-white"
+            >
+              <Edit3 size={14} />
+              编辑字幕
+            </button>
           </div>
         </div>
 
@@ -234,6 +244,51 @@ export function VideoLearningInterface({
           position={{ x: selectedWord.x, y: selectedWord.y }}
           onClose={() => setSelectedWord(null)}
         />
+      )}
+
+      {/* 字幕编辑器模态框 */}
+      {showSubtitleEditor && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+          <div className="relative w-full max-w-6xl max-h-[90vh] overflow-hidden rounded-2xl border border-white/10 bg-[#0d1117]">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-white/10 p-4">
+              <h2 className="text-lg font-semibold">字幕编辑器</h2>
+              <button
+                onClick={() => setShowSubtitleEditor(false)}
+                className="rounded-lg p-2 transition hover:bg-white/10"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Editor Content */}
+            <div className="overflow-y-auto p-4" style={{ maxHeight: 'calc(90vh - 80px)' }}>
+              <ErrorBoundary>
+                <SubtitleEditor
+                  initialSubtitles={subtitlesHook.subtitles.map(sub => ({
+                    index: parseInt(sub.id),
+                    start: sub.start,
+                    end: sub.end,
+                    text: sub.text
+                  }))}
+                  onSave={(editedSubtitles) => {
+                    // Convert back to Subtitle format and update
+                    const updatedSubtitles = editedSubtitles.map(sub => ({
+                      id: sub.index.toString(),
+                      start: sub.start,
+                      end: sub.end,
+                      text: sub.text,
+                      translation: subtitlesHook.subtitles.find(s => s.id === sub.index.toString())?.translation || ''
+                    }));
+                    // Note: This would need a method in useSubtitles to update subtitles
+                    console.log('Edited subtitles:', updatedSubtitles);
+                    setShowSubtitleEditor(false);
+                  }}
+                />
+              </ErrorBoundary>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
