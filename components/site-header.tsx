@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useTranslations } from 'next-intl';
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
+import { LanguagePairSelector } from "./language-pair-selector";
 
 export function SiteHeader() {
   const t = useTranslations('nav');
@@ -31,6 +32,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <LanguagePairSelector />
           <LanguageSwitcher />
           <ThemeToggle />
           <Link href="/login" className="hidden text-sm text-muted transition hover:text-gray-900 dark:hover:text-white md:block">{t('login')}</Link>
