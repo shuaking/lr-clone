@@ -5,6 +5,7 @@ import { AxeDevTools } from "@/components/axe-dev-tools";
 import { SkipToContent } from "@/components/skip-to-content";
 import { DataMigrationTool } from "@/components/data-migration-tool";
 import { AuthInitializer } from "@/components/auth-initializer";
+import { ThemeInitializer } from "@/components/theme-initializer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="zh-CN">
       <body>
         <AuthInitializer />
+        <ThemeInitializer />
         <SkipToContent />
         {children}
         <Toaster position="top-center" richColors />
