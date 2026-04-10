@@ -10,9 +10,14 @@ const config: Config = {
         panel: "#11172a",
         line: "rgba(255,255,255,0.09)",
         ink: "#f6f7fb",
-        muted: "#b4bcc9",
-        brand: "#7c9cff",
-        accent: "#78f0c8"
+        muted: "#9ca6b8",
+        brand: "#5b7dd4",
+        accent: "#78f0c8",
+        red: {
+          400: "#f87171",
+          500: "#dc2626",
+          600: "#b91c1c",
+        }
       },
       boxShadow: { glow: "0 18px 60px rgba(124, 156, 255, 0.16)" },
       backgroundImage: {

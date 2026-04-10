@@ -1,13 +1,18 @@
 import Link from "next/link";
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { PlayCircle, Languages, BookOpenText, PanelRightOpen } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FeatureCard } from "@/components/feature-card";
 import { features } from "@/lib/mock";
 
-export default function HomePage() {
-  const t = useTranslations('home.hero');
+export default async function HomePage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home.hero' });
 
   const surfaceItems = [
     { icon: PlayCircle, label: "Video subtitle control" },

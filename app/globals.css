@@ -14,7 +14,7 @@
   --text-secondary: 75 85 99;
   --text-muted: 107 114 128;
   --border-color: 229 231 235;
-  --brand: 124 156 255;
+  --brand: 91 125 212;
   --accent: 120 240 200;
 }
 
@@ -27,9 +27,9 @@
   --bg-tertiary: 17 24 43;
   --text-primary: 246 247 251;
   --text-secondary: 203 213 225;
-  --text-muted: 148 163 184;
+  --text-muted: 156 166 184;
   --border-color: 255 255 255 / 0.05;
-  --brand: 124 156 255;
+  --brand: 91 125 212;
   --accent: 120 240 200;
 }
 

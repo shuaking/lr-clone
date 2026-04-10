@@ -4,6 +4,7 @@
 
 ## ✨ 功能特性
 
+### 核心功能
 - 📖 **智能文本阅读器** - 双语对照，点击单词即时翻译
 - 📚 **词汇管理系统** - 保存、管理、导出学习词汇
 - 🎧 **PhrasePump 听力练习** - 基于已保存词汇的填空练习
@@ -15,9 +16,17 @@
 - 📊 **学习统计** - 追踪学习进度和成就系统
 - 🏆 **成就徽章** - 13 个成就，7 个等级
 - 🔥 **连续学习** - Streak 追踪，保持学习动力
-- 🎨 **现代化 UI** - 深色主题，响应式设计
+
+### 技术特性
+- 🌍 **多语言支持** - 中文、英文、日文界面（基于 next-intl）
+- 🔐 **本地认证系统** - 无需配置数据库即可使用（支持 Supabase 可选集成）
+- 📱 **PWA 支持** - 可安装为桌面/移动应用
+- 🎨 **现代化 UI** - 深色主题，响应式设计，WCAG AA 无障碍标准
+- ⚡ **性能优化** - 图片懒加载，虚拟滚动，字幕预加载
 
 ## 🚀 快速开始
+
+### 基础安装
 
 ```bash
 # 安装依赖
@@ -29,15 +38,35 @@ npm run dev
 # 访问 http://localhost:3000
 ```
 
+### 认证配置
+
+项目支持两种认证模式：
+
+#### 1. 本地模式（默认，无需配置）
+- 用户数据存储在浏览器 localStorage
+- 适合开发和个人使用
+- 无需任何配置即可注册/登录
+
+#### 2. Supabase 模式（可选）
+如需云端数据同步，创建 `.env.local` 文件：
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
 详细使用指南请查看 [USAGE.md](./USAGE.md)
 
 ## 🛠️ 技术栈
 
-- Next.js 15 + React 18
-- TypeScript
-- Tailwind CSS
-- Supabase (可选)
-- MyMemory Translation API
+- **框架**: Next.js 15.0.7 (App Router) + React 18
+- **语言**: TypeScript
+- **样式**: Tailwind CSS
+- **国际化**: next-intl
+- **状态管理**: Zustand
+- **认证**: Supabase (可选) + 本地 fallback
+- **翻译 API**: MyMemory Translation API
+- **视频 API**: YouTube Data API v3 (可选)
 
 ## 📖 使用说明
 

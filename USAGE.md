@@ -25,9 +25,27 @@
 npm install
 ```
 
-### 2. 配置环境变量（可选）
-如果要使用 Supabase 后端，复制 `.env.local.example` 为 `.env.local` 并填写：
+### 2. 启动开发服务器
 ```bash
+npm run dev
+```
+
+访问 http://localhost:3000
+
+### 3. 注册账号
+- 访问 `/login` 页面
+- 点击"没有账号？立即注册"
+- 填写邮箱和密码（至少 6 个字符）
+- 注册成功后自动登录
+
+**注意**: 默认使用本地存储模式，数据保存在浏览器 localStorage 中。
+
+### 4. 配置云端同步（可选）
+
+如果需要跨设备同步数据，可以配置 Supabase：
+
+```bash
+# 创建 .env.local 文件
 cp .env.local.example .env.local
 ```
 
@@ -37,12 +55,7 @@ NEXT_PUBLIC_SUPABASE_URL=your-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 
-### 3. 启动开发服务器
-```bash
-npm run dev
-```
-
-访问 http://localhost:3000
+配置后重启开发服务器，系统将自动使用 Supabase 进行认证和数据存储。
 
 ## 📖 功能使用指南
 
@@ -75,12 +88,16 @@ npm run dev
 
 ## 🛠️ 技术栈
 
-- **框架**: Next.js 15 (App Router)
+- **框架**: Next.js 15.0.7 (App Router)
+- **语言**: TypeScript
 - **样式**: Tailwind CSS
+- **国际化**: next-intl (支持中文、英文、日文)
+- **状态管理**: Zustand
 - **动画**: Framer Motion
 - **图标**: Lucide React
-- **后端**: Supabase (可选)
+- **认证**: 本地存储 + Supabase (可选)
 - **翻译 API**: MyMemory Translation API (免费)
+- **视频 API**: YouTube Data API v3 (可选)
 
 ## 📁 项目结构
 
@@ -145,10 +162,27 @@ colors: {
 
 ## 📝 注意事项
 
-1. **翻译 API 限制**: MyMemory API 有每日请求限制，如需大量使用请注册 API key
-2. **浏览器兼容性**: 语音合成功能需要现代浏览器支持
-3. **数据存储**: 当前使用 localStorage，清除浏览器数据会丢失保存的单词
-4. **内容版权**: 示例内容仅供学习使用，实际部署需要合法的内容来源
+### 数据存储
+- **本地模式**: 数据保存在浏览器 localStorage，清除浏览器数据会丢失
+- **Supabase 模式**: 数据保存在云端，支持跨设备同步
+
+### API 限制
+- **翻译 API**: MyMemory API 有每日请求限制，如需大量使用请注册 API key
+- **YouTube API**: 视频搜索功能需要配置 YouTube Data API v3 密钥
+
+### 浏览器兼容性
+- 语音合成功能需要现代浏览器支持
+- 推荐使用 Chrome、Edge、Firefox 最新版本
+- PWA 功能需要 HTTPS 环境（开发环境除外）
+
+### 内容版权
+- 示例内容仅供学习使用
+- 实际部署需要合法的内容来源
+
+### 无障碍支持
+- 符合 WCAG AA 标准
+- 支持键盘导航
+- 支持屏幕阅读器
 
 ## 🤝 贡献
 

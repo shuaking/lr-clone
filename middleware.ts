@@ -29,7 +29,18 @@ export function middleware(request: NextRequest) {
 
   // 从 cookie 中获取认证状态
   const authCookie = request.cookies.get('auth-storage');
-  const isAuthenticated = authCookie?.value?.includes('"user"');
+  let isAuthenticated = false;
+
+  if (authCookie?.value) {
+    try {
+      const decoded = decodeURIComponent(authCookie.value);
+      const authData = JSON.parse(decoded);
+      isAuthenticated = !!authData?.state?.user;
+    } catch {
+      // Cookie 格式错误，视为未认证
+      isAuthenticated = false;
+    }
+  }
 
   // 如果是受保护路由且未登录，重定向到登录页
   if (isProtectedRoute && !isAuthenticated) {

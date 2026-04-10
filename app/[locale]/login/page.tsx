@@ -11,20 +11,34 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [isRegister, setIsRegister] = useState(false);
   const [displayName, setDisplayName] = useState("");
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   const { login, register, loading } = useAuthStore();
   const router = useRouter();
 
+  const validateForm = () => {
+    const newErrors: { email?: string; password?: string } = {};
+
+    if (!email) {
+      newErrors.email = "请输入邮箱";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "请输入有效的邮箱地址";
+    }
+
+    if (!password) {
+      newErrors.password = "请输入密码";
+    } else if (password.length < 6) {
+      newErrors.password = "密码至少需要 6 个字符";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      toast.error("请填写所有必填字段");
-      return;
-    }
-
-    if (password.length < 6) {
-      toast.error("密码至少需要 6 个字符");
+    if (!validateForm()) {
       return;
     }
 
@@ -91,11 +105,19 @@ export default function LoginPage() {
                 id="email"
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (errors.email) setErrors({ ...errors, email: undefined });
+                }}
                 required
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
+                className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent ${
+                  errors.email ? 'border-red-500' : 'border-white/10'
+                }`}
                 placeholder="your@email.com"
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+              )}
             </div>
 
             <div>
@@ -106,12 +128,20 @@ export default function LoginPage() {
                 id="password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (errors.password) setErrors({ ...errors, password: undefined });
+                }}
                 required
                 minLength={6}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
+                className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent ${
+                  errors.password ? 'border-red-500' : 'border-white/10'
+                }`}
                 placeholder="至少 6 个字符"
               />
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-400">{errors.password}</p>
+              )}
             </div>
 
             <button
