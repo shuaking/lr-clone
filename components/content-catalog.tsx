@@ -139,6 +139,7 @@ export function ContentCatalog() {
               <img
                 src={item.thumbnail}
                 alt={item.title}
+                loading="lazy"
                 className="h-full w-full object-cover transition group-hover:scale-105"
                 onError={(e) => {
                   // 如果缩略图加载失败，使用备用图片

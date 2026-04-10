@@ -61,6 +61,7 @@ export function FavoriteVideosList() {
                 <img
                   src={video.thumbnail}
                   alt={video.title}
+                  loading="lazy"
                   className="aspect-video w-full object-cover transition group-hover:scale-105"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">

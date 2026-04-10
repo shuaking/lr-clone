@@ -141,6 +141,7 @@ export function VideoSearch() {
                 <img
                   src={video.thumbnail}
                   alt={video.title}
+                  loading="lazy"
                   className="mb-3 aspect-video w-full rounded-xl object-cover"
                 />
 

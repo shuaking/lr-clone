@@ -47,6 +47,7 @@ export default function AppPage() {
                   <img
                     src={video.thumbnail}
                     alt={video.title}
+                    loading="lazy"
                     className="h-full w-full object-cover transition group-hover:scale-105"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;

@@ -366,6 +366,7 @@ export function AdminVideoManager() {
                   <img
                     src={video.thumbnail}
                     alt={video.title}
+                    loading="lazy"
                     className="aspect-video w-full object-cover"
                   />
                   <div className="p-4">
@@ -407,6 +408,7 @@ export function AdminVideoManager() {
                   <img
                     src={video.thumbnail}
                     alt={video.title}
+                    loading="lazy"
                     className="aspect-video w-full object-cover"
                   />
                   <div className="p-4">

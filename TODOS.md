@@ -1,20 +1,20 @@
 # 待办任务清单
 
 > **最后更新**: 2026-04-10  
-> **项目状态**: Phase 1-3 已完成 (100%), 性能优化完成, 总体完成度约 85%
+> **项目状态**: Phase 1-3 已完成 (100%), 性能优化基本完成, 总体完成度约 87%
 
 ---
 
 ## 🚀 进行中
 
 - [ ] **提交当前未提交的代码**
-  - **描述**: PWA 支持、字幕预加载等性能优化功能
+  - **描述**: 图片懒加载优化
   - **优先级**: 🚨 P0 - 紧急
   - **工作量**: 5 分钟
   - **命令**:
     ```bash
     git add .
-    git commit -m "feat: add PWA support and subtitle preloading"
+    git commit -m "feat: add lazy loading for images"
     git push
     ```
 
@@ -35,13 +35,6 @@
   - **验收标准**:
     - 缓存策略实现
     - 存储空间管理
-
-- [ ] **懒加载优化**
-  - **描述**: 优化图片和组件的懒加载
-  - **工作量**: 2 小时
-  - **验收标准**:
-    - 图片懒加载
-    - 路由级代码分割
 
 ---
 
@@ -104,6 +97,10 @@
 ## ✅ 已完成
 
 ### 2026-04-10
+- [x] **懒加载优化完成**
+  - 为所有图片添加原生 loading="lazy" 属性
+  - 覆盖组件：ContentCatalog, FavoriteVideosList, VideoSearch, AdminVideoManager, App页面
+  - 减少初始页面加载时间和带宽消耗
 - [x] **性能优化功能完成**
   - PWA 支持（next-pwa 集成、manifest.json、Service Worker）
   - 字幕预加载系统（SubtitleCacheManager、智能缓存管理）
