@@ -38,7 +38,7 @@ export function TextReader() {
     setShowInput(false);
 
     // 记录阅读活动
-    recordActivity('text', 5);
+    recordActivity('text', 5).catch(console.error); // 异步记录,不阻塞UI
   };
 
   const handleReset = () => {

@@ -89,7 +89,7 @@ export function PhrasePump() {
     }));
 
     // 记录练习活动
-    recordActivity('practice', 2);
+    recordActivity('practice', 2).catch(console.error); // 异步记录,不阻塞UI
   };
 
   const handleNext = () => {

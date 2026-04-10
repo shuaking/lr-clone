@@ -1,5 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { isSupabaseConfigured } from '@/lib/supabase/client';
+import { getCurrentUser } from '@/lib/supabase/auth';
+import { getCloudSettings, saveCloudSettings } from '@/lib/supabase/settings-sync';
 
 export interface PlayerSettings {
   fontSize: number;
@@ -16,6 +19,8 @@ interface PlayerSettingsState extends PlayerSettings {
   unmarkSentenceAsKnown: (sentenceId: string) => void;
   isSentenceKnown: (sentenceId: string) => boolean;
   resetSettings: () => void;
+  syncToCloud: () => Promise<void>;
+  loadFromCloud: () => Promise<void>;
 }
 
 const DEFAULT_SETTINGS: PlayerSettings = {
@@ -25,32 +30,103 @@ const DEFAULT_SETTINGS: PlayerSettings = {
   knownSentences: new Set(),
 };
 
+/**
+ * 检查是否应该使用云端存储
+ */
+async function shouldUseCloud(): Promise<boolean> {
+  if (!isSupabaseConfigured) return false;
+  try {
+    const user = await getCurrentUser();
+    return user !== null;
+  } catch {
+    return false;
+  }
+}
+
 export const usePlayerSettingsStore = create<PlayerSettingsState>()(
   persist(
     (set, get) => ({
       ...DEFAULT_SETTINGS,
 
-      setFontSize: (size) => set({ fontSize: Math.max(12, Math.min(24, size)) }),
+      setFontSize: (size) => {
+        const newSize = Math.max(12, Math.min(24, size));
+        set({ fontSize: newSize });
+        // 异步同步到云端
+        get().syncToCloud().catch(console.error);
+      },
 
-      setSidebarWidth: (width) => set({ sidebarWidth: Math.max(300, Math.min(600, width)) }),
+      setSidebarWidth: (width) => {
+        const newWidth = Math.max(300, Math.min(600, width));
+        set({ sidebarWidth: newWidth });
+        // 异步同步到云端
+        get().syncToCloud().catch(console.error);
+      },
 
-      setLoopEnabled: (enabled) => set({ loopEnabled: enabled }),
+      setLoopEnabled: (enabled) => {
+        set({ loopEnabled: enabled });
+        // 异步同步到云端
+        get().syncToCloud().catch(console.error);
+      },
 
       markSentenceAsKnown: (sentenceId) => {
         const knownSentences = new Set(get().knownSentences);
         knownSentences.add(sentenceId);
         set({ knownSentences });
+        // 异步同步到云端
+        get().syncToCloud().catch(console.error);
       },
 
       unmarkSentenceAsKnown: (sentenceId) => {
         const knownSentences = new Set(get().knownSentences);
         knownSentences.delete(sentenceId);
         set({ knownSentences });
+        // 异步同步到云端
+        get().syncToCloud().catch(console.error);
       },
 
       isSentenceKnown: (sentenceId) => get().knownSentences.has(sentenceId),
 
-      resetSettings: () => set(DEFAULT_SETTINGS),
+      resetSettings: () => {
+        set(DEFAULT_SETTINGS);
+        // 异步同步到云端
+        get().syncToCloud().catch(console.error);
+      },
+
+      syncToCloud: async () => {
+        if (!(await shouldUseCloud())) return;
+
+        try {
+          const state = get();
+          await saveCloudSettings({
+            fontSize: state.fontSize,
+            sidebarWidth: state.sidebarWidth,
+            loopEnabled: state.loopEnabled,
+            knownSentences: state.knownSentences,
+          });
+        } catch (error) {
+          console.error('Failed to sync settings to cloud:', error);
+        }
+      },
+
+      loadFromCloud: async () => {
+        if (!(await shouldUseCloud())) return;
+
+        try {
+          const cloudSettings = await getCloudSettings();
+          if (cloudSettings) {
+            set({
+              fontSize: cloudSettings.fontSize ?? DEFAULT_SETTINGS.fontSize,
+              sidebarWidth: cloudSettings.sidebarWidth ?? DEFAULT_SETTINGS.sidebarWidth,
+              loopEnabled: cloudSettings.loopEnabled ?? DEFAULT_SETTINGS.loopEnabled,
+              knownSentences: Array.isArray(cloudSettings.knownSentences)
+                ? new Set(cloudSettings.knownSentences as string[])
+                : DEFAULT_SETTINGS.knownSentences,
+            });
+          }
+        } catch (error) {
+          console.error('Failed to load settings from cloud:', error);
+        }
+      },
     }),
     {
       name: 'player-settings-storage',
@@ -64,6 +140,8 @@ export const usePlayerSettingsStore = create<PlayerSettingsState>()(
         if (state && Array.isArray((state as any).knownSentences)) {
           state.knownSentences = new Set((state as any).knownSentences);
         }
+        // 登录后自动从云端加载
+        state?.loadFromCloud().catch(console.error);
       },
     }
   )

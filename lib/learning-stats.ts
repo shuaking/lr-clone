@@ -1,6 +1,15 @@
 /**
  * 学习统计和成就系统
+ * 支持混合存储：已登录用户使用云端，未登录用户使用 localStorage
  */
+
+import { isSupabaseConfigured } from './supabase/client';
+import { getCurrentUser } from './supabase/auth';
+import {
+  getCloudStats,
+  saveDailyStatsToCloud,
+  getRecentCloudStats,
+} from './supabase/stats-sync';
 
 export interface LearningStats {
   totalDays: number;              // 总学习天数
@@ -37,9 +46,64 @@ const STATS_KEY = 'lr-learning-stats';
 const ACHIEVEMENTS_KEY = 'lr-achievements';
 
 /**
- * 获取学习统计
+ * 检查是否应该使用云端存储
  */
-export function getLearningStats(): LearningStats {
+async function shouldUseCloud(): Promise<boolean> {
+  if (!isSupabaseConfigured) return false;
+  try {
+    const user = await getCurrentUser();
+    return user !== null;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 获取学习统计（混合存储）
+ */
+export async function getLearningStats(): Promise<LearningStats> {
+  if (typeof window === 'undefined') {
+    return getDefaultStats();
+  }
+
+  try {
+    // 检查是否使用云端
+    if (await shouldUseCloud()) {
+      const stats = await getCloudStats();
+      updateStreak(stats);
+      return stats;
+    }
+
+    // 使用本地存储
+    return getLearningStatsLocal();
+  } catch (error) {
+    console.error('Failed to load stats from cloud, falling back to local:', error);
+    return getLearningStatsLocal();
+  }
+}
+
+/**
+ * 获取本地学习统计（内部函数）
+ */
+function getLearningStatsLocal(): LearningStats {
+  try {
+    const data = localStorage.getItem(STATS_KEY);
+    if (!data) return getDefaultStats();
+
+    const stats = JSON.parse(data);
+    updateStreak(stats);
+    return stats;
+  } catch (error) {
+    console.error('Failed to load learning stats:', error);
+    return getDefaultStats();
+  }
+}
+
+/**
+ * 获取学习统计（同步版本，仅用于向后兼容）
+ * @deprecated 使用异步版本 getLearningStats()
+ */
+export function getLearningStatsSync(): LearningStats {
   if (typeof window === 'undefined') {
     return getDefaultStats();
   }
@@ -58,9 +122,32 @@ export function getLearningStats(): LearningStats {
 }
 
 /**
- * 保存学习统计
+ * 保存学习统计（混合存储）
  */
-function saveLearningStats(stats: LearningStats): void {
+async function saveLearningStats(stats: LearningStats): Promise<void> {
+  // 始终保存到本地（作为缓存）
+  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+
+  // 如果已登录，同步到云端
+  try {
+    if (await shouldUseCloud()) {
+      const today = new Date().toISOString().split('T')[0];
+      const todayActivity = stats.dailyActivity[today];
+      if (todayActivity) {
+        await saveDailyStatsToCloud(todayActivity);
+      }
+    }
+  } catch (error) {
+    console.error('Failed to sync stats to cloud:', error);
+    // 不抛出错误，允许降级到本地存储
+  }
+}
+
+/**
+ * 保存学习统计（同步版本，仅用于向后兼容）
+ * @deprecated 使用异步版本 saveLearningStats()
+ */
+function saveLearningStatsSync(stats: LearningStats): void {
   localStorage.setItem(STATS_KEY, JSON.stringify(stats));
 }
 
@@ -101,10 +188,10 @@ function updateStreak(stats: LearningStats): void {
 }
 
 /**
- * 记录学习活动
+ * 记录学习活动（混合存储）
  */
-export function recordActivity(type: 'word' | 'practice' | 'text', minutes: number = 0): void {
-  const stats = getLearningStats();
+export async function recordActivity(type: 'word' | 'practice' | 'text', minutes: number = 0): Promise<void> {
+  const stats = await getLearningStats();
   const today = new Date().toISOString().split('T')[0];
 
   // 初始化今日活动
@@ -170,15 +257,33 @@ export function recordActivity(type: 'word' | 'practice' | 'text', minutes: numb
   activity.minutesSpent += minutes;
   stats.totalMinutes += minutes;
 
-  saveLearningStats(stats);
-  checkAchievements();
+  await saveLearningStats(stats);
+  checkAchievements().catch(console.error); // 异步检查成就,不阻塞
 }
 
 /**
- * 获取最近N天的活动
+ * 获取最近N天的活动（混合存储）
  */
-export function getRecentActivity(days: number = 30): DailyActivity[] {
-  const stats = getLearningStats();
+export async function getRecentActivity(days: number = 30): Promise<DailyActivity[]> {
+  try {
+    // 检查是否使用云端
+    if (await shouldUseCloud()) {
+      return await getRecentCloudStats(days);
+    }
+
+    // 使用本地存储
+    return getRecentActivityLocal(days);
+  } catch (error) {
+    console.error('Failed to get recent activity from cloud, falling back to local:', error);
+    return getRecentActivityLocal(days);
+  }
+}
+
+/**
+ * 获取最近N天的活动（本地存储，内部函数）
+ */
+function getRecentActivityLocal(days: number = 30): DailyActivity[] {
+  const stats = getLearningStatsSync();
   const activities: DailyActivity[] = [];
   const today = new Date();
 
@@ -321,10 +426,10 @@ export function getAchievements(): Achievement[] {
 }
 
 /**
- * 检查并解锁成就
+ * 检查并解锁成就（异步版本）
  */
-export function checkAchievements(): Achievement[] {
-  const stats = getLearningStats();
+export async function checkAchievements(): Promise<Achievement[]> {
+  const stats = await getLearningStats();
   const achievements = getAchievements();
   const newlyUnlocked: Achievement[] = [];
 
@@ -367,9 +472,10 @@ export function checkAchievements(): Achievement[] {
 /**
  * 获取学习等级
  */
-export function getLearningLevel(): { level: number; title: string; progress: number } {
-  const stats = getLearningStats();
-  const totalPoints = stats.totalWords * 10 + stats.totalPractices * 5 + stats.totalTexts * 20;
+export function getLearningLevel(stats?: LearningStats): { level: number; title: string; progress: number } {
+  // 如果没有传入 stats,使用同步版本获取
+  const learningStats = stats || getLearningStatsSync();
+  const totalPoints = learningStats.totalWords * 10 + learningStats.totalPractices * 5 + learningStats.totalTexts * 20;
 
   const levels = [
     { level: 1, title: '新手', points: 0 },

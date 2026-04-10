@@ -70,7 +70,7 @@ export function WordPopup({ word, position, onClose, context, timestamp, videoId
         });
         setSaved(true);
         setSavedItemId(item.id);
-        recordActivity('word', 1);
+        recordActivity('word', 1).catch(console.error); // 异步记录,不阻塞UI
         toast.success('已保存到词汇表');
       }
     } catch (error) {

@@ -1,18 +1,45 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getLearningStats, getRecentActivity, getLearningLevel } from "@/lib/learning-stats";
+import { getLearningStats, getRecentActivity, getLearningLevel, type LearningStats, type DailyActivity } from "@/lib/learning-stats";
 import { TrendingUp, BookOpen, Target, Clock, Award, Flame } from "lucide-react";
 
+const DEFAULT_STATS: LearningStats = {
+  totalDays: 0,
+  currentStreak: 0,
+  longestStreak: 0,
+  totalWords: 0,
+  totalPractices: 0,
+  totalTexts: 0,
+  totalMinutes: 0,
+  lastActiveDate: '',
+  firstActiveDate: '',
+  dailyActivity: {}
+};
+
 export function StatsOverview() {
-  const [stats, setStats] = useState(getLearningStats());
-  const [level, setLevel] = useState(getLearningLevel());
-  const [recentActivity, setRecentActivity] = useState(getRecentActivity(7));
+  const [stats, setStats] = useState<LearningStats>(DEFAULT_STATS);
+  const [level, setLevel] = useState({ level: 1, title: '新手', progress: 0 });
+  const [recentActivity, setRecentActivity] = useState<DailyActivity[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setStats(getLearningStats());
-    setLevel(getLearningLevel());
-    setRecentActivity(getRecentActivity(7));
+    async function loadStats() {
+      try {
+        const [statsData, activityData] = await Promise.all([
+          getLearningStats(),
+          getRecentActivity(7)
+        ]);
+        setStats(statsData);
+        setRecentActivity(activityData);
+        setLevel(getLearningLevel(statsData)); // 传入 stats 参数
+      } catch (error) {
+        console.error('Failed to load stats:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadStats();
   }, []);
 
   const statCards = [
