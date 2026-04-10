@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { Subtitle, SubtitleMode } from '@/hooks/useSubtitles';
 import { SubtitleItem } from './SubtitleItem';
 import { usePlayerSettingsStore } from '@/lib/stores/player-settings-store';
+import { VirtualScroll } from '@/components/virtual-scroll';
 
 export interface SubtitlePanelProps {
   subtitles: Subtitle[];
@@ -30,6 +31,13 @@ export function SubtitlePanel({
   const sidebarWidth = usePlayerSettingsStore((state) => state.sidebarWidth);
   const setSidebarWidth = usePlayerSettingsStore((state) => state.setSidebarWidth);
   const [isResizing, setIsResizing] = useState(false);
+  const [containerHeight, setContainerHeight] = useState(600);
+
+  // 计算当前字幕的索引（用于虚拟滚动）
+  const currentSubtitleIndex = useMemo(() => {
+    if (!currentSubtitle) return undefined;
+    return subtitles.findIndex(s => s.id === currentSubtitle.id);
+  }, [currentSubtitle, subtitles]);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -57,9 +65,23 @@ export function SubtitlePanel({
     };
   }, [isResizing, setSidebarWidth]);
 
-  // 自动滚动到当前字幕
+  // 测量容器高度
   useEffect(() => {
-    if (!currentSubtitle) return;
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const updateHeight = () => {
+      setContainerHeight(container.clientHeight);
+    };
+
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
+  // 自动滚动到当前字幕（非虚拟滚动模式）
+  useEffect(() => {
+    if (!currentSubtitle || shouldUseVirtualScroll) return;
 
     const element = subtitleRefs.current[currentSubtitle.id];
     const container = scrollContainerRef.current;
@@ -79,11 +101,19 @@ export function SubtitlePanel({
   // 检查是否需要虚拟滚动
   const shouldUseVirtualScroll = subtitles.length > VIRTUAL_SCROLL_THRESHOLD;
 
-  if (shouldUseVirtualScroll) {
-    // TODO: 实现虚拟滚动版本
-    // 当前先使用简单列表,性能测试后如果需要再实现
-    console.warn(`字幕数量 (${subtitles.length}) 超过阈值 (${VIRTUAL_SCROLL_THRESHOLD}),建议启用虚拟滚动`);
-  }
+  // 渲染单个字幕项
+  const renderSubtitleItem = useCallback((subtitle: Subtitle, index: number) => {
+    return (
+      <SubtitleItem
+        subtitle={subtitle}
+        isCurrent={currentSubtitle?.id === subtitle.id}
+        isSelected={selectedSubtitle === subtitle.id}
+        subtitleMode={subtitleMode}
+        onClick={() => onSubtitleClick(subtitle)}
+        onWordClick={(word, event) => onWordClick(word, event, subtitle.text)}
+      />
+    );
+  }, [currentSubtitle, selectedSubtitle, subtitleMode, onSubtitleClick, onWordClick]);
 
   return (
     <aside
@@ -121,8 +151,18 @@ export function SubtitlePanel({
               <p>没有字幕数据</p>
             </div>
           </div>
+        ) : shouldUseVirtualScroll ? (
+          // 虚拟滚动模式（>150 字幕）
+          <VirtualScroll
+            items={subtitles}
+            itemHeight={120}
+            containerHeight={containerHeight}
+            renderItem={renderSubtitleItem}
+            overscan={5}
+            scrollToIndex={currentSubtitleIndex}
+          />
         ) : (
-          // 字幕列表
+          // 普通列表模式（≤150 字幕）
           subtitles.map((subtitle) => (
             <div
               key={subtitle.id}
