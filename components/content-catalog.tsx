@@ -6,15 +6,24 @@ import Link from "next/link";
 import { getAllVideos, categories, difficulties, ContentItem } from "@/lib/content-data";
 import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { useSubtitlePreloader } from "@/hooks/useSubtitlePreloader";
+import { AdvancedSearch, AdvancedSearchFilters } from "./advanced-search";
 import { Play, Clock, Eye, Users } from "lucide-react";
 
 export function ContentCatalog() {
   const t = useTranslations('catalog');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedDifficulty, setSelectedDifficulty] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
   const [playingVideo, setPlayingVideo] = useState<ContentItem | null>(null);
   const [allVideos, setAllVideos] = useState<ContentItem[]>([]);
+
+  // 高级搜索筛选状态
+  const [filters, setFilters] = useState<AdvancedSearchFilters>({
+    searchQuery: '',
+    selectedCategory: 'All',
+    selectedDifficulty: 'all',
+    selectedTags: [],
+    durationFilter: 'all',
+    sortBy: 'relevance',
+    sortOrder: 'desc'
+  });
 
   // 加载视频
   const loadVideos = () => {
@@ -53,15 +62,90 @@ export function ContentCatalog() {
     };
   }, []);
 
-  const filteredContent = allVideos.filter(item => {
-    const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;
-    const matchesDifficulty = selectedDifficulty === 'all' || item.difficulty === selectedDifficulty;
-    const matchesSearch = !searchQuery ||
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.channel.toLowerCase().includes(searchQuery.toLowerCase());
+  // 提取所有可用标签
+  const availableTags = useMemo(() => {
+    const tagsSet = new Set<string>();
+    allVideos.forEach(video => {
+      video.tags?.forEach(tag => tagsSet.add(tag));
+    });
+    return Array.from(tagsSet).sort();
+  }, [allVideos]);
 
-    return matchesCategory && matchesDifficulty && matchesSearch;
-  });
+  // 解析视频时长（分钟）
+  const parseDuration = (duration: string): number => {
+    const parts = duration.split(':').map(Number);
+    if (parts.length === 2) {
+      return parts[0] * 60 + parts[1]; // MM:SS
+    } else if (parts.length === 3) {
+      return parts[0] * 3600 + parts[1] * 60 + parts[2]; // HH:MM:SS
+    }
+    return 0;
+  };
+
+  // 解析观看次数
+  const parseViews = (views: string): number => {
+    const num = parseFloat(views);
+    if (views.includes('B')) return num * 1000000000;
+    if (views.includes('M')) return num * 1000000;
+    if (views.includes('K')) return num * 1000;
+    return num;
+  };
+
+  // 应用筛选和排序
+  const filteredContent = useMemo(() => {
+    let result = allVideos.filter(item => {
+      // 分类筛选
+      const matchesCategory = filters.selectedCategory === 'All' || item.category === filters.selectedCategory;
+
+      // 难度筛选
+      const matchesDifficulty = filters.selectedDifficulty === 'all' || item.difficulty === filters.selectedDifficulty;
+
+      // 搜索筛选
+      const matchesSearch = !filters.searchQuery ||
+        item.title.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        item.channel.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        item.tags?.some(tag => tag.toLowerCase().includes(filters.searchQuery.toLowerCase()));
+
+      // 标签筛选
+      const matchesTags = filters.selectedTags.length === 0 ||
+        filters.selectedTags.every(tag => item.tags?.includes(tag));
+
+      // 时长筛选
+      let matchesDuration = true;
+      if (filters.durationFilter !== 'all') {
+        const durationSeconds = parseDuration(item.duration);
+        if (filters.durationFilter === 'short') {
+          matchesDuration = durationSeconds < 300; // < 5分钟
+        } else if (filters.durationFilter === 'medium') {
+          matchesDuration = durationSeconds >= 300 && durationSeconds <= 900; // 5-15分钟
+        } else if (filters.durationFilter === 'long') {
+          matchesDuration = durationSeconds > 900; // > 15分钟
+        }
+      }
+
+      return matchesCategory && matchesDifficulty && matchesSearch && matchesTags && matchesDuration;
+    });
+
+    // 排序
+    if (filters.sortBy !== 'relevance') {
+      result.sort((a, b) => {
+        let comparison = 0;
+
+        if (filters.sortBy === 'views') {
+          comparison = parseViews(a.views) - parseViews(b.views);
+        } else if (filters.sortBy === 'duration') {
+          comparison = parseDuration(a.duration) - parseDuration(b.duration);
+        } else if (filters.sortBy === 'difficulty') {
+          const difficultyOrder = { beginner: 1, intermediate: 2, advanced: 3 };
+          comparison = difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+        }
+
+        return filters.sortOrder === 'asc' ? comparison : -comparison;
+      });
+    }
+
+    return result;
+  }, [allVideos, filters]);
 
   // 预加载前 5 个视频的字幕
   const preloadVideoIds = useMemo(() => {
@@ -105,47 +189,23 @@ export function ContentCatalog() {
         </Link>
       </div>
 
-      {/* Filters */}
-      <div className="space-y-4">
-        <input
-          type="text"
-          placeholder={t('searchPlaceholder')}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-brand/50"
-        />
+      {/* 高级搜索 */}
+      <AdvancedSearch
+        filters={filters}
+        onFiltersChange={setFilters}
+        availableTags={availableTags}
+        categories={categories}
+        difficulties={difficulties}
+      />
 
-        <div className="flex flex-wrap gap-2">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`rounded-full px-4 py-2 text-sm transition ${
-                selectedCategory === cat
-                  ? 'bg-brand text-white'
-                  : 'border border-white/10 bg-white/5 text-muted hover:bg-white/10'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex gap-2">
-          {difficulties.map(diff => (
-            <button
-              key={diff.value}
-              onClick={() => setSelectedDifficulty(diff.value)}
-              className={`rounded-full px-4 py-2 text-sm transition ${
-                selectedDifficulty === diff.value
-                  ? 'bg-white text-slate-900'
-                  : 'border border-white/10 bg-white/5 text-muted hover:bg-white/10'
-              }`}
-            >
-              {diff.label}
-            </button>
-          ))}
-        </div>
+      {/* 结果统计 */}
+      <div className="flex items-center justify-between text-sm text-muted">
+        <span>找到 {filteredContent.length} 个视频</span>
+        {filters.sortBy !== 'relevance' && (
+          <span>
+            按{filters.sortBy === 'views' ? '观看次数' : filters.sortBy === 'duration' ? '时长' : '难度'}排序
+          </span>
+        )}
       </div>
 
       {/* Content Grid */}
