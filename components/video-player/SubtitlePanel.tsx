@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Subtitle, SubtitleMode } from '@/hooks/useSubtitles';
 import { SubtitleItem } from './SubtitleItem';
+import { usePlayerSettingsStore } from '@/lib/stores/player-settings-store';
 
 export interface SubtitlePanelProps {
   subtitles: Subtitle[];
@@ -25,6 +26,36 @@ export function SubtitlePanel({
 }: SubtitlePanelProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const subtitleRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  const sidebarWidth = usePlayerSettingsStore((state) => state.sidebarWidth);
+  const setSidebarWidth = usePlayerSettingsStore((state) => state.setSidebarWidth);
+  const [isResizing, setIsResizing] = useState(false);
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsResizing(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isResizing) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const newWidth = window.innerWidth - e.clientX;
+      setSidebarWidth(newWidth);
+    };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing, setSidebarWidth]);
 
   // 自动滚动到当前字幕
   useEffect(() => {
@@ -55,7 +86,16 @@ export function SubtitlePanel({
   }
 
   return (
-    <aside className="w-[420px] border-l border-white/5 bg-[#0d1117] flex flex-col">
+    <aside
+      className="border-l border-white/5 bg-[#0d1117] flex flex-col relative"
+      style={{ width: `${sidebarWidth}px` }}
+    >
+      {/* 拖拽调整宽度手柄 */}
+      <div
+        onMouseDown={handleMouseDown}
+        className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-brand/50 transition-colors z-10"
+        aria-label="调整字幕面板宽度"
+      />
       {/* 标题 */}
       <div className="border-b border-white/5 p-4">
         <h2 className="font-semibold text-white">字幕文本</h2>

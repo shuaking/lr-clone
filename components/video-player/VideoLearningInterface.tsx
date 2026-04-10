@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { BookmarkPlus } from 'lucide-react';
 import { useYouTubePlayer } from '@/hooks/useYouTubePlayer';
 import { useSubtitles, Subtitle } from '@/hooks/useSubtitles';
 import { useSubtitleSync } from '@/hooks/useSubtitleSync';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
+import { usePlayerSettingsStore } from '@/lib/stores/player-settings-store';
 import { NavigationSidebar } from './NavigationSidebar';
 import { VideoControls } from './VideoControls';
 import { SubtitlePanel } from './SubtitlePanel';
@@ -41,6 +42,9 @@ export function VideoLearningInterface({
   } | null>(null);
   const [autoPauseEnabled, setAutoPauseEnabled] = useState(false);
 
+  // 播放器设置
+  const loopEnabled = usePlayerSettingsStore((state) => state.loopEnabled);
+
   // 使用自定义 hooks
   const player = useYouTubePlayer({
     videoId,
@@ -62,8 +66,30 @@ export function VideoLearningInterface({
     currentTime: player.currentTime,
     subtitleDelay: subtitlesHook.subtitleDelay,
     autoPauseEnabled,
-    onAutoPause: player.togglePlayPause
+    onAutoPause: player.togglePlayPause,
+    onSkipToNext: (endedSubtitleId) => {
+      const currentIndex = subtitlesRef.current.findIndex(
+        sub => sub.id === endedSubtitleId
+      );
+      if (currentIndex !== -1 && currentIndex < subtitlesRef.current.length - 1) {
+        handleSubtitleClick(subtitlesRef.current[currentIndex + 1]);
+      }
+    }
   });
+
+  // 循环播放当前句子
+  useEffect(() => {
+    if (!loopEnabled || !sync.currentSubtitle || !player.isPlaying) return;
+
+    const checkLoop = setInterval(() => {
+      const adjustedTime = player.currentTime + subtitlesHook.subtitleDelay;
+      if (sync.currentSubtitle && adjustedTime > sync.currentSubtitle.end) {
+        player.seekTo(sync.currentSubtitle.start + subtitlesHook.subtitleDelay);
+      }
+    }, 100);
+
+    return () => clearInterval(checkLoop);
+  }, [loopEnabled, sync.currentSubtitle, player, subtitlesHook.subtitleDelay]);
 
   // 用于字幕导航的 ref
   const subtitlesRef = useRef<Subtitle[]>([]);

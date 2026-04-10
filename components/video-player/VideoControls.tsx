@@ -1,5 +1,6 @@
-import { ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RefreshCw, Type, Repeat } from 'lucide-react';
 import { SubtitleMode } from '@/hooks/useSubtitles';
+import { usePlayerSettingsStore } from '@/lib/stores/player-settings-store';
 
 export interface VideoControlsProps {
   playbackRate: number;
@@ -32,6 +33,11 @@ export function VideoControls({
   onPrevSubtitle,
   onNextSubtitle
 }: VideoControlsProps) {
+  const fontSize = usePlayerSettingsStore((state) => state.fontSize);
+  const setFontSize = usePlayerSettingsStore((state) => state.setFontSize);
+  const loopEnabled = usePlayerSettingsStore((state) => state.loopEnabled);
+  const setLoopEnabled = usePlayerSettingsStore((state) => state.setLoopEnabled);
+
   return (
     <div className="flex items-center justify-between border-b border-white/5 bg-[#0d1117] px-4 py-3">
       {/* 左侧：字幕导航 */}
@@ -144,6 +150,45 @@ export function VideoControls({
           >
             译文
           </button>
+        </div>
+
+        {/* 循环当前句子 */}
+        <button
+          onClick={() => setLoopEnabled(!loopEnabled)}
+          className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition ${
+            loopEnabled
+              ? 'bg-brand text-white'
+              : 'bg-white/5 text-muted hover:bg-white/10'
+          }`}
+          aria-label="循环当前句子"
+        >
+          <Repeat size={14} />
+          循环
+        </button>
+
+        {/* 字体大小控制 */}
+        <div className="flex items-center gap-2 border-l border-white/5 pl-4">
+          <Type size={14} className="text-muted" />
+          <span className="text-sm text-muted">字体:</span>
+          <input
+            type="range"
+            min="12"
+            max="24"
+            value={fontSize}
+            onChange={(e) => setFontSize(Number(e.target.value))}
+            className="w-20 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand"
+            aria-label="调整字幕字体大小"
+          />
+          <span className="text-sm text-white min-w-[2.5rem] text-center">{fontSize}px</span>
+          {fontSize !== 15 && (
+            <button
+              onClick={() => setFontSize(15)}
+              className="text-xs text-muted hover:text-white transition"
+              aria-label="重置字体大小"
+            >
+              重置
+            </button>
+          )}
         </div>
 
         {/* 重新加载 */}

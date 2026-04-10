@@ -32,7 +32,8 @@
       "Bash(rmdir lr-clone:*)",
       "Bash(rm -rf lr-clone)",
       "Bash(npm test:*)",
-      "Bash(npm list:*)"
+      "Bash(npm list:*)",
+      "Bash(grep -E \"\\\\.\\(ts|tsx\\)$\")"
     ]
   }
 }

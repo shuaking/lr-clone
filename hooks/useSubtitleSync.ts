@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Subtitle } from './useSubtitles';
+import { usePlayerSettingsStore } from '@/lib/stores/player-settings-store';
 
 export interface UseSubtitleSyncOptions {
   subtitles: Subtitle[];
@@ -7,6 +8,7 @@ export interface UseSubtitleSyncOptions {
   subtitleDelay: number;
   autoPauseEnabled: boolean;
   onAutoPause?: () => void;
+  onSkipToNext?: (endedSubtitleId: string) => void;
 }
 
 export interface UseSubtitleSyncReturn {
@@ -53,11 +55,13 @@ export function useSubtitleSync({
   currentTime,
   subtitleDelay,
   autoPauseEnabled,
-  onAutoPause
+  onAutoPause,
+  onSkipToNext
 }: UseSubtitleSyncOptions): UseSubtitleSyncReturn {
   const [currentSubtitle, setCurrentSubtitle] = useState<Subtitle | null>(null);
   const [selectedSubtitle, setSelectedSubtitle] = useState<string | null>(null);
   const lastPausedRef = useRef<string | null>(null);
+  const isSentenceKnown = usePlayerSettingsStore((state) => state.isSentenceKnown);
 
   useEffect(() => {
     // 防御性检查: 空数组直接返回
@@ -77,16 +81,23 @@ export function useSubtitleSync({
     } else {
       setCurrentSubtitle(null);
 
-      // 检测刚结束的字幕，触发自动暂停
+      // 检测刚结束的字幕，触发自动暂停或跳过
       const justEnded = subtitles.find(
         sub => adjustedTime > sub.end &&
                adjustedTime < sub.end + PAUSE_TOLERANCE
       );
 
-      if (justEnded && autoPauseEnabled && lastPausedRef.current !== justEnded.id) {
-        log('[useSubtitleSync] Auto-pause triggered for subtitle:', justEnded.id);
-        onAutoPause?.();
-        lastPausedRef.current = justEnded.id;
+      if (justEnded && lastPausedRef.current !== justEnded.id) {
+        // 优先检查是否为已知句子，如果是则跳过
+        if (isSentenceKnown(justEnded.id) && onSkipToNext) {
+          log('[useSubtitleSync] Skipping known sentence:', justEnded.id);
+          onSkipToNext(justEnded.id);
+          lastPausedRef.current = justEnded.id;
+        } else if (autoPauseEnabled) {
+          log('[useSubtitleSync] Auto-pause triggered for subtitle:', justEnded.id);
+          onAutoPause?.();
+          lastPausedRef.current = justEnded.id;
+        }
       }
     }
   }, [currentTime, subtitles, subtitleDelay, autoPauseEnabled, onAutoPause]);
