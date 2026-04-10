@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getAllVideos, categories, difficulties, ContentItem } from "@/lib/content-data";
-import { VideoPlayer } from "./video-player";
+import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { Play, Clock, Eye } from "lucide-react";
 
 export function ContentCatalog() {
@@ -184,13 +184,9 @@ export function ContentCatalog() {
 
       {/* 视频播放器 */}
       {playingVideo && (
-        <VideoPlayer
+        <VideoLearningInterface
           videoId={playingVideo.id}
           title={playingVideo.title}
-          channel={playingVideo.channel}
-          thumbnail={playingVideo.thumbnail}
-          duration={playingVideo.duration}
-          onClose={() => setPlayingVideo(null)}
         />
       )}
     </div>

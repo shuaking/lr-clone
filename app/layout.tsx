@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import { AchievementNotifications } from "@/components/achievement-toast";
+import { AxeDevTools } from "@/components/axe-dev-tools";
+import { SkipToContent } from "@/components/skip-to-content";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "Language Reactor Clone",
@@ -8,11 +10,13 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <body>
+        <SkipToContent />
         {children}
         <Toaster position="top-center" richColors />
         <AchievementNotifications />
+        <AxeDevTools />
       </body>
     </html>
   );

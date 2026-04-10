@@ -46,13 +46,11 @@ export function saveVocabulary(item: Omit<SavedVocabulary, 'id' | 'savedAt'>): S
 
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(vocabulary));
-  } catch (error) {
-    if (error instanceof DOMException) {
-      if (error.name === 'QuotaExceededError') {
-        throw new Error('STORAGE_QUOTA_EXCEEDED');
-      } else if (error.name === 'SecurityError') {
-        throw new Error('STORAGE_DISABLED');
-      }
+  } catch (error: any) {
+    if (error?.name === 'QuotaExceededError') {
+      throw new Error('STORAGE_QUOTA_EXCEEDED');
+    } else if (error?.name === 'SecurityError') {
+      throw new Error('STORAGE_DISABLED');
     }
     throw new Error('STORAGE_UNKNOWN_ERROR');
   }
@@ -69,13 +67,11 @@ export function removeVocabulary(id: string): void {
 
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
-  } catch (error) {
-    if (error instanceof DOMException) {
-      if (error.name === 'QuotaExceededError') {
-        throw new Error('STORAGE_QUOTA_EXCEEDED');
-      } else if (error.name === 'SecurityError') {
-        throw new Error('STORAGE_DISABLED');
-      }
+  } catch (error: any) {
+    if (error?.name === 'QuotaExceededError') {
+      throw new Error('STORAGE_QUOTA_EXCEEDED');
+    } else if (error?.name === 'SecurityError') {
+      throw new Error('STORAGE_DISABLED');
     }
     throw new Error('STORAGE_UNKNOWN_ERROR');
   }

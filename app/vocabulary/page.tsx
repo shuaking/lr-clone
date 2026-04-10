@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, Trash2, BookOpen, Clock, Video, Brain, Download } from "lucide-react";
+import { ArrowLeft, BookOpen, Brain, Download } from "lucide-react";
 import { useVocabularyStore } from "@/lib/stores/vocabulary-store";
 import { useAuthStore } from "@/lib/stores/auth-store";
 import { DataMigrationTool } from "@/components/data-migration-tool";
-import { getWordFrequency } from "@/lib/word-frequency";
+import { ConfirmDialog } from "@/components/confirm-dialog";
+import { VocabularyItem } from "@/components/vocabulary-item";
 import { getDueWords, calculateReviewStats } from "@/lib/sm2-algorithm";
 import { exportAllWords } from "@/lib/anki-export";
 import { toast } from "sonner";
@@ -15,16 +16,28 @@ export default function VocabularyPage() {
   const { vocabulary, loadVocabulary, removeWord } = useVocabularyStore();
   const { user, initialize } = useAuthStore();
   const [filter, setFilter] = useState<'all' | 'recent'>('all');
+  const [deleteDialog, setDeleteDialog] = useState<{ isOpen: boolean; id: string; word: string }>({
+    isOpen: false,
+    id: '',
+    word: '',
+  });
 
   useEffect(() => {
     initialize();
     loadVocabulary();
   }, [initialize, loadVocabulary]);
 
-  const handleDelete = async (id: string) => {
-    if (confirm('确定要删除这个单词吗？')) {
-      await removeWord(id);
-    }
+  const handleDeleteClick = (id: string, word: string) => {
+    setDeleteDialog({ isOpen: true, id, word });
+  };
+
+  const handleDeleteConfirm = async () => {
+    await removeWord(deleteDialog.id);
+    setDeleteDialog({ isOpen: false, id: '', word: '' });
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteDialog({ isOpen: false, id: '', word: '' });
   };
 
   const filteredVocabulary = filter === 'recent'
@@ -68,31 +81,32 @@ export default function VocabularyPage() {
     <div className="min-h-screen bg-[#0d1117]">
       {/* 顶部导航 */}
       <header className="border-b border-white/5 bg-[#0d1117]">
-        <div className="mx-auto max-w-6xl px-6 py-4">
+        <nav className="mx-auto max-w-6xl px-6 py-4" aria-label="主导航">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
                 href="/"
                 className="flex items-center gap-2 text-muted transition hover:text-white"
+                aria-label="返回首页"
               >
-                <ArrowLeft size={20} />
+                <ArrowLeft size={20} aria-hidden="true" />
                 <span>返回</span>
               </Link>
-              <div className="h-6 w-px bg-white/10" />
+              <div className="h-6 w-px bg-white/10" aria-hidden="true" />
               <h1 className="text-xl font-semibold text-white">我的词汇表</h1>
             </div>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <BookOpen size={16} />
+              <div className="flex items-center gap-2 text-sm text-muted" aria-live="polite">
+                <BookOpen size={16} aria-hidden="true" />
                 <span>{vocabulary.length} 个单词</span>
               </div>
               {vocabulary.length > 0 && (
                 <button
                   onClick={handleExport}
                   className="flex items-center gap-2 rounded-lg bg-white/5 px-4 py-2 text-sm text-muted transition hover:bg-white/10 hover:text-white"
-                  title="导出到 Anki"
+                  aria-label="导出到 Anki (CSV 格式)"
                 >
-                  <Download size={16} />
+                  <Download size={16} aria-hidden="true" />
                   <span>导出</span>
                 </button>
               )}
@@ -101,17 +115,17 @@ export default function VocabularyPage() {
                   href="/review"
                   className="flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand/90"
                 >
-                  <Brain size={16} />
+                  <Brain size={16} aria-hidden="true" />
                   <span>开始复习 ({dueWords.length})</span>
                 </Link>
               )}
             </div>
           </div>
-        </div>
+        </nav>
       </header>
 
       {/* 主内容 */}
-      <main className="mx-auto max-w-6xl px-6 py-8">
+      <main id="main-content" className="mx-auto max-w-6xl px-6 py-8">
         {/* 数据迁移工具 */}
         {user && (
           <div className="mb-6">
@@ -142,7 +156,7 @@ export default function VocabularyPage() {
         )}
 
         {/* 筛选器 */}
-        <div className="mb-6 flex items-center gap-3">
+        <div className="mb-6 flex items-center gap-3" role="group" aria-label="词汇筛选">
           <button
             onClick={() => setFilter('all')}
             className={`rounded-lg px-4 py-2 text-sm transition ${
@@ -150,6 +164,7 @@ export default function VocabularyPage() {
                 ? 'bg-brand text-white'
                 : 'bg-white/5 text-muted hover:bg-white/10'
             }`}
+            aria-pressed={filter === 'all'}
           >
             全部
           </button>
@@ -160,6 +175,7 @@ export default function VocabularyPage() {
                 ? 'bg-brand text-white'
                 : 'bg-white/5 text-muted hover:bg-white/10'
             }`}
+            aria-pressed={filter === 'recent'}
           >
             最近 50 个
           </button>
@@ -168,7 +184,7 @@ export default function VocabularyPage() {
         {/* 词汇列表 */}
         {filteredVocabulary.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
-            <BookOpen size={48} className="text-muted" />
+            <BookOpen size={48} className="text-muted" aria-hidden="true" />
             <p className="mt-4 text-lg text-muted">还没有保存任何单词</p>
             <p className="mt-2 text-sm text-muted">在视频学习时点击单词即可保存</p>
             <Link
@@ -179,67 +195,30 @@ export default function VocabularyPage() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-3" role="list" aria-label="已保存的词汇">
             {filteredVocabulary.map((item) => (
-              <div
+              <VocabularyItem
                 key={item.id}
-                className="rounded-2xl border border-white/5 bg-white/5 p-5 transition hover:border-white/10 hover:bg-white/[0.07]"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3">
-                      <h3 className="text-xl font-semibold text-white">{item.word}</h3>
-                      {(() => {
-                        const freq = getWordFrequency(item.word);
-                        return (
-                          <span
-                            className="rounded-md px-2 py-0.5 text-xs font-medium"
-                            style={{
-                              backgroundColor: `${freq.color}20`,
-                              color: freq.color,
-                            }}
-                            title={freq.description}
-                          >
-                            {freq.label}
-                          </span>
-                        );
-                      })()}
-                      <span className="text-sm text-muted">{formatDate(item.savedAt)}</span>
-                    </div>
-                    <p className="mt-2 text-base text-slate-300">{item.translation}</p>
-
-                    {item.context && (
-                      <div className="mt-3 rounded-lg bg-white/5 p-3">
-                        <p className="text-sm text-muted">语境</p>
-                        <p className="mt-1 text-sm italic text-slate-400">{item.context}</p>
-                      </div>
-                    )}
-
-                    <div className="mt-3 flex items-center gap-4 text-xs text-muted">
-                      <div className="flex items-center gap-1">
-                        <Video size={14} />
-                        <span>视频 ID: {item.videoId}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock size={14} />
-                        <span>{formatTimestamp(item.timestamp)}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="ml-4 rounded-lg bg-white/5 p-2 text-muted transition hover:bg-red-500/20 hover:text-red-400"
-                    title="删除"
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
-              </div>
+                item={item}
+                onDelete={handleDeleteClick}
+                formatTimestamp={formatTimestamp}
+                formatDate={formatDate}
+              />
             ))}
           </div>
         )}
       </main>
+
+      <ConfirmDialog
+        isOpen={deleteDialog.isOpen}
+        title="删除单词"
+        message={`确定要删除单词"${deleteDialog.word}"吗？此操作无法撤销。`}
+        confirmLabel="删除"
+        cancelLabel="取消"
+        variant="danger"
+        onConfirm={handleDeleteConfirm}
+        onCancel={handleDeleteCancel}
+      />
     </div>
   );
 }

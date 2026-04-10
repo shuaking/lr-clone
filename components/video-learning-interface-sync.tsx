@@ -5,6 +5,8 @@ import { Play, Volume2, Settings, ChevronLeft, ChevronRight, BookmarkPlus, Refre
 import { WordPopup } from "./word-popup";
 import { fetchYouTubeSubtitles, translateSubtitles, cacheSubtitles, getCachedSubtitles } from "@/lib/youtube-subtitles";
 import { getMockSubtitles } from "@/lib/mock-subtitles";
+import { useFeatureFlag } from "@/lib/feature-flags";
+import { VideoLearningInterface as VideoLearningInterfaceNew } from "./video-player/VideoLearningInterface";
 
 // 条件日志 - 仅在开发环境输出
 const DEBUG = process.env.NODE_ENV === 'development';
@@ -80,6 +82,14 @@ declare global {
 type SubtitleMode = 'both' | 'original' | 'translation';
 
 export function VideoLearningInterface({ videoId, title, subtitles = [] }: VideoLearningInterfaceProps) {
+  // Feature flag: 使用新架构
+  const useNewArchitecture = useFeatureFlag('video_refactor');
+
+  if (useNewArchitecture) {
+    return <VideoLearningInterfaceNew videoId={videoId} title={title} subtitles={subtitles} />;
+  }
+
+  // 旧架构代码继续...
   const [selectedSubtitle, setSelectedSubtitle] = useState<string | null>(null);
   const [currentSubtitle, setCurrentSubtitle] = useState<string | null>(null);
   const [showTranslation, setShowTranslation] = useState(true);

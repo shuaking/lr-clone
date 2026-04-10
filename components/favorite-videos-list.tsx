@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getFavoriteVideos, removeFavoriteVideo, FavoriteVideo } from "@/lib/video-favorites";
-import { VideoPlayer } from "./video-player";
+import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { Trash2, Play, Heart } from "lucide-react";
 
 export function FavoriteVideosList() {
@@ -98,13 +98,9 @@ export function FavoriteVideosList() {
 
       {/* 视频播放器 */}
       {playingVideo && (
-        <VideoPlayer
+        <VideoLearningInterface
           videoId={playingVideo.videoId}
           title={playingVideo.title}
-          channel={playingVideo.channel}
-          thumbnail={playingVideo.thumbnail}
-          duration={playingVideo.duration}
-          onClose={() => setPlayingVideo(null)}
         />
       )}
     </>

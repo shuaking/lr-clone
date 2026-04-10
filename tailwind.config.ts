@@ -8,7 +8,7 @@ const config: Config = {
         panel: "#11172a",
         line: "rgba(255,255,255,0.09)",
         ink: "#f6f7fb",
-        muted: "#9aa3b2",
+        muted: "#b4bcc9",
         brand: "#7c9cff",
         accent: "#78f0c8"
       },

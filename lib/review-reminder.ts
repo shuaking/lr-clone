@@ -106,7 +106,7 @@ export async function checkAndSendReminder(dueCount: number): Promise<void> {
 /**
  * 设置定时提醒（每天固定时间）
  */
-export function scheduleDaily Reminder(hour: number, minute: number, callback: () => void): () => void {
+export function scheduleDailyReminder(hour: number, minute: number, callback: () => void): () => void {
   const checkTime = () => {
     const now = new Date();
     if (now.getHours() === hour && now.getMinutes() === minute) {
