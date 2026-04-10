@@ -3,10 +3,12 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslations } from 'next-intl';
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { getAllVideos, categories, difficulties, ContentItem } from "@/lib/content-data";
 import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { useSubtitlePreloader } from "@/hooks/useSubtitlePreloader";
 import { AdvancedSearch, AdvancedSearchFilters } from "./advanced-search";
+import { staggerContainer, staggerItem, cardHover } from "@/lib/animations";
 import { Play, Clock, Eye, Users } from "lucide-react";
 
 export function ContentCatalog() {
@@ -209,76 +211,102 @@ export function ContentCatalog() {
       </div>
 
       {/* Content Grid */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredContent.map(item => (
-          <div
-            key={item.id}
-            onClick={() => setPlayingVideo(item)}
-            className="group cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition hover:border-white/10 hover:bg-white/[0.07]"
-          >
-            <div className="relative aspect-video overflow-hidden bg-slate-800">
-              <img
-                src={item.thumbnail}
-                alt={item.title}
-                loading="lazy"
-                className="h-full w-full object-cover transition group-hover:scale-105"
-                onError={(e) => {
-                  // 如果缩略图加载失败，使用备用图片
-                  const target = e.target as HTMLImageElement;
-                  if (!target.src.includes('mqdefault')) {
-                    target.src = `https://img.youtube.com/vi/${item.id}/mqdefault.jpg`;
-                  }
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand">
-                  <Play size={24} className="text-white" fill="white" />
+      <motion.div
+        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        <AnimatePresence mode="popLayout">
+          {filteredContent.map((item, index) => (
+            <motion.div
+              key={item.id}
+              variants={staggerItem}
+              custom={index}
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => setPlayingVideo(item)}
+              className="group cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-colors hover:border-white/10 hover:bg-white/[0.07]"
+            >
+              <div className="relative aspect-video overflow-hidden bg-slate-800">
+                <motion.img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (!target.src.includes('mqdefault')) {
+                      target.src = `https://img.youtube.com/vi/${item.id}/mqdefault.jpg`;
+                    }
+                  }}
+                />
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center bg-black/40"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <motion.div
+                    className="flex h-14 w-14 items-center justify-center rounded-full bg-brand"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Play size={24} className="text-white" fill="white" />
+                  </motion.div>
+                </motion.div>
+                <div className="absolute bottom-2 right-2 rounded-lg bg-black/80 px-2 py-1 text-xs text-white">
+                  {item.duration}
                 </div>
               </div>
-              <div className="absolute bottom-2 right-2 rounded-lg bg-black/80 px-2 py-1 text-xs text-white">
-                {item.duration}
-              </div>
-            </div>
 
-            <div className="p-4">
-              <h3 className="mb-2 font-semibold text-white line-clamp-2">
-                {item.title}
-              </h3>
+              <div className="p-4">
+                <h3 className="mb-2 font-semibold text-white line-clamp-2">
+                  {item.title}
+                </h3>
 
-              <p className="mb-2 text-sm text-muted">{item.channel}</p>
+                <p className="mb-2 text-sm text-muted">{item.channel}</p>
 
-              {/* 标签 */}
-              {item.tags && item.tags.length > 0 && (
-                <div className="mb-3 flex flex-wrap gap-1">
-                  {item.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-brand/10 px-2 py-0.5 text-xs text-brand"
-                    >
-                      {tag}
+                {/* 标签 */}
+                {item.tags && item.tags.length > 0 && (
+                  <div className="mb-3 flex flex-wrap gap-1">
+                    {item.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-brand/10 px-2 py-0.5 text-xs text-brand"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between text-xs text-muted">
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center gap-1">
+                      <Eye size={14} />
+                      {item.views}
                     </span>
-                  ))}
-                </div>
-              )}
-
-              <div className="flex items-center justify-between text-xs text-muted">
-                <div className="flex items-center gap-3">
-                  <span className="flex items-center gap-1">
-                    <Eye size={14} />
-                    {item.views}
-                  </span>
-                  <span className={`font-medium ${getDifficultyColor(item.difficulty)}`}>
-                    {getDifficultyLabel(item.difficulty)}
+                    <span className={`font-medium ${getDifficultyColor(item.difficulty)}`}>
+                      {getDifficultyLabel(item.difficulty)}
+                    </span>
+                  </div>
+                  <span className="rounded-full bg-white/5 px-2 py-1">
+                    {item.category}
                   </span>
                 </div>
-                <span className="rounded-full bg-white/5 px-2 py-1">
-                  {item.category}
-                </span>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
 
       {filteredContent.length === 0 && (
         <div className="flex min-h-[40vh] items-center justify-center">

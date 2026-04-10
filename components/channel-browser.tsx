@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { CHANNELS, CHANNEL_CATEGORIES, getChannelsByLanguage, getChannelsByCategory, getChannelsByDifficulty, type Channel } from "@/lib/channels-data";
 import { useLanguagePairStore } from "@/lib/stores/language-pair-store";
+import { staggerContainer, staggerItem } from "@/lib/animations";
 import { Search, Users, Video, Filter } from "lucide-react";
 
 export function ChannelBrowser() {
@@ -110,32 +112,55 @@ export function ChannelBrowser() {
 
       {/* 频道列表 */}
       {filteredChannels.length === 0 ? (
-        <div className="text-center py-12">
+        <motion.div
+          className="text-center py-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
           <Users className="w-12 h-12 text-muted mx-auto mb-3" />
           <p className="text-muted">没有找到匹配的频道</p>
           <p className="text-sm text-muted mt-1">尝试调整筛选条件或搜索关键词</p>
-        </div>
+        </motion.div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredChannels.map((channel) => (
-            <ChannelCard key={channel.id} channel={channel} />
-          ))}
-        </div>
+        <motion.div
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredChannels.map((channel, index) => (
+              <ChannelCard key={channel.id} channel={channel} index={index} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
       )}
     </div>
   );
 }
 
-function ChannelCard({ channel }: { channel: Channel }) {
+function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
   return (
-    <div className="group overflow-hidden rounded-2xl border border-line bg-panel transition hover:border-brand/50 hover:bg-white/5">
+    <motion.div
+      variants={staggerItem}
+      custom={index}
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="group overflow-hidden rounded-2xl border border-line bg-panel transition-colors hover:border-brand/50 hover:bg-white/5"
+    >
       {/* 频道头部 */}
       <div className="p-4 border-b border-line">
         <div className="flex items-start gap-3">
-          <img
+          <motion.img
             src={channel.thumbnail}
             alt={channel.name}
             className="w-16 h-16 rounded-full object-cover"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            transition={{ duration: 0.3 }}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(channel.name)}&background=5b7dd4&color=fff&size=128`;
