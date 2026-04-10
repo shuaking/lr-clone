@@ -12,12 +12,12 @@ describe('Vocabulary Storage', () => {
   });
 
   describe('getSavedVocabulary', () => {
-    it('should return empty array when no vocabulary saved', () => {
-      const vocabulary = getSavedVocabulary();
+    it('should return empty array when no vocabulary saved', async () => {
+      const vocabulary = await getSavedVocabulary();
       expect(vocabulary).toEqual([]);
     });
 
-    it('should return saved vocabulary', () => {
+    it('should return saved vocabulary', async () => {
       const mockData = [
         {
           id: '1',
@@ -32,22 +32,22 @@ describe('Vocabulary Storage', () => {
 
       localStorage.setItem('lr-saved-vocabulary', JSON.stringify(mockData));
 
-      const vocabulary = getSavedVocabulary();
+      const vocabulary = await getSavedVocabulary();
       expect(vocabulary).toHaveLength(1);
       expect(vocabulary[0].word).toBe('hello');
     });
 
-    it('should handle corrupted data gracefully', () => {
+    it('should handle corrupted data gracefully', async () => {
       localStorage.setItem('saved-vocabulary', 'invalid json');
 
-      const vocabulary = getSavedVocabulary();
+      const vocabulary = await getSavedVocabulary();
       expect(vocabulary).toEqual([]);
     });
   });
 
   describe('saveVocabulary', () => {
-    it('should save a new word', () => {
-      const item = saveVocabulary({
+    it('should save a new word', async () => {
+      const item = await saveVocabulary({
         word: 'test',
         translation: '测试',
         context: 'This is a test',
@@ -59,13 +59,13 @@ describe('Vocabulary Storage', () => {
       expect(item.word).toBe('test');
       expect(item.savedAt).toBeDefined();
 
-      const saved = getSavedVocabulary();
+      const saved = await getSavedVocabulary();
       expect(saved).toHaveLength(1);
       expect(saved[0].word).toBe('test');
     });
 
-    it('should add new word to the beginning of the list', () => {
-      saveVocabulary({
+    it('should add new word to the beginning of the list', async () => {
+      await saveVocabulary({
         word: 'first',
         translation: '第一',
         context: 'First word',
@@ -73,7 +73,7 @@ describe('Vocabulary Storage', () => {
         timestamp: 10,
       });
 
-      saveVocabulary({
+      await saveVocabulary({
         word: 'second',
         translation: '第二',
         context: 'Second word',
@@ -81,55 +81,55 @@ describe('Vocabulary Storage', () => {
         timestamp: 20,
       });
 
-      const saved = getSavedVocabulary();
+      const saved = await getSavedVocabulary();
       expect(saved[0].word).toBe('second'); // Most recent first
       expect(saved[1].word).toBe('first');
     });
 
-    it('should throw error when localStorage quota exceeded', () => {
+    it('should throw error when localStorage quota exceeded', async () => {
       // Mock localStorage.setItem to throw QuotaExceededError
       const originalSetItem = localStorage.setItem;
       localStorage.setItem = jest.fn(() => {
         throw { name: 'QuotaExceededError', message: 'Storage quota exceeded' };
       });
 
-      expect(() => {
-        saveVocabulary({
+      await expect(async () => {
+        await saveVocabulary({
           word: 'test',
           translation: '测试',
           context: 'Test',
           videoId: 'abc',
           timestamp: 10,
         });
-      }).toThrow('STORAGE_QUOTA_EXCEEDED');
+      }).rejects.toThrow('STORAGE_QUOTA_EXCEEDED');
 
       // Restore original
       localStorage.setItem = originalSetItem;
     });
 
-    it('should throw error when localStorage is disabled', () => {
+    it('should throw error when localStorage is disabled', async () => {
       const originalSetItem = localStorage.setItem;
       localStorage.setItem = jest.fn(() => {
         throw { name: 'SecurityError', message: 'Storage is disabled' };
       });
 
-      expect(() => {
-        saveVocabulary({
+      await expect(async () => {
+        await saveVocabulary({
           word: 'test',
           translation: '测试',
           context: 'Test',
           videoId: 'abc',
           timestamp: 10,
         });
-      }).toThrow('STORAGE_DISABLED');
+      }).rejects.toThrow('STORAGE_DISABLED');
 
       localStorage.setItem = originalSetItem;
     });
   });
 
   describe('removeVocabulary', () => {
-    it('should remove a word by id', () => {
-      const item = saveVocabulary({
+    it('should remove a word by id', async () => {
+      const item = await saveVocabulary({
         word: 'test',
         translation: '测试',
         context: 'Test',
@@ -137,14 +137,14 @@ describe('Vocabulary Storage', () => {
         timestamp: 10,
       });
 
-      removeVocabulary(item.id);
+      await removeVocabulary(item.id);
 
-      const saved = getSavedVocabulary();
+      const saved = await getSavedVocabulary();
       expect(saved).toHaveLength(0);
     });
 
-    it('should not affect other words', () => {
-      const item1 = saveVocabulary({
+    it('should not affect other words', async () => {
+      const item1 = await saveVocabulary({
         word: 'first',
         translation: '第一',
         context: 'First',
@@ -152,7 +152,7 @@ describe('Vocabulary Storage', () => {
         timestamp: 10,
       });
 
-      const item2 = saveVocabulary({
+      const item2 = await saveVocabulary({
         word: 'second',
         translation: '第二',
         context: 'Second',
@@ -160,15 +160,15 @@ describe('Vocabulary Storage', () => {
         timestamp: 20,
       });
 
-      removeVocabulary(item1.id);
+      await removeVocabulary(item1.id);
 
-      const saved = getSavedVocabulary();
+      const saved = await getSavedVocabulary();
       expect(saved).toHaveLength(1);
       expect(saved[0].word).toBe('second');
     });
 
-    it('should handle removing non-existent id gracefully', () => {
-      saveVocabulary({
+    it('should handle removing non-existent id gracefully', async () => {
+      await saveVocabulary({
         word: 'test',
         translation: '测试',
         context: 'Test',
@@ -176,18 +176,18 @@ describe('Vocabulary Storage', () => {
         timestamp: 10,
       });
 
-      expect(() => {
-        removeVocabulary('non-existent-id');
-      }).not.toThrow();
+      await expect(async () => {
+        await removeVocabulary('non-existent-id');
+      }).resolves.not.toThrow();
 
-      const saved = getSavedVocabulary();
+      const saved = await getSavedVocabulary();
       expect(saved).toHaveLength(1);
     });
   });
 
   describe('isWordSaved', () => {
-    it('should return true if word is saved for the video', () => {
-      saveVocabulary({
+    it('should return true if word is saved for the video', async () => {
+      await saveVocabulary({
         word: 'hello',
         translation: '你好',
         context: 'Hello world',
@@ -195,15 +195,15 @@ describe('Vocabulary Storage', () => {
         timestamp: 10,
       });
 
-      expect(isWordSaved('hello', 'video123')).toBe(true);
+      expect(await isWordSaved('hello', 'video123')).toBe(true);
     });
 
-    it('should return false if word is not saved', () => {
-      expect(isWordSaved('hello', 'video123')).toBe(false);
+    it('should return false if word is not saved', async () => {
+      expect(await isWordSaved('hello', 'video123')).toBe(false);
     });
 
-    it('should return false if word is saved for different video', () => {
-      saveVocabulary({
+    it('should return false if word is saved for different video', async () => {
+      await saveVocabulary({
         word: 'hello',
         translation: '你好',
         context: 'Hello world',
@@ -211,11 +211,11 @@ describe('Vocabulary Storage', () => {
         timestamp: 10,
       });
 
-      expect(isWordSaved('hello', 'video456')).toBe(false);
+      expect(await isWordSaved('hello', 'video456')).toBe(false);
     });
 
-    it('should be case-insensitive', () => {
-      saveVocabulary({
+    it('should be case-insensitive', async () => {
+      await saveVocabulary({
         word: 'Hello',
         translation: '你好',
         context: 'Hello world',
@@ -223,9 +223,9 @@ describe('Vocabulary Storage', () => {
         timestamp: 10,
       });
 
-      expect(isWordSaved('hello', 'video123')).toBe(true);
-      expect(isWordSaved('Hello', 'video123')).toBe(true);
-      expect(isWordSaved('HELLO', 'video123')).toBe(true);
+      expect(await isWordSaved('hello', 'video123')).toBe(true);
+      expect(await isWordSaved('Hello', 'video123')).toBe(true);
+      expect(await isWordSaved('HELLO', 'video123')).toBe(true);
     });
   });
 });

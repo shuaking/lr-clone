@@ -44,42 +44,10 @@ export function PronunciationPractice({
   const recognitionService = useRef<SpeechRecognitionService | null>(null);
   const synthRef = useRef<SpeechSynthesisUtterance | null>(null);
 
+  // 初始化语音识别服务（只在挂载时创建一次）
   useEffect(() => {
     recognitionService.current = new SpeechRecognitionService();
     setIsSupported(recognitionService.current.isSupported());
-
-    if (recognitionService.current) {
-      recognitionService.current.onResult((result: SpeechRecognitionResult) => {
-        if (result.isFinal) {
-          setRecognizedText(result.transcript);
-          setInterimText('');
-
-          // 评估发音
-          const evaluation = evaluatePronunciation(
-            text,
-            result.transcript,
-            result.confidence
-          );
-          setScore(evaluation);
-          onComplete?.(evaluation);
-
-          // 停止监听
-          recognitionService.current?.stop();
-          setIsListening(false);
-        } else {
-          setInterimText(result.transcript);
-        }
-      });
-
-      recognitionService.current.onError((err: string) => {
-        setError(err);
-        setIsListening(false);
-      });
-
-      recognitionService.current.onEnd(() => {
-        setIsListening(false);
-      });
-    }
 
     return () => {
       recognitionService.current?.abort();
@@ -87,6 +55,42 @@ export function PronunciationPractice({
         window.speechSynthesis.cancel();
       }
     };
+  }, []);
+
+  // 设置回调函数（当 text 或 onComplete 变化时更新）
+  useEffect(() => {
+    if (!recognitionService.current) return;
+
+    recognitionService.current.onResult((result: SpeechRecognitionResult) => {
+      if (result.isFinal) {
+        setRecognizedText(result.transcript);
+        setInterimText('');
+
+        // 评估发音
+        const evaluation = evaluatePronunciation(
+          text,
+          result.transcript,
+          result.confidence
+        );
+        setScore(evaluation);
+        onComplete?.(evaluation);
+
+        // 停止监听
+        recognitionService.current?.stop();
+        setIsListening(false);
+      } else {
+        setInterimText(result.transcript);
+      }
+    });
+
+    recognitionService.current.onError((err: string) => {
+      setError(err);
+      setIsListening(false);
+    });
+
+    recognitionService.current.onEnd(() => {
+      setIsListening(false);
+    });
   }, [text, onComplete]);
 
   const startListening = () => {

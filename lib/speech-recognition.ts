@@ -110,6 +110,11 @@ export class SpeechRecognitionService {
    */
   stop(): void {
     if (this.recognition && this.isListening) {
+      // 清理事件处理器，防止内存泄漏
+      this.recognition.onresult = null;
+      this.recognition.onerror = null;
+      this.recognition.onend = null;
+
       this.recognition.stop();
       this.isListening = false;
     }
@@ -120,6 +125,11 @@ export class SpeechRecognitionService {
    */
   abort(): void {
     if (this.recognition && this.isListening) {
+      // 清理事件处理器，防止内存泄漏
+      this.recognition.onresult = null;
+      this.recognition.onerror = null;
+      this.recognition.onend = null;
+
       this.recognition.abort();
       this.isListening = false;
     }
