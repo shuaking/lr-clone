@@ -2,11 +2,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   fetchYouTubeSubtitles,
   translateSubtitles,
-  cacheSubtitles,
-  getCachedSubtitles,
   SubtitleEntry
 } from '@/lib/youtube-subtitles';
 import { getMockSubtitles } from '@/lib/mock-subtitles';
+import { subtitleCache } from '@/lib/subtitle-cache';
 
 export interface Subtitle {
   id: string;
@@ -74,17 +73,10 @@ export function useSubtitles({
     }
 
     // 检查缓存
-    const cached = getCachedSubtitles(videoId);
+    const cached = await subtitleCache.get(videoId);
     if (cached && cached.length > 0) {
       log('[useSubtitles] Using cached subtitles:', cached.length);
-      const formattedCached = cached.map((sub, idx) => ({
-        id: `sub-${idx}`,
-        start: sub.start,
-        end: sub.end,
-        text: sub.text,
-        translation: (sub as any).translation
-      }));
-      setSubtitles(formattedCached);
+      setSubtitles(cached);
       return;
     }
 
@@ -137,7 +129,7 @@ export function useSubtitles({
 
       log('[useSubtitles] Setting formatted subtitles:', formattedSubs.length);
       setSubtitles(formattedSubs);
-      cacheSubtitles(videoId, formattedSubs);
+      await subtitleCache.set(videoId, formattedSubs);
       setIsLoading(false);
       loadingRef.current = false;
     } catch (err) {

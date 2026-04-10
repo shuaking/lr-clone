@@ -1,0 +1,48 @@
+{
+  "name": "Language Reactor Clone",
+  "short_name": "LR Clone",
+  "description": "Learn languages through video content with interactive subtitles",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e1a",
+  "theme_color": "#7c9cff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Vocabulary",
+      "short_name": "Vocab",
+      "description": "View saved vocabulary",
+      "url": "/vocabulary",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Review",
+      "short_name": "Review",
+      "description": "Review flashcards",
+      "url": "/review",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Catalog",
+      "short_name": "Catalog",
+      "description": "Browse video catalog",
+      "url": "/catalog",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

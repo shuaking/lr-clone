@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { getAllVideos, categories, difficulties, ContentItem } from "@/lib/content-data";
 import { VideoLearningInterface } from "./video-learning-interface-sync";
+import { useSubtitlePreloader } from "@/hooks/useSubtitlePreloader";
 import { Play, Clock, Eye } from "lucide-react";
 
 export function ContentCatalog() {
@@ -58,6 +59,13 @@ export function ContentCatalog() {
 
     return matchesCategory && matchesDifficulty && matchesSearch;
   });
+
+  // 预加载前 5 个视频的字幕
+  const preloadVideoIds = useMemo(() => {
+    return filteredContent.slice(0, 5).map(item => item.id);
+  }, [filteredContent]);
+
+  useSubtitlePreloader(preloadVideoIds);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {

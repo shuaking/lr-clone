@@ -10,12 +10,23 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Language Reactor Clone",
-  description: "A near-match starter shell inspired by a language-learning web app."
+  description: "A near-match starter shell inspired by a language-learning web app.",
+  manifest: "/manifest.json",
+  themeColor: "#7c9cff",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "LR Clone",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-CN">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+      </head>
       <body>
         <AuthInitializer />
         <ThemeInitializer />
