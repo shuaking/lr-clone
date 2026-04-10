@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useTranslations } from 'next-intl';
+import Link from "next/link";
 import { getAllVideos, categories, difficulties, ContentItem } from "@/lib/content-data";
 import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { useSubtitlePreloader } from "@/hooks/useSubtitlePreloader";
-import { Play, Clock, Eye } from "lucide-react";
+import { Play, Clock, Eye, Users } from "lucide-react";
 
 export function ContentCatalog() {
   const t = useTranslations('catalog');
@@ -90,9 +91,18 @@ export function ContentCatalog() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-semibold">{t('title')}</h1>
-        <p className="mt-2 text-muted">{t('subtitle')}</p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-semibold">{t('title')}</h1>
+          <p className="mt-2 text-muted">{t('subtitle')}</p>
+        </div>
+        <Link
+          href="/channels"
+          className="flex items-center gap-2 px-4 py-2 bg-brand/10 hover:bg-brand/20 text-brand rounded-xl transition"
+        >
+          <Users className="w-4 h-4" />
+          <span className="text-sm font-medium">浏览频道</span>
+        </Link>
       </div>
 
       {/* Filters */}
