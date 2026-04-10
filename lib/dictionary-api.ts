@@ -52,9 +52,15 @@ export async function translateWord(
   try {
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(word)}&langpair=${sourceLang}|${targetLang}`;
     const response = await fetch(url);
+
+    if (!response.ok) {
+      console.error('Translation API HTTP error:', response.status, response.statusText);
+      throw new Error(`HTTP ${response.status}`);
+    }
+
     const data = await response.json();
 
-    if (data.responseStatus === 200) {
+    if (data.responseStatus === 200 || data.responseData?.translatedText) {
       return {
         word,
         translation: data.responseData.translatedText,
@@ -62,13 +68,25 @@ export async function translateWord(
       };
     }
 
-    throw new Error('Translation failed');
+    throw new Error('Translation failed: ' + (data.responseDetails || 'Unknown error'));
   } catch (error) {
     console.error('Dictionary API error:', error);
+
+    // 开发环境：提供 Mock 翻译
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Using mock translation for development');
+      return {
+        word,
+        translation: `[${word}的翻译]`,
+        definitions: [`${word} 的定义示例`],
+        phonetic: '/mock/'
+      };
+    }
+
     return {
       word,
-      translation: '翻译失败',
-      definitions: []
+      translation: '翻译服务暂时不可用',
+      definitions: ['请稍后重试或检查网络连接']
     };
   }
 }

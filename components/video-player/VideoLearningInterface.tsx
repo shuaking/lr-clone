@@ -243,13 +243,22 @@ export function VideoLearningInterface({
           word={selectedWord.word}
           position={{ x: selectedWord.x, y: selectedWord.y }}
           onClose={() => setSelectedWord(null)}
+          context={selectedWord.context}
+          timestamp={selectedWord.timestamp}
+          videoId={videoId}
         />
       )}
 
       {/* 字幕编辑器模态框 */}
       {showSubtitleEditor && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-          <div className="relative w-full max-w-6xl max-h-[90vh] overflow-hidden rounded-2xl border border-white/10 bg-[#0d1117]">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setShowSubtitleEditor(false)}
+        >
+          <div
+            className="relative w-full max-w-6xl max-h-[90vh] overflow-hidden rounded-2xl border border-white/10 bg-[#0d1117]"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-white/10 p-4">
               <h2 className="text-lg font-semibold">字幕编辑器</h2>

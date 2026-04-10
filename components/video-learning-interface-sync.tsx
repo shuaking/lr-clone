@@ -82,10 +82,11 @@ declare global {
 type SubtitleMode = 'both' | 'original' | 'translation';
 
 export function VideoLearningInterface({ videoId, title, subtitles = [] }: VideoLearningInterfaceProps) {
-  // Feature flag: 使用新架构
-  const useNewArchitecture = useFeatureFlag('video_refactor');
+  // 默认使用新架构（包含所有新功能：字幕编辑器、发音练习、语法/文化注释等）
+  // 如果需要使用旧架构，在控制台执行: disableFeature('video_refactor')
+  const useLegacyArchitecture = useFeatureFlag('video_legacy');
 
-  if (useNewArchitecture) {
+  if (!useLegacyArchitecture) {
     return <VideoLearningInterfaceNew videoId={videoId} title={title} subtitles={subtitles} />;
   }
 
