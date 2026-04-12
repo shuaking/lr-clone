@@ -27,29 +27,39 @@ export async function requestNotificationPermission(): Promise<boolean> {
 
 /**
  * 发送复习提醒通知
+ * @returns 清理函数,用于取消通知
  */
-export function sendReviewNotification(dueCount: number): void {
+export function sendReviewNotification(dueCount: number): () => void {
   if (!('Notification' in window) || Notification.permission !== 'granted') {
-    return;
+    return () => {};
   }
 
   const notification = new Notification('Language Reactor - 复习提醒', {
     body: `你有 ${dueCount} 个单词需要复习`,
-    icon: '/icon-192.png', // 需要添加图标
+    icon: '/icon-192.png',
     badge: '/badge-72.png',
     tag: 'review-reminder',
     requireInteraction: false,
     silent: false,
   });
 
-  notification.onclick = () => {
+  const handleClick = () => {
     window.focus();
     window.location.href = '/review';
     notification.close();
   };
 
+  notification.onclick = handleClick;
+
   // 5 秒后自动关闭
-  setTimeout(() => notification.close(), 5000);
+  const timer = setTimeout(() => notification.close(), 5000);
+
+  // 返回清理函数
+  return () => {
+    clearTimeout(timer);
+    notification.onclick = null;
+    notification.close();
+  };
 }
 
 /**

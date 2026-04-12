@@ -112,8 +112,11 @@ class SubtitleCacheManager {
       const key = localStorage.key(i);
       if (key?.startsWith(CACHE_KEY_PREFIX)) {
         try {
-          const cached = JSON.parse(localStorage.getItem(key)!);
-          entries.push(cached);
+          const item = localStorage.getItem(key);
+          if (item) {
+            const cached = JSON.parse(item);
+            entries.push(cached);
+          }
         } catch {
           // 忽略损坏的条目
         }
@@ -144,8 +147,11 @@ class SubtitleCacheManager {
       const key = localStorage.key(i);
       if (key?.startsWith(CACHE_KEY_PREFIX)) {
         try {
-          const cached = JSON.parse(localStorage.getItem(key)!);
-          totalSize += cached.size;
+          const item = localStorage.getItem(key);
+          if (item) {
+            const cached = JSON.parse(item);
+            totalSize += cached.size;
+          }
         } catch {
           // 忽略损坏的条目
         }

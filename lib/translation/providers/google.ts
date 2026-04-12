@@ -69,7 +69,8 @@ export class GoogleTranslateProvider implements ITranslationProvider {
         }
       );
       return response.ok;
-    } catch {
+    } catch (error) {
+      console.warn('[GoogleTranslate] Availability check failed:', error);
       return false;
     }
   }

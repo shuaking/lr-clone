@@ -8,6 +8,7 @@ import { getMockSubtitles } from "@/lib/mock-subtitles";
 import { useFeatureFlag } from "@/lib/feature-flags";
 import { VideoLearningInterface as VideoLearningInterfaceNew } from "./video-player/VideoLearningInterface";
 import type { YTPlayer, YTPlayerEvent } from "@/lib/youtube-types";
+import { youtubeAPIManager } from "@/lib/youtube-api-manager";
 
 // 条件日志 - 仅在开发环境输出
 const DEBUG = process.env.NODE_ENV === 'development';
@@ -283,31 +284,15 @@ export function VideoLearningInterface({ videoId, title, subtitles = [] }: Video
       }
     };
 
-    if (!window.YT) {
-      // 检查是否已经有脚本正在加载
-      const existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
-
-      if (!existingScript) {
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-      }
-
-      // 保存旧的回调
-      const oldCallback = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        if (oldCallback && typeof oldCallback === 'function') {
-          oldCallback();
-        }
-        loadPlayer();
-      };
-    } else {
-      loadPlayer();
-    }
+    // 使用 YouTube API 管理器
+    youtubeAPIManager.init();
+    const unsubscribe = youtubeAPIManager.onReady(loadPlayer);
 
     return () => {
       isMountedRef.current = false;
+
+      // 取消订阅
+      unsubscribe();
 
       if (timeUpdateInterval.current) {
         clearInterval(timeUpdateInterval.current);

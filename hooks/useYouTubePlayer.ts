@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import type { YT, YTPlayer, YTPlayerEvent } from '@/lib/youtube-types';
+import { youtubeAPIManager } from '@/lib/youtube-api-manager';
 
 export interface UseYouTubePlayerOptions {
   videoId: string;
@@ -168,30 +169,16 @@ export function useYouTubePlayer({
       }
     };
 
-    if (!window.YT) {
-      const existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
-
-      if (!existingScript) {
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-      }
-
-      const oldCallback = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        if (oldCallback && typeof oldCallback === 'function') {
-          oldCallback();
-        }
-        loadPlayer();
-      };
-    } else {
-      loadPlayer();
-    }
+    // 使用 YouTube API 管理器
+    youtubeAPIManager.init();
+    const unsubscribe = youtubeAPIManager.onReady(loadPlayer);
 
     return () => {
       log('[useYouTubePlayer] Cleanup: destroying player');
       isMountedRef.current = false;
+
+      // 取消订阅
+      unsubscribe();
 
       if (timeUpdateInterval.current) {
         clearInterval(timeUpdateInterval.current);

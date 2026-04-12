@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
+import { youtubeAPIManager } from '@/lib/youtube-api-manager';
 
 export default function DebugPlayerPage() {
   const [logs, setLogs] = useState<string[]>([]);
@@ -14,11 +15,7 @@ export default function DebugPlayerPage() {
   useEffect(() => {
     addLog('开始加载 YouTube API');
 
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.head.appendChild(tag);
-
-    (window as any).onYouTubeIframeAPIReady = () => {
+    const initPlayer = () => {
       addLog('YouTube API 加载完成');
       setPlayerState('API 就绪');
 
@@ -56,9 +53,19 @@ export default function DebugPlayerPage() {
       }
     };
 
+    // 使用 YouTube API 管理器
+    youtubeAPIManager.init();
+    const unsubscribe = youtubeAPIManager.onReady(initPlayer);
+
     return () => {
+      unsubscribe();
       if (playerRef.current?.destroy) {
-        playerRef.current.destroy();
+        try {
+          playerRef.current.destroy();
+        } catch (e) {
+          addLog(`清理播放器时出错: ${e}`);
+        }
+        playerRef.current = null;
       }
     };
   }, []);

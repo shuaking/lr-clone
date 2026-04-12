@@ -2,19 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { YTPlayer } from '@/lib/youtube-types';
+import { youtubeAPIManager } from '@/lib/youtube-api-manager';
 
 export default function TestPlayerPage() {
   const [status, setStatus] = useState('初始化中...');
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<YTPlayer | null>(null);
 
   useEffect(() => {
-    // 加载 YouTube iframe API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
+    const initPlayer = () => {
       setStatus('API 加载成功，创建播放器...');
 
       try {
@@ -33,9 +28,19 @@ export default function TestPlayerPage() {
       }
     };
 
+    // 使用 YouTube API 管理器
+    youtubeAPIManager.init();
+    const unsubscribe = youtubeAPIManager.onReady(initPlayer);
+
     return () => {
+      unsubscribe();
       if (playerRef.current?.destroy) {
-        playerRef.current.destroy();
+        try {
+          playerRef.current.destroy();
+        } catch (e) {
+          console.error('Error destroying player:', e);
+        }
+        playerRef.current = null;
       }
     };
   }, []);

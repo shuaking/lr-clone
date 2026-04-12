@@ -3,6 +3,8 @@
  * 用于未登录用户的词汇保存
  */
 
+import { safeStorage } from './safe-storage';
+
 export interface SavedWord {
   id: string;
   word: string;
@@ -20,13 +22,8 @@ const STORAGE_KEY = 'lr-saved-words';
 export function getSavedWords(): SavedWord[] {
   if (typeof window === 'undefined') return [];
 
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch (error) {
-    console.error('Failed to load saved words:', error);
-    return [];
-  }
+  const result = safeStorage.getJSON<SavedWord[]>(STORAGE_KEY);
+  return result.data ?? [];
 }
 
 /**
@@ -48,7 +45,12 @@ export function saveWord(word: Omit<SavedWord, 'id' | 'createdAt'>): SavedWord {
   };
 
   savedWords.push(newWord);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(savedWords));
+  const result = safeStorage.setJSON(STORAGE_KEY, savedWords);
+
+  if (!result.success) {
+    console.error('[Storage] Failed to save word:', result.error);
+    throw new Error(`STORAGE_${result.error}`);
+  }
 
   return newWord;
 }
@@ -59,7 +61,7 @@ export function saveWord(word: Omit<SavedWord, 'id' | 'createdAt'>): SavedWord {
 export function deleteWord(id: string): void {
   const savedWords = getSavedWords();
   const filtered = savedWords.filter(w => w.id !== id);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+  safeStorage.setJSON(STORAGE_KEY, filtered);
 }
 
 /**

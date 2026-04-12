@@ -13,16 +13,20 @@ export function AchievementToast({ achievement, onClose }: AchievementToastProps
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const timers: NodeJS.Timeout[] = [];
+
     // 延迟显示动画
-    setTimeout(() => setIsVisible(true), 100);
+    timers.push(setTimeout(() => setIsVisible(true), 100));
 
     // 5秒后自动关闭
-    const timer = setTimeout(() => {
+    timers.push(setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onClose, 300);
-    }, 5000);
+      timers.push(setTimeout(onClose, 300));
+    }, 5000));
 
-    return () => clearTimeout(timer);
+    return () => {
+      timers.forEach(timer => clearTimeout(timer));
+    };
   }, [onClose]);
 
   return (

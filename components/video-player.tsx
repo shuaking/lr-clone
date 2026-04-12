@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import type { YT, YTPlayer, YTPlayerEvent } from '@/lib/youtube-types';
+import { youtubeAPIManager } from '@/lib/youtube-api-manager';
 
 interface VideoPlayerProps {
   videoId: string;
@@ -11,18 +12,21 @@ interface VideoPlayerProps {
 
 export function VideoPlayer({ videoId, onPlayerReady, onStateChange }: VideoPlayerProps) {
   const playerContainerRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<YTPlayer | null>(null);
 
   useEffect(() => {
-    if (!window.YT) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    }
-
     const initPlayer = () => {
       if (window.YT && window.YT.Player) {
-        new window.YT.Player('youtube-player', {
+        // 销毁旧播放器
+        if (playerRef.current) {
+          try {
+            playerRef.current.destroy();
+          } catch (e) {
+            console.error('Error destroying previous player:', e);
+          }
+        }
+
+        playerRef.current = new window.YT.Player('youtube-player', {
           videoId,
           playerVars: { rel: 0, modestbranding: 1 },
           events: {
@@ -33,11 +37,21 @@ export function VideoPlayer({ videoId, onPlayerReady, onStateChange }: VideoPlay
       }
     };
 
-    if (window.YT && window.YT.Player) {
-      initPlayer();
-    } else {
-      window.onYouTubeIframeAPIReady = initPlayer;
-    }
+    // 使用 YouTube API 管理器
+    youtubeAPIManager.init();
+    const unsubscribe = youtubeAPIManager.onReady(initPlayer);
+
+    return () => {
+      unsubscribe();
+      if (playerRef.current) {
+        try {
+          playerRef.current.destroy();
+        } catch (e) {
+          console.error('Error destroying player on unmount:', e);
+        }
+        playerRef.current = null;
+      }
+    };
   }, [videoId, onPlayerReady, onStateChange]);
 
   return (
