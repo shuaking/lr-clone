@@ -82,25 +82,30 @@ export function useSubtitleSync({
       setCurrentSubtitle(null);
 
       // 检测刚结束的字幕，触发自动暂停或跳过
-      const justEnded = subtitles.find(
-        sub => adjustedTime > sub.end &&
-               adjustedTime < sub.end + PAUSE_TOLERANCE
-      );
+      // 注意：只有在 autoPauseEnabled 为 true 时才执行此逻辑
+      console.log('[useSubtitleSync] Checking auto-pause. autoPauseEnabled:', autoPauseEnabled, 'currentTime:', currentTime);
+      if (autoPauseEnabled) {
+        console.log('[useSubtitleSync] AUTO-PAUSE IS ENABLED - checking for ended subtitles');
+        const justEnded = subtitles.find(
+          sub => adjustedTime > sub.end &&
+                 adjustedTime < sub.end + PAUSE_TOLERANCE
+        );
 
-      if (justEnded && lastPausedRef.current !== justEnded.id) {
-        // 优先检查是否为已知句子，如果是则跳过
-        if (isSentenceKnown(justEnded.id) && onSkipToNext) {
-          log('[useSubtitleSync] Skipping known sentence:', justEnded.id);
-          onSkipToNext(justEnded.id);
-          lastPausedRef.current = justEnded.id;
-        } else if (autoPauseEnabled) {
-          log('[useSubtitleSync] Auto-pause triggered for subtitle:', justEnded.id);
-          onAutoPause?.();
-          lastPausedRef.current = justEnded.id;
+        if (justEnded && lastPausedRef.current !== justEnded.id) {
+          // 优先检查是否为已知句子，如果是则跳过
+          if (isSentenceKnown(justEnded.id) && onSkipToNext) {
+            log('[useSubtitleSync] Skipping known sentence:', justEnded.id);
+            onSkipToNext(justEnded.id);
+            lastPausedRef.current = justEnded.id;
+          } else {
+            log('[useSubtitleSync] Auto-pause triggered for subtitle:', justEnded.id);
+            onAutoPause?.();
+            lastPausedRef.current = justEnded.id;
+          }
         }
       }
     }
-  }, [currentTime, subtitles, subtitleDelay, autoPauseEnabled, onAutoPause]);
+  }, [currentTime, subtitles, subtitleDelay, autoPauseEnabled, onAutoPause, isSentenceKnown, onSkipToNext]);
 
   return {
     currentSubtitle,

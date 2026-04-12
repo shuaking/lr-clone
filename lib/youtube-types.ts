@@ -12,6 +12,8 @@ export interface YT {
 
 export interface YTPlayerConfig {
   videoId: string;
+  height?: string | number;
+  width?: string | number;
   playerVars?: {
     rel?: number;
     modestbranding?: number;
@@ -30,6 +32,7 @@ export interface YTPlayer {
   pauseVideo: () => void;
   setPlaybackRate: (rate: number) => void;
   getPlaybackRate: () => number;
+  getPlayerState: () => number;
   destroy: () => void;
 }
 

@@ -1,495 +1,443 @@
-[2026-04-10T07:37:01.148Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
-[2026-04-10T07:37:01.148Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
-[2026-04-10T07:37:01.153Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.153Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 text-brand">LR</div>
-[2026-04-10T07:37:01.160Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.85 (foreground color: #5b7dd4, background color: #1a2540, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.160Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.170Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.171Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 text-brand">LR</div>
-[2026-04-10T07:37:01.172Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.172Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <header class="sticky top-0 z-50 border-b border-white/5 dark:border-white/5 bg-white/80 dark:bg-[#0a0f1b]/80 backdrop-blur">
-[2026-04-10T07:37:01.172Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.172Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <body>
-[2026-04-10T07:37:01.172Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.172Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.172Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.172Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <span class="hidden sm:inline">深色</span>
-[2026-04-10T07:37:01.173Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.173Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.173Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.173Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition bg-brand text-white" aria-label="切换到深色模式" aria-pressed="true">
-[2026-04-10T07:37:01.184Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.184Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.184Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.184Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->1</p>
-[2026-04-10T07:37:01.184Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.184Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.184Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.184Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->1</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.185Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.185Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.186Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.186Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.186Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.186Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
-[2026-04-10T07:37:01.186Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.186Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.186Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.186Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->1</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.186Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.186Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.186Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.187Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.187Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.187Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->2</p>
-[2026-04-10T07:37:01.187Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.187Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.187Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.187Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->2</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.187Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.187Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.187Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.187Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.196Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.196Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
-[2026-04-10T07:37:01.196Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.196Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.196Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.196Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->2</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.196Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.196Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.196Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.196Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.197Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.197Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->3</p>
-[2026-04-10T07:37:01.197Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.197Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.197Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.197Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->3</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.197Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.197Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.197Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.197Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.197Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
-[2026-04-10T07:37:01.198Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.198Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.198Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->3</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.198Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.198Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.198Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.198Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.198Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="text-xs text-brand">00:0<!-- -->4</p>
-[2026-04-10T07:37:01.198Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.07 (foreground color: #5b7dd4, background color: #1b2131, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.198Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.199Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.199Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->4</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.199Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.199Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.199Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.199Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.199Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.199Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p>
-[2026-04-10T07:37:01.204Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.37 (foreground color: #64748b, background color: #1b2131, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:37:01.204Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:37:01.204Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.204Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-2xl bg-white/5 p-4"><p class="text-xs text-brand">00:0<!-- -->4</p><p class="mt-2 text-sm text-slate-200">Sample transcript line with hoverable vocabulary and saved study actions.</p><p class="mt-1 text-sm text-slate-500">对应的翻译行会在这里显示。</p></div>
-[2026-04-10T07:37:01.204Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:37:01.204Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-[1.1rem] border border-white/10 bg-[#0f1526] p-4">
-[2026-04-10T07:37:01.204Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.204Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.204Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.205Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
-[2026-04-10T07:37:01.205Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.206Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:37:01.206Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.206Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
-[2026-04-10T07:37:01.206Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:37:01.206Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:37:01.206Z] [error] Fix any of the following:
-  No skip link target
-[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.206Z] [endGroup] console.groupEnd
-[2026-04-10T07:37:01.259Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:06.108Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:08.927Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:13.758Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:18.641Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:21.859Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:25.250Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:28.670Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:37:32.241Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:38:37.193Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T07:38:37.644Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T07:38:37.671Z] [log] [Fast Refresh] done in 26ms
-[2026-04-10T07:38:38.270Z] [log] [Fast Refresh] done in 624ms
-[2026-04-10T07:38:57.541Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T07:38:57.785Z] [log] [Fast Refresh] done in 243ms
-[2026-04-10T07:39:58.867Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-10T07:39:59.762Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
-[2026-04-10T07:39:59.765Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
-[2026-04-10T07:39:59.770Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.770Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T07:39:59.770Z] [error] Fix any of the following:
+[2026-04-12T09:28:08.269Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-12T09:28:09.101Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-12T09:28:09.102Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-12T09:28:09.108Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.108Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-12T09:28:09.112Z] [error] Fix any of the following:
   Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:39:59.770Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:39:59.770Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:39:59.770Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T07:39:59.770Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.770Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.770Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.770Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
-[2026-04-10T07:39:59.770Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.112Z] [startGroupCollapsed] Related nodes
+[2026-04-12T09:28:09.112Z] [log] Element: %o JSHandle@node
+[2026-04-12T09:28:09.112Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
+[2026-04-12T09:28:09.112Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.113Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.113Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.113Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
+[2026-04-12T09:28:09.113Z] [error] Fix any of the following:
   Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:39:59.771Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:39:59.773Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:39:59.775Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
-[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.775Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
-[2026-04-10T07:39:59.775Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.775Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
-[2026-04-10T07:39:59.776Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.776Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:39:59.776Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.113Z] [startGroupCollapsed] Related nodes
+[2026-04-12T09:28:09.114Z] [log] Element: %o JSHandle@node
+[2026-04-12T09:28:09.114Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
+[2026-04-12T09:28:09.114Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.114Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.114Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.114Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
+[2026-04-12T09:28:09.114Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.114Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-12T09:28:09.114Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.114Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-12T09:28:09.114Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:39:59.776Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.776Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.776Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
-[2026-04-10T07:39:59.776Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.114Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.114Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.114Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
+[2026-04-12T09:28:09.117Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:39:59.776Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.777Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.777Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:39:59.777Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.117Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.117Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.117Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-12T09:28:09.118Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:39:59.777Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.777Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.777Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:39:59.778Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.118Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.118Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.118Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
+[2026-04-12T09:28:09.119Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:39:59.778Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.778Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.778Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
-[2026-04-10T07:39:59.778Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.119Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.120Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.120Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
+[2026-04-12T09:28:09.121Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:39:59.778Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.778Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.778Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
-[2026-04-10T07:39:59.778Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.121Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.121Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.122Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
+[2026-04-12T09:28:09.122Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.779Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
-[2026-04-10T07:39:59.779Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:39:59.779Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:39:59.779Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.122Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.122Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.122Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-12T09:28:09.122Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:28:09.122Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-12T09:28:09.123Z] [error] Fix any of the following:
   No skip link target
-[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.779Z] [endGroup] console.groupEnd
-[2026-04-10T07:39:59.831Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:40:03.115Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:46:30.758Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-10T07:46:31.737Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
-[2026-04-10T07:46:31.737Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
-[2026-04-10T07:46:31.740Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.740Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
-[2026-04-10T07:46:31.741Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:46:31.741Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:46:31.741Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:46:31.741Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
-[2026-04-10T07:46:31.741Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.741Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.742Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.742Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
-[2026-04-10T07:46:31.742Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.743Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
-[2026-04-10T07:46:31.743Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.743Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:46:31.743Z] [error] Fix any of the following:
+[2026-04-12T09:28:09.123Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.123Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.123Z] [endGroup] console.groupEnd
+[2026-04-12T09:28:09.172Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-12T09:28:09.238Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-12T09:28:09.347Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-12T09:31:40.568Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-04-12T09:31:41.086Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
+[2026-04-12T09:31:41.086Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
+[2026-04-12T09:31:41.088Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:31:41.088Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="rounded-lg bg-green-600 px-6 py-3 font-bold hover:bg-green-700">▶️ 播放</button>
+[2026-04-12T09:31:41.090Z] [error] Fix any of the following:
+  Element has insufficient color contrast of 3.29 (foreground color: #ffffff, background color: #16a34a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1
+[2026-04-12T09:31:41.090Z] [startGroupCollapsed] Related nodes
+[2026-04-12T09:31:41.090Z] [log] Element: %o JSHandle@node
+[2026-04-12T09:31:41.090Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="rounded-lg bg-green-600 px-6 py-3 font-bold hover:bg-green-700">▶️ 播放</button>
+[2026-04-12T09:31:41.091Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.091Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.091Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.091Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
+[2026-04-12T09:31:41.091Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.091Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
+[2026-04-12T09:31:41.092Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:31:41.093Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-12T09:31:41.093Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:46:31.743Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.743Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.744Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
-[2026-04-10T07:46:31.745Z] [error] Fix any of the following:
+[2026-04-12T09:31:41.093Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.093Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:31:41.093Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <h1 class="mb-4 text-2xl font-bold">YouTube Player 调试页面</h1>
+[2026-04-12T09:31:41.093Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:46:31.745Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.745Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.745Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:46:31.745Z] [error] Fix any of the following:
+[2026-04-12T09:31:41.094Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.094Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:31:41.094Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mb-4 rounded-lg bg-gray-800 p-4"><p class="text-lg">当前状态: <span class="font-bold text-green-400">未初始化</span></p></div>
+[2026-04-12T09:31:41.094Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:46:31.745Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.747Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.747Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:46:31.747Z] [error] Fix any of the following:
+[2026-04-12T09:31:41.094Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.095Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:31:41.095Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="rounded-lg bg-gray-800 p-4"><h2 class="mb-2 font-bold">日志记录:</h2><div class="max-h-96 overflow-y-auto font-mono text-sm"><div class="border-b border-gray-700 py-1">17:31:40: 开始加载 YouTube API</div></div></div>
+[2026-04-12T09:31:41.095Z] [error] Fix any of the following:
   Some page content is not contained by landmarks
-[2026-04-10T07:46:31.747Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.747Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.747Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
-[2026-04-10T07:46:31.747Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:46:31.747Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.747Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.747Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
-[2026-04-10T07:46:31.747Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:46:31.747Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.748Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
-[2026-04-10T07:46:31.748Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:46:31.748Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:46:31.748Z] [error] Fix any of the following:
+[2026-04-12T09:31:41.095Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.095Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.095Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
+[2026-04-12T09:31:41.095Z] [startGroupCollapsed] Element: %o JSHandle@node
+[2026-04-12T09:31:41.095Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
+[2026-04-12T09:31:41.095Z] [error] Fix any of the following:
   No skip link target
-[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.748Z] [endGroup] console.groupEnd
-[2026-04-10T07:46:31.792Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:48:04.143Z] [error] Auth error: Error: Supabase not configured
-    at captureStackTrace (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/capture-stack-trace.js:13:23)
-    at console.error (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:51:62)
-    at handleSubmit (webpack-internal:///(app-pages-browser)/./app/[locale]/login/page.tsx:60:21)
-[2026-04-10T07:52:04.192Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T07:52:04.192Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T07:52:05.010Z] [log] [Fast Refresh] done in 818ms
-[2026-04-10T07:52:05.021Z] [log] [Fast Refresh] done in 828ms
-[2026-04-10T07:52:47.162Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-10T07:52:47.832Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
-[2026-04-10T07:52:47.832Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
-[2026-04-10T07:52:47.834Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.834Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T07:52:47.839Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:52:47.839Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:52:47.840Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:52:47.840Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T07:52:47.840Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.841Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.841Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.841Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
-[2026-04-10T07:52:47.841Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:52:47.841Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:52:47.841Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:52:47.841Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
-[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.843Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
-[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.843Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
-[2026-04-10T07:52:47.843Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.843Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:52:47.843Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:52:47.843Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.843Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.844Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
-[2026-04-10T07:52:47.844Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:52:47.844Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.845Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.845Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:52:47.845Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:52:47.845Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.845Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.845Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:52:47.846Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.846Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.846Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
-[2026-04-10T07:52:47.846Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.846Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.846Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
-[2026-04-10T07:52:47.846Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.846Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.847Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
-[2026-04-10T07:52:47.847Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:52:47.847Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:52:47.848Z] [error] Fix any of the following:
-  No skip link target
-[2026-04-10T07:52:47.848Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.848Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.848Z] [endGroup] console.groupEnd
-[2026-04-10T07:52:47.895Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:52:52.699Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:58:36.276Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-10T07:58:36.911Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
-[2026-04-10T07:58:36.913Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
-[2026-04-10T07:58:36.913Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.914Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T07:58:36.918Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:58:36.918Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:58:36.919Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:58:36.919Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T07:58:36.919Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.919Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.919Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.919Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
-[2026-04-10T07:58:36.919Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T07:58:36.919Z] [startGroupCollapsed] Related nodes
-[2026-04-10T07:58:36.919Z] [log] Element: %o JSHandle@node
-[2026-04-10T07:58:36.919Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
-[2026-04-10T07:58:36.919Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.920Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
-[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.920Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
-[2026-04-10T07:58:36.920Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.920Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:58:36.920Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:58:36.920Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.920Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.920Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
-[2026-04-10T07:58:36.921Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:58:36.921Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.921Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.921Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:58:36.921Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:58:36.921Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.921Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.921Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T07:58:36.922Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:58:36.922Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.922Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.922Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
-[2026-04-10T07:58:36.922Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:58:36.922Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.922Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.922Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
-[2026-04-10T07:58:36.923Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T07:58:36.923Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.923Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.923Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
-[2026-04-10T07:58:36.924Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T07:58:36.924Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T07:58:36.924Z] [error] Fix any of the following:
-  No skip link target
-[2026-04-10T07:58:36.924Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.924Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.924Z] [endGroup] console.groupEnd
-[2026-04-10T07:58:36.970Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T07:58:40.290Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T08:00:19.036Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:00:19.037Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:00:19.818Z] [log] [Fast Refresh] done in 781ms
-[2026-04-10T08:00:19.807Z] [log] [Fast Refresh] done in 771ms
-[2026-04-10T08:00:36.297Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[2026-04-10T08:00:37.022Z] [startGroup] %cNew axe issues color:#d93251;font-weight:normal;
-[2026-04-10T08:00:37.022Z] [startGroupCollapsed] %c%s: %c%s %s color:#d93251;font-weight:normal; serious font-color:black;font-weight:normal; Elements must meet minimum color contrast ratio thresholds https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI
-[2026-04-10T08:00:37.025Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.025Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T08:00:37.027Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 3.94 (foreground color: #ffffff, background color: #5b7dd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T08:00:37.030Z] [startGroupCollapsed] Related nodes
-[2026-04-10T08:00:37.031Z] [log] Element: %o JSHandle@node
-[2026-04-10T08:00:37.031Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button type="submit" class="w-full py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">登录</button>
-[2026-04-10T08:00:37.031Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.031Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.033Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.033Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <button class="text-brand hover:text-brand/80 text-sm transition">没有账号？立即注册</button>
-[2026-04-10T08:00:37.033Z] [error] Fix any of the following:
-  Element has insufficient color contrast of 4.48 (foreground color: #5b7dd4, background color: #11182b, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1
-[2026-04-10T08:00:37.033Z] [startGroupCollapsed] Related nodes
-[2026-04-10T08:00:37.034Z] [log] Element: %o JSHandle@node
-[2026-04-10T08:00:37.034Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
-[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.034Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; Document should have one main landmark https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=axeAPI
-[2026-04-10T08:00:37.034Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.034Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; All page content should be contained by landmarks https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI
-[2026-04-10T08:00:37.034Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.034Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T08:00:37.034Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T08:00:37.035Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.035Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.035Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="text-center mb-8"><h1 class="text-3xl font-bold text-white mb-2">欢迎回来</h1><p class="text-muted">登录以同步你的学习数据</p></div>
-[2026-04-10T08:00:37.035Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T08:00:37.035Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.036Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.036Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T08:00:37.037Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T08:00:37.037Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.038Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.038Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div>
-[2026-04-10T08:00:37.038Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T08:00:37.038Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.038Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.038Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 pt-6 border-t border-white/10 text-center"><a class="text-sm text-muted hover:text-white transition" href="/">返回首页</a></div>
-[2026-04-10T08:00:37.039Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T08:00:37.039Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.039Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.039Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <div class="mt-6 text-center text-sm text-slate-400"><p>Phase 1 用户数据将自动迁移到云端</p></div>
-[2026-04-10T08:00:37.041Z] [error] Fix any of the following:
-  Some page content is not contained by landmarks
-[2026-04-10T08:00:37.041Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.041Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.042Z] [startGroupCollapsed] %c%s: %c%s %s color:#d24700;font-weight:bold; moderate font-color:black;font-weight:normal; The skip-link target should exist and be focusable https://dequeuniversity.com/rules/axe/4.11/skip-link?application=axeAPI
-[2026-04-10T08:00:37.042Z] [startGroupCollapsed] Element: %o JSHandle@node
-[2026-04-10T08:00:37.042Z] [log] HTML: %c%s font-weight:bold;font-family:Courier; <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white">跳到主内容</a>
-[2026-04-10T08:00:37.043Z] [error] Fix any of the following:
-  No skip link target
-[2026-04-10T08:00:37.043Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.043Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.043Z] [endGroup] console.groupEnd
-[2026-04-10T08:00:37.097Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T08:00:40.843Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
-[2026-04-10T08:00:51.742Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:00:51.743Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:00:53.378Z] [log] [Fast Refresh] done in 1631ms
-[2026-04-10T08:00:53.373Z] [log] [Fast Refresh] done in 1625ms
-[2026-04-10T08:08:15.316Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:08:15.928Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:08:15.965Z] [log] [Fast Refresh] done in 36ms
-[2026-04-10T08:08:16.403Z] [log] [Fast Refresh] done in 473ms
-[2026-04-10T08:08:46.565Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:08:47.222Z] [log] [Fast Refresh] done in 655ms
-[2026-04-10T08:11:53.630Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:11:54.753Z] [log] [Fast Refresh] done in 1121ms
-[2026-04-10T08:16:06.220Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:16:07.794Z] [log] [Fast Refresh] done in 1570ms
-[2026-04-10T08:16:12.601Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:16:13.870Z] [log] [Fast Refresh] done in 1268ms
-[2026-04-10T08:27:05.051Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:27:06.117Z] [log] [Fast Refresh] rebuilding
-[2026-04-10T08:27:06.158Z] [log] [Fast Refresh] done in 41ms
-[2026-04-10T08:27:06.832Z] [log] [Fast Refresh] done in 714ms
+[2026-04-12T09:31:41.095Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.095Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.095Z] [endGroup] console.groupEnd
+[2026-04-12T09:31:41.126Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-12T09:31:41.201Z] [error] Failed to load resource: the server responded with a status of 400 (Bad Request)
+[2026-04-12T09:31:50.880Z] [error] Failed to load resource: net::ERR_CONNECTION_CLOSED
+[2026-04-12T09:42:41.611Z] [log] [Fast Refresh] rebuilding
+[2026-04-12T09:42:43.028Z] [log] [Fast Refresh] done in 1418ms
+[2026-04-12T09:44:52.620Z] [log] [Fast Refresh] rebuilding
+[2026-04-12T09:44:53.021Z] [log] [Fast Refresh] done in 399ms
+[2026-04-12T09:44:53.501Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:44:53.540Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:44:53.575Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:44:53.577Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:45:32.900Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:45:32.919Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:45:32.934Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:45:32.935Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:45:32.935Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:46:15.253Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:46:15.278Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:46:15.279Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:46:15.279Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:46:15.284Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:52:59.402Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:52:59.612Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:52:59.613Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:52:59.613Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:52:59.613Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:52:59.613Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:54:46.203Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:54:46.309Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:54:46.309Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:54:46.309Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:54:46.356Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:54:46.357Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:56:52.276Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:56:52.276Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:56:53.090Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:56:53.090Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:56:53.090Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:56:53.090Z] [error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[2026-04-12T09:58:47.762Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:47.795Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:48.820Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:49.845Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:50.871Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:51.901Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:52.927Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:53.957Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:54.986Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:56.009Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:57.032Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:58.065Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:58:59.094Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:00.121Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:01.149Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:02.177Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:03.204Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:04.232Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:05.262Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:06.288Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:07.315Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:08.341Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:09.367Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:10.395Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:11.422Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:12.449Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:13.478Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:14.504Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:15.532Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:16.562Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:17.589Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:18.616Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:19.651Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:20.680Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:21.712Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:22.741Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:23.774Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:24.801Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:25.826Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:26.856Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:27.881Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:28.910Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:29.939Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:30.976Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:32.005Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:33.034Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:34.064Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:35.093Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:36.123Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:37.150Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:38.179Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:39.208Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:40.236Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:41.261Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:42.288Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:43.315Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:44.340Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:45.373Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:46.395Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:47.432Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:48.463Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:49.494Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:50.531Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:51.562Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:52.588Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:53.612Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:54.638Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:55.668Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:56.691Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:57.718Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:58.740Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T09:59:59.770Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:00.797Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:01.822Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:02.849Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:03.882Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:04.907Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:05.942Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:06.968Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:07.998Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:09.036Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:10.066Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:11.093Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:12.132Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:13.173Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:14.201Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:15.226Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:16.257Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:17.283Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:18.313Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:19.349Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:20.382Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:21.411Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:22.437Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:23.470Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:24.501Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:25.529Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:26.554Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:27.576Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:28.603Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:29.626Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:30.656Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:31.685Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:32.709Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:33.734Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:34.765Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:35.790Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:36.825Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:37.848Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:38.880Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:39.903Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:40.928Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:41.955Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:42.991Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:44.017Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:45.049Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:46.078Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:47.105Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:48.134Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:49.159Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:50.186Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:51.217Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:52.248Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:53.271Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:54.300Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:55.324Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:56.354Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:57.392Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:58.422Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:00:59.444Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:00.477Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:01.503Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:02.529Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:03.560Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:04.592Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:05.613Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:06.640Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:07.677Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:08.713Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:09.741Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:09.807Z] [error] Error: require is not defined
+[2026-04-12T10:01:10.770Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:11.231Z] [log] React state check
+[2026-04-12T10:01:11.800Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:12.834Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:13.862Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:14.888Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:15.918Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:16.940Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:17.972Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:18.995Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:20.024Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:21.049Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:22.075Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:23.111Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:24.142Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:25.180Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:26.204Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:27.233Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:28.261Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:29.288Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:30.313Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:31.340Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:32.370Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:33.399Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:34.426Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:35.457Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:36.485Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:37.510Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:38.540Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:39.569Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:40.594Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:41.620Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:42.652Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:43.679Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:44.709Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:45.738Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:46.764Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:47.794Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:48.825Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:49.848Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:50.875Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:51.903Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:52.932Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:53.954Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:54.989Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:56.010Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:57.039Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:58.074Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:01:59.100Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:00.128Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:01.156Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:02.180Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:03.206Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:04.238Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:05.264Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:06.291Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:07.323Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:08.356Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:09.391Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:10.418Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:11.448Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:12.481Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:13.505Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:14.536Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:15.561Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:16.591Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:17.618Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:18.651Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:19.687Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:20.711Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:21.734Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:22.762Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:23.796Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:24.827Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:25.860Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:26.894Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:27.922Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:28.948Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:29.976Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:31.003Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:32.031Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:33.071Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:34.106Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:35.137Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:36.171Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:37.206Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:38.241Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:39.270Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:40.306Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:41.336Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:42.367Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:43.402Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:44.427Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:45.456Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:46.495Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:47.518Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:48.544Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:49.571Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:50.595Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:51.625Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:52.656Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:53.691Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:54.726Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:55.752Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:56.784Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:57.811Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:58.840Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:02:59.867Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:00.891Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:01.916Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:02.944Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:03.971Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:04.997Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:06.024Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:07.050Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:08.078Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:09.116Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:10.142Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:11.173Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:12.199Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:13.230Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:14.259Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:15.300Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:16.329Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:17.361Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:18.394Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:19.425Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:20.448Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:21.477Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:22.500Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:23.527Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:24.552Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:25.580Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:26.606Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:27.632Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:28.656Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:29.682Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:30.708Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:31.745Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:32.770Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:33.800Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:34.823Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:35.852Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:36.881Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:37.906Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:38.932Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:39.959Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:43.945Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:43.996Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:44.075Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-04-12T10:03:44.075Z] [error] Failed to load resource: the server responded with a status of 404 (Not Found)

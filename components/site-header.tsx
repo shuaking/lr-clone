@@ -36,7 +36,6 @@ export function SiteHeader() {
           <LanguageSwitcher />
           <ThemeToggle />
           <Link href="/login" className="hidden text-sm text-muted transition hover:text-gray-900 dark:hover:text-white md:block">{t('login')}</Link>
-          <Link href="/app" className="rounded-full border border-gray-300 dark:border-white/10 bg-gray-900 dark:bg-white px-4 py-2 text-sm font-medium text-white dark:text-slate-900 transition hover:opacity-90">{t('openApp')}</Link>
         </div>
       </div>
     </header>

@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useTranslations } from 'next-intl';
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAllVideos, categories, difficulties, ContentItem } from "@/lib/content-data";
-import { VideoLearningInterface } from "./video-learning-interface-sync";
 import { useSubtitlePreloader } from "@/hooks/useSubtitlePreloader";
 import { AdvancedSearch, AdvancedSearchFilters } from "./advanced-search";
 import { staggerContainer, staggerItem, cardHover } from "@/lib/animations";
@@ -16,8 +16,8 @@ import { Play, Clock, Eye, Users, Globe, Lightbulb, X } from "lucide-react";
 
 export function ContentCatalog() {
   const t = useTranslations('catalog');
+  const router = useRouter();
   const { currentPair, setLanguagePair } = useLanguagePairStore();
-  const [playingVideo, setPlayingVideo] = useState<ContentItem | null>(null);
   const [allVideos, setAllVideos] = useState<ContentItem[]>([]);
   const [showSuggestion, setShowSuggestion] = useState(true);
 
@@ -333,7 +333,7 @@ export function ContentCatalog() {
               transition={{ duration: 0.3 }}
               whileHover="hover"
               whileTap="tap"
-              onClick={() => setPlayingVideo(item)}
+              onClick={() => router.push(`/app?videoId=${item.id}`)}
               className="group cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-colors hover:border-white/10 hover:bg-white/[0.07]"
             >
               <div className="relative aspect-video overflow-hidden bg-slate-800">
@@ -422,14 +422,6 @@ export function ContentCatalog() {
         <div className="flex min-h-[40vh] items-center justify-center">
           <p className="text-muted">{t('noResults')}</p>
         </div>
-      )}
-
-      {/* 视频播放器 */}
-      {playingVideo && (
-        <VideoLearningInterface
-          videoId={playingVideo.id}
-          title={playingVideo.title}
-        />
       )}
     </div>
   );

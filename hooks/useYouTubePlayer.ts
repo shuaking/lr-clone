@@ -33,6 +33,17 @@ export function useYouTubePlayer({
   const timeUpdateInterval = useRef<NodeJS.Timeout | null>(null);
   const isMountedRef = useRef<boolean>(true);
   const currentVideoIdRef = useRef<string>(videoId);
+  const lastToggleTimeRef = useRef<number>(0);
+
+  // 使用 ref 存储回调，避免因回调引用变化导致播放器重建
+  const onReadyRef = useRef(onReady);
+  const onStateChangeRef = useRef(onStateChange);
+
+  // 保持 ref 同步
+  useEffect(() => {
+    onReadyRef.current = onReady;
+    onStateChangeRef.current = onStateChange;
+  }, [onReady, onStateChange]);
 
   const [isPlayerLoading, setIsPlayerLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -73,15 +84,27 @@ export function useYouTubePlayer({
       }
     }, 100);
 
-    onReady?.();
-  }, [onReady]);
+    onReadyRef.current?.();
+  }, []); // 移除 onReady 依赖，使用 ref
 
   // 播放器状态变化回调
   const handlePlayerStateChange = useCallback((event: YTPlayerEvent) => {
     const playing = event.data === window.YT.PlayerState.PLAYING;
+    log('[useYouTubePlayer] State change:', {
+      newState: event.data,
+      isPlaying: playing,
+      stateNames: {
+        '-1': 'UNSTARTED',
+        '0': 'ENDED',
+        '1': 'PLAYING',
+        '2': 'PAUSED',
+        '3': 'BUFFERING',
+        '5': 'CUED'
+      }
+    });
     setIsPlaying(playing);
-    onStateChange?.(playing);
-  }, [onStateChange]);
+    onStateChangeRef.current?.(playing);
+  }, []); // 移除 onStateChange 依赖，使用 ref
 
   // 初始化播放器
   const initPlayer = useCallback(() => {
@@ -119,6 +142,8 @@ export function useYouTubePlayer({
         playerVars: {
           rel: 0,
           modestbranding: 1,
+          enablejsapi: 1,
+          origin: window.location.origin,
         },
         events: {
           onReady: handlePlayerReady,
@@ -165,6 +190,7 @@ export function useYouTubePlayer({
     }
 
     return () => {
+      log('[useYouTubePlayer] Cleanup: destroying player');
       isMountedRef.current = false;
 
       if (timeUpdateInterval.current) {
@@ -175,6 +201,7 @@ export function useYouTubePlayer({
       if (playerRef.current) {
         try {
           playerRef.current.destroy();
+          log('[useYouTubePlayer] Player destroyed successfully');
         } catch (e) {
           logError('[useYouTubePlayer] Error destroying player on unmount:', e);
         }
@@ -200,14 +227,40 @@ export function useYouTubePlayer({
 
   // 控制方法：播放/暂停切换
   const togglePlayPause = useCallback(() => {
+    // 防抖：防止 300ms 内重复调用
+    const now = Date.now();
+    if (now - lastToggleTimeRef.current < 300) {
+      log('[useYouTubePlayer] togglePlayPause debounced - too soon');
+      return;
+    }
+    lastToggleTimeRef.current = now;
+
     if (!playerRef.current) {
       setPlayerError('播放器未就绪，请稍后重试');
       return;
     }
     try {
-      if (isPlaying) {
+      // 直接从播放器获取当前状态，而不是依赖 React state
+      const playerState = playerRef.current.getPlayerState?.();
+      const isCurrentlyPlaying = playerState === window.YT?.PlayerState?.PLAYING;
+
+      log('[useYouTubePlayer] togglePlayPause called, React isPlaying:', isPlaying, 'Player state:', playerState, 'isCurrentlyPlaying:', isCurrentlyPlaying);
+
+      // 详细的调用栈信息
+      console.log('=== TOGGLE PLAY/PAUSE CALLED ===');
+      console.log('Time:', new Date().toISOString());
+      console.log('React isPlaying:', isPlaying);
+      console.log('Player state:', playerState);
+      console.log('isCurrentlyPlaying:', isCurrentlyPlaying);
+      console.trace('FULL CALL STACK:');
+      console.log('================================');
+
+      if (isCurrentlyPlaying) {
+        log('[useYouTubePlayer] Calling pauseVideo()');
+        console.trace('[useYouTubePlayer] PAUSE CALL STACK:'); // 添加调用栈追踪
         playerRef.current.pauseVideo();
       } else {
+        log('[useYouTubePlayer] Calling playVideo()');
         playerRef.current.playVideo();
       }
       setPlayerError(null);

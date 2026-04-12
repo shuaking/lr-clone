@@ -10,8 +10,9 @@ import { usePlayerSettingsStore } from '@/lib/stores/player-settings-store';
 import { NavigationSidebar } from './NavigationSidebar';
 import { VideoControls } from './VideoControls';
 import { SubtitlePanel } from './SubtitlePanel';
-import { WordPopup } from '../word-popup';
+import { WordPopupEnhanced } from '../word-popup-enhanced';
 import { SubtitleEditor } from '../subtitle-editor';
+import { SubtitleTranslationButton } from '../subtitle-translation-button';
 import { ErrorBoundary } from '../error-boundary';
 
 interface VideoLearningInterfaceProps {
@@ -68,31 +69,24 @@ export function VideoLearningInterface({
     subtitles: subtitlesHook.subtitles,
     currentTime: player.currentTime,
     subtitleDelay: subtitlesHook.subtitleDelay,
-    autoPauseEnabled,
+    autoPauseEnabled: false, // 临时禁用自动暂停
     onAutoPause: player.togglePlayPause,
-    onSkipToNext: (endedSubtitleId) => {
-      const currentIndex = subtitlesRef.current.findIndex(
-        sub => sub.id === endedSubtitleId
-      );
-      if (currentIndex !== -1 && currentIndex < subtitlesRef.current.length - 1) {
-        handleSubtitleClick(subtitlesRef.current[currentIndex + 1]);
-      }
-    }
+    // 完全移除 onSkipToNext 回调，避免任何可能的干扰
   });
 
-  // 循环播放当前句子
-  useEffect(() => {
-    if (!loopEnabled || !sync.currentSubtitle || !player.isPlaying) return;
+  // 循环播放当前句子 - 临时禁用
+  // useEffect(() => {
+  //   if (!loopEnabled || !sync.currentSubtitle || !player.isPlaying) return;
 
-    const checkLoop = setInterval(() => {
-      const adjustedTime = player.currentTime + subtitlesHook.subtitleDelay;
-      if (sync.currentSubtitle && adjustedTime > sync.currentSubtitle.end) {
-        player.seekTo(sync.currentSubtitle.start + subtitlesHook.subtitleDelay);
-      }
-    }, 100);
+  //   const checkLoop = setInterval(() => {
+  //     const adjustedTime = player.currentTime + subtitlesHook.subtitleDelay;
+  //     if (sync.currentSubtitle && adjustedTime > sync.currentSubtitle.end) {
+  //       player.seekTo(sync.currentSubtitle.start + subtitlesHook.subtitleDelay);
+  //     }
+  //   }, 100);
 
-    return () => clearInterval(checkLoop);
-  }, [loopEnabled, sync.currentSubtitle, player, subtitlesHook.subtitleDelay]);
+  //   return () => clearInterval(checkLoop);
+  // }, [loopEnabled, sync.currentSubtitle, player, subtitlesHook.subtitleDelay]);
 
   // 用于字幕导航的 ref
   const subtitlesRef = useRef<Subtitle[]>([]);
@@ -134,13 +128,13 @@ export function VideoLearningInterface({
     }
   }, [sync.currentSubtitle, handleSubtitleClick]);
 
-  // 键盘快捷键
-  useKeyboardShortcuts({
-    onPlayPause: player.togglePlayPause,
-    onPrevSubtitle: () => navigateSubtitle('prev'),
-    onNextSubtitle: () => navigateSubtitle('next'),
-    onClosePopup: () => setSelectedWord(null)
-  });
+  // 键盘快捷键 - 临时禁用
+  // useKeyboardShortcuts({
+  //   onPlayPause: player.togglePlayPause,
+  //   onPrevSubtitle: () => navigateSubtitle('prev'),
+  //   onNextSubtitle: () => navigateSubtitle('next'),
+  //   onClosePopup: () => setSelectedWord(null)
+  // });
 
   return (
     <div className="flex h-screen bg-[#0a0e1a]">
@@ -183,6 +177,13 @@ export function VideoLearningInterface({
               <Edit3 size={14} />
               编辑字幕
             </button>
+            <SubtitleTranslationButton
+              videoId={videoId}
+              subtitles={subtitlesHook.subtitles}
+              onTranslationComplete={(translatedSubtitles) => {
+                subtitlesHook.setSubtitles(translatedSubtitles);
+              }}
+            />
           </div>
         </div>
 
@@ -239,13 +240,14 @@ export function VideoLearningInterface({
 
       {/* 单词翻译弹窗 */}
       {selectedWord && (
-        <WordPopup
+        <WordPopupEnhanced
           word={selectedWord.word}
           position={{ x: selectedWord.x, y: selectedWord.y }}
           onClose={() => setSelectedWord(null)}
           context={selectedWord.context}
           timestamp={selectedWord.timestamp}
           videoId={videoId}
+          language="en"
         />
       )}
 

@@ -35,7 +35,7 @@ export function useKeyboardShortcuts({
       switch (e.key) {
         case ' ':
           e.preventDefault();
-          log('[useKeyboardShortcuts] Space pressed - toggle play/pause');
+          log('[useKeyboardShortcuts] Space pressed - toggle play/pause', new Date().getTime());
           onPlayPause();
           break;
 

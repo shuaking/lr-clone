@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from 'next-intl';
 import Link from "next/link";
 import { VideoLearningInterface } from "@/components/video-learning-interface-sync";
 import { SavedWordsList } from "@/components/saved-words-list";
 import { FavoriteVideosList } from "@/components/favorite-videos-list";
+import { ApiSettings } from "@/components/api-settings";
 import { getAllVideos } from "@/lib/content-data";
 import { ArrowLeft, BookOpen, Heart, History, Settings } from "lucide-react";
 
@@ -15,11 +17,30 @@ export default function AppPage() {
   const t = useTranslations('catalog');
   const tSettings = useTranslations('settings');
   const tCommon = useTranslations('common');
+  const searchParams = useSearchParams();
   const [currentView, setCurrentView] = useState<View>("video");
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [showVideoList, setShowVideoList] = useState(true);
+  const [allVideos, setAllVideos] = useState<any[]>([]);
 
-  const allVideos = getAllVideos();
+  // 在客户端加载视频列表
+  useEffect(() => {
+    setAllVideos(getAllVideos());
+  }, []);
+
+  // 从 URL 参数读取 videoId 并自动加载视频
+  useEffect(() => {
+    if (allVideos.length === 0) return;
+
+    const videoId = searchParams.get('videoId');
+    if (videoId && !selectedVideo) {
+      const video = allVideos.find(v => v.id === videoId);
+      if (video) {
+        setSelectedVideo(video);
+        setShowVideoList(false);
+      }
+    }
+  }, [searchParams, allVideos, selectedVideo]);
 
   // 如果没有选择视频，显示视频选择界面
   if (!selectedVideo && currentView === "video") {
@@ -171,10 +192,9 @@ export default function AppPage() {
             </div>
           )}
           {currentView === "settings" && (
-            <div className="flex min-h-[60vh] items-center justify-center">
-              <div className="text-center">
-                <p className="text-lg text-muted">设置功能即将推出</p>
-              </div>
+            <div>
+              <h2 className="text-2xl font-semibold mb-6">设置</h2>
+              <ApiSettings />
             </div>
           )}
         </section>

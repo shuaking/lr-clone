@@ -24,6 +24,7 @@ export interface UseSubtitlesOptions {
 
 export interface UseSubtitlesReturn {
   subtitles: Subtitle[];
+  setSubtitles: (subtitles: Subtitle[]) => void;
   isLoading: boolean;
   error: string | null;
 
@@ -192,6 +193,7 @@ export function useSubtitles({
 
   return {
     subtitles,
+    setSubtitles,
     isLoading,
     error,
     subtitleMode,

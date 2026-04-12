@@ -7,51 +7,12 @@ import { fetchYouTubeSubtitles, translateSubtitles, cacheSubtitles, getCachedSub
 import { getMockSubtitles } from "@/lib/mock-subtitles";
 import { useFeatureFlag } from "@/lib/feature-flags";
 import { VideoLearningInterface as VideoLearningInterfaceNew } from "./video-player/VideoLearningInterface";
+import type { YTPlayer, YTPlayerEvent } from "@/lib/youtube-types";
 
 // 条件日志 - 仅在开发环境输出
 const DEBUG = process.env.NODE_ENV === 'development';
 const log = DEBUG ? console.log.bind(console) : () => {};
 const logError = console.error.bind(console); // 错误始终记录
-
-// YouTube Player API 类型定义
-interface YT {
-  Player: new (elementId: string, config: YTPlayerConfig) => YTPlayer;
-  PlayerState: {
-    PLAYING: number;
-    PAUSED: number;
-    ENDED: number;
-    BUFFERING: number;
-    CUED: number;
-  };
-}
-
-interface YTPlayerConfig {
-  videoId: string;
-  playerVars?: {
-    rel?: number;
-    modestbranding?: number;
-    [key: string]: any;
-  };
-  events?: {
-    onReady?: (event: YTPlayerEvent) => void;
-    onStateChange?: (event: YTPlayerEvent) => void;
-  };
-}
-
-interface YTPlayer {
-  getCurrentTime: () => number;
-  seekTo: (seconds: number, allowSeekAhead: boolean) => void;
-  playVideo: () => void;
-  pauseVideo: () => void;
-  setPlaybackRate: (rate: number) => void;
-  getPlaybackRate: () => number;
-  destroy: () => void;
-}
-
-interface YTPlayerEvent {
-  target: YTPlayer;
-  data: number;
-}
 
 interface Subtitle {
   id: string;
@@ -69,14 +30,6 @@ interface VideoLearningInterfaceProps {
   videoId: string;
   title: string;
   subtitles?: Subtitle[];
-}
-
-// 声明 YouTube iframe API 类型
-declare global {
-  interface Window {
-    YT: YT;
-    onYouTubeIframeAPIReady: () => void;
-  }
 }
 
 type SubtitleMode = 'both' | 'original' | 'translation';
@@ -265,19 +218,9 @@ export function VideoLearningInterface({ videoId, title, subtitles = [] }: Video
             return prev;
           });
         } else {
-          // 当前时间不在任何字幕范围内，检查是否刚结束一句
-          const justEnded = subtitlesRef.current.find(
-            sub => time > (sub.end + subtitleDelay) && time < (sub.end + subtitleDelay + 0.3) // 300ms 容差
-          );
-
-          if (justEnded && autoPauseEnabled && lastPausedSubtitleRef.current !== justEnded.id) {
-            // 自动暂停
-            if (playerRef.current && playerRef.current.pauseVideo) {
-              playerRef.current.pauseVideo();
-              lastPausedSubtitleRef.current = justEnded.id;
-              log('[AutoPause] Paused after subtitle:', justEnded.id);
-            }
-          }
+          // 当前时间不在任何字幕范围内
+          // 自动暂停功能已禁用 - 不执行任何操作
+          setCurrentSubtitle(null);
         }
       }
     }, 100); // 每100ms更新一次
