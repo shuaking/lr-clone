@@ -12,6 +12,7 @@ export interface SubtitlePanelProps {
   isLoading: boolean;
   onSubtitleClick: (subtitle: Subtitle) => void;
   onWordClick: (word: string, event: React.MouseEvent, context: string) => void;
+  onAIExplain?: (subtitle: Subtitle) => void;
 }
 
 const VIRTUAL_SCROLL_THRESHOLD = 150;
@@ -23,7 +24,8 @@ export function SubtitlePanel({
   subtitleMode,
   isLoading,
   onSubtitleClick,
-  onWordClick
+  onWordClick,
+  onAIExplain
 }: SubtitlePanelProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const subtitleRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -111,9 +113,10 @@ export function SubtitlePanel({
         subtitleMode={subtitleMode}
         onClick={() => onSubtitleClick(subtitle)}
         onWordClick={(word, event) => onWordClick(word, event, subtitle.text)}
+        onAIExplain={onAIExplain}
       />
     );
-  }, [currentSubtitle, selectedSubtitle, subtitleMode, onSubtitleClick, onWordClick]);
+  }, [currentSubtitle, selectedSubtitle, subtitleMode, onSubtitleClick, onWordClick, onAIExplain]);
 
   return (
     <aside

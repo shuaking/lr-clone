@@ -1,7 +1,7 @@
 import React from 'react';
 import { Subtitle, SubtitleMode } from '@/hooks/useSubtitles';
 import { usePlayerSettingsStore } from '@/lib/stores/player-settings-store';
-import { Check, X } from 'lucide-react';
+import { Check, X, Sparkles } from 'lucide-react';
 
 export interface SubtitleItemProps {
   subtitle: Subtitle;
@@ -10,6 +10,7 @@ export interface SubtitleItemProps {
   subtitleMode: SubtitleMode;
   onClick: () => void;
   onWordClick: (word: string, event: React.MouseEvent) => void;
+  onAIExplain?: (subtitle: Subtitle) => void;
 }
 
 type Token = {
@@ -43,7 +44,8 @@ export const SubtitleItem = React.memo(function SubtitleItem({
   isSelected,
   subtitleMode,
   onClick,
-  onWordClick
+  onWordClick,
+  onAIExplain
 }: SubtitleItemProps) {
   const fontSize = usePlayerSettingsStore((state) => state.fontSize);
   const isSentenceKnown = usePlayerSettingsStore((state) => state.isSentenceKnown(subtitle.id));
@@ -63,25 +65,42 @@ export const SubtitleItem = React.memo(function SubtitleItem({
           : 'border-white/5 bg-white/5 hover:border-white/10 hover:bg-white/[0.07]'
       }`}
     >
-      {/* 已知/未知标记按钮 */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          if (isSentenceKnown) {
-            unmarkSentenceAsKnown(subtitle.id);
-          } else {
-            markSentenceAsKnown(subtitle.id);
-          }
-        }}
-        className={`absolute top-2 right-2 p-1.5 rounded-lg transition opacity-0 group-hover:opacity-100 ${
-          isSentenceKnown
-            ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
-            : 'bg-white/5 text-muted hover:bg-white/10 hover:text-white'
-        }`}
-        aria-label={isSentenceKnown ? '标记为未知' : '标记为已知'}
-      >
-        {isSentenceKnown ? <X size={14} /> : <Check size={14} />}
-      </button>
+      {/* 按钮组 */}
+      <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition">
+        {/* AI 解释按钮 */}
+        {onAIExplain && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onAIExplain(subtitle);
+            }}
+            className="p-1.5 rounded-lg bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 transition"
+            aria-label="AI 解释"
+            title="AI 解释句子"
+          >
+            <Sparkles size={14} />
+          </button>
+        )}
+        {/* 已知/未知标记按钮 */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            if (isSentenceKnown) {
+              unmarkSentenceAsKnown(subtitle.id);
+            } else {
+              markSentenceAsKnown(subtitle.id);
+            }
+          }}
+          className={`p-1.5 rounded-lg transition ${
+            isSentenceKnown
+              ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+              : 'bg-white/5 text-muted hover:bg-white/10 hover:text-white'
+          }`}
+          aria-label={isSentenceKnown ? '标记为未知' : '标记为已知'}
+        >
+          {isSentenceKnown ? <X size={14} /> : <Check size={14} />}
+        </button>
+      </div>
       {/* 原文 */}
       {(subtitleMode === 'both' || subtitleMode === 'original') && (
         <p

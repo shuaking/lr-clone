@@ -13,6 +13,7 @@ import { SubtitlePanel } from './SubtitlePanel';
 import { WordPopupEnhanced } from '../word-popup-enhanced';
 import { SubtitleEditor } from '../subtitle-editor';
 import { SubtitleTranslationButton } from '../subtitle-translation-button';
+import { AIExplanationPanel } from '../ai-explanation';
 import { ErrorBoundary } from '../error-boundary';
 
 interface VideoLearningInterfaceProps {
@@ -45,6 +46,7 @@ export function VideoLearningInterface({
   } | null>(null);
   const [autoPauseEnabled, setAutoPauseEnabled] = useState(false);
   const [showSubtitleEditor, setShowSubtitleEditor] = useState(false);
+  const [aiExplanationSubtitle, setAIExplanationSubtitle] = useState<Subtitle | null>(null);
 
   // 播放器设置
   const loopEnabled = usePlayerSettingsStore((state) => state.loopEnabled);
@@ -123,6 +125,11 @@ export function VideoLearningInterface({
       timestamp: player.currentTime
     });
   }, [player.currentTime]);
+
+  // 处理 AI 解释
+  const handleAIExplain = useCallback((subtitle: Subtitle) => {
+    setAIExplanationSubtitle(subtitle);
+  }, []);
 
   // 字幕导航 (上一句/下一句)
   const navigateSubtitle = useCallback((direction: 'prev' | 'next') => {
@@ -229,6 +236,7 @@ export function VideoLearningInterface({
           isLoading={subtitlesHook.isLoading}
           onSubtitleClick={handleSubtitleClick}
           onWordClick={handleWordClick}
+          onAIExplain={handleAIExplain}
         />
       </div>
 
@@ -242,6 +250,14 @@ export function VideoLearningInterface({
           timestamp={selectedWord.timestamp}
           videoId={videoId}
           language="en"
+        />
+      )}
+
+      {/* AI 解释模态框 */}
+      {aiExplanationSubtitle && (
+        <AIExplanationPanel
+          sentence={aiExplanationSubtitle.text}
+          onClose={() => setAIExplanationSubtitle(null)}
         />
       )}
 

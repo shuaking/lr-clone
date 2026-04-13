@@ -64,7 +64,19 @@
       "Bash(find:*)",
       "Bash(C:/Users/Thinkpad/.claude/bin/codeagent-wrapper.exe:*)",
       "Bash(ls -la *.md)",
-      "Bash(ls -1 *.md)"
+      "Bash(ls -1 *.md)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(grep -n \"useEffect.*async\" components/*.tsx hooks/*.ts)",
+      "Bash(grep -rn \"\\\\\\\\.map\\\\|\\\\\\\\[0\\\\\\\\]\\\\|\\\\\\\\.find\\\\|\\\\\\\\.filter\" components lib --include=\"*.tsx\" --include=\"*.ts\")",
+      "Bash(awk -F: '{sum+=$2} END {print \"Total useMemo/useCallback: \" sum}')",
+      "mcp__chrome-devtools__new_page",
+      "mcp__chrome-devtools__take_snapshot",
+      "mcp__chrome-devtools__click",
+      "mcp__chrome-devtools__navigate_page",
+      "mcp__fetch__fetch",
+      "mcp__chrome-devtools__take_screenshot"
     ]
   }
 }
