@@ -75,6 +75,14 @@ export function VideoLearningInterface({
     subtitleDelay: subtitlesHook.subtitleDelay,
     autoPauseEnabled: autoPauseEnabled,
     onAutoPause: player.togglePlayPause,
+    onSkipToNext: (endedSubtitleId: string) => {
+      // 找到下一个字幕并跳转
+      const currentIndex = subtitlesHook.subtitles.findIndex(sub => sub.id === endedSubtitleId);
+      if (currentIndex !== -1 && currentIndex < subtitlesHook.subtitles.length - 1) {
+        const nextSubtitle = subtitlesHook.subtitles[currentIndex + 1];
+        player.seekTo(nextSubtitle.start + subtitlesHook.subtitleDelay);
+      }
+    },
   });
 
   // 循环播放当前句子
