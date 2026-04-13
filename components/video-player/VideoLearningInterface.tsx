@@ -286,6 +286,7 @@ export function VideoLearningInterface({
                     end: sub.end,
                     text: sub.text
                   }))}
+                  onClose={() => setShowSubtitleEditor(false)}
                   onSave={(editedSubtitles) => {
                     // Convert back to Subtitle format and update
                     const updatedSubtitles = editedSubtitles.map(sub => ({
