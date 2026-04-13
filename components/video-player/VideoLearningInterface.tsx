@@ -53,10 +53,14 @@ export function VideoLearningInterface({
   const player = useYouTubePlayer({
     videoId,
     onReady: () => {
-      console.log('[VideoLearningInterface] Player ready');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[VideoLearningInterface] Player ready');
+      }
     },
     onStateChange: (isPlaying) => {
-      console.log('[VideoLearningInterface] Playing state:', isPlaying);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[VideoLearningInterface] Playing state:', isPlaying);
+      }
     }
   });
 
@@ -292,7 +296,9 @@ export function VideoLearningInterface({
                       translation: subtitlesHook.subtitles.find(s => s.id === sub.index.toString())?.translation || ''
                     }));
                     // Note: This would need a method in useSubtitles to update subtitles
-                    console.log('Edited subtitles:', updatedSubtitles);
+                    if (process.env.NODE_ENV === 'development') {
+                      console.log('Edited subtitles:', updatedSubtitles);
+                    }
                     setShowSubtitleEditor(false);
                   }}
                 />
