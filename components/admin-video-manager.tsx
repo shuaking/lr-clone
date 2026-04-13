@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getAdminVideos, addAdminVideo, deleteAdminVideo, AdminVideo } from "@/lib/admin-videos";
 import { getVideoDetails, searchVideos, extractVideoId, getThumbnailUrl } from "@/lib/youtube-api";
 import { categories, difficulties } from "@/lib/content-data";
@@ -12,6 +12,7 @@ export function AdminVideoManager() {
   const [activeTab, setActiveTab] = useState<Tab>("manual");
   const [adminVideos, setAdminVideos] = useState<AdminVideo[]>([]);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const messageTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // 手动添加状态
   const [manualForm, setManualForm] = useState({
@@ -37,13 +38,24 @@ export function AdminVideoManager() {
     loadAdminVideos();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (messageTimerRef.current) {
+        clearTimeout(messageTimerRef.current);
+      }
+    };
+  }, []);
+
   const loadAdminVideos = () => {
     setAdminVideos(getAdminVideos());
   };
 
   const showMessage = (type: 'success' | 'error', text: string) => {
+    if (messageTimerRef.current) {
+      clearTimeout(messageTimerRef.current);
+    }
     setMessage({ type, text });
-    setTimeout(() => setMessage(null), 3000);
+    messageTimerRef.current = setTimeout(() => setMessage(null), 3000);
   };
 
   // 手动添加视频

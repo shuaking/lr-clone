@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { getSavedVocabularySync } from '@/lib/vocabulary-storage';
 import { getLearningStatsSync } from '@/lib/learning-stats';
@@ -20,6 +20,15 @@ export function DataMigrationTool() {
   const [status, setStatus] = useState<'idle' | 'migrating' | 'success' | 'error'>('idle');
   const [progress, setProgress] = useState({ current: 0, total: 3 });
   const [errorMessage, setErrorMessage] = useState('');
+  const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (autoCloseTimerRef.current) {
+        clearTimeout(autoCloseTimerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     // 检查是否需要显示迁移提示
@@ -88,7 +97,10 @@ export function DataMigrationTool() {
       setStatus('success');
 
       // 3秒后自动关闭
-      setTimeout(() => {
+      if (autoCloseTimerRef.current) {
+        clearTimeout(autoCloseTimerRef.current);
+      }
+      autoCloseTimerRef.current = setTimeout(() => {
         setShowPrompt(false);
       }, 3000);
     } catch (error: any) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Upload,
@@ -43,10 +43,22 @@ export function SubtitleEditor({
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const [timeOffset, setTimeOffset] = useState<number>(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const messageTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (messageTimerRef.current) {
+        clearTimeout(messageTimerRef.current);
+      }
+    };
+  }, []);
 
   const showMessage = (type: 'success' | 'error', text: string) => {
+    if (messageTimerRef.current) {
+      clearTimeout(messageTimerRef.current);
+    }
     setMessage({ type, text });
-    setTimeout(() => setMessage(null), 3000);
+    messageTimerRef.current = setTimeout(() => setMessage(null), 3000);
   };
 
   // 上传字幕文件
