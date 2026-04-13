@@ -215,7 +215,7 @@ export function ApiSettings() {
                 <select
                   value={config.translation.preferredProvider || ''}
                   onChange={(e) => updateTranslationConfig({
-                    preferredProvider: e.target.value as any || undefined
+                    preferredProvider: (e.target.value || undefined) as 'deepl' | 'google' | 'libretranslate' | 'mymemory' | undefined
                   })}
                   className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand"
                 >

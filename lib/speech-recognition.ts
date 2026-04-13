@@ -3,6 +3,59 @@
  * 使用 Web Speech API 实现语音转文字
  */
 
+// Web Speech API 类型声明
+interface WebSpeechRecognitionEvent extends Event {
+  results: WebSpeechRecognitionResultList;
+  resultIndex: number;
+}
+
+interface WebSpeechRecognitionResultList {
+  length: number;
+  item(index: number): WebSpeechRecognitionResult;
+  [index: number]: WebSpeechRecognitionResult;
+}
+
+interface WebSpeechRecognitionResult {
+  length: number;
+  item(index: number): WebSpeechRecognitionAlternative;
+  [index: number]: WebSpeechRecognitionAlternative;
+  isFinal: boolean;
+}
+
+interface WebSpeechRecognitionAlternative {
+  transcript: string;
+  confidence: number;
+}
+
+interface WebSpeechRecognitionErrorEvent extends Event {
+  error: string;
+  message: string;
+}
+
+interface ISpeechRecognition extends EventTarget {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  maxAlternatives: number;
+  start(): void;
+  stop(): void;
+  abort(): void;
+  onresult: ((event: WebSpeechRecognitionEvent) => void) | null;
+  onerror: ((event: WebSpeechRecognitionErrorEvent) => void) | null;
+  onend: (() => void) | null;
+}
+
+interface ISpeechRecognitionConstructor {
+  new(): ISpeechRecognition;
+}
+
+declare global {
+  interface Window {
+    SpeechRecognition?: ISpeechRecognitionConstructor;
+    webkitSpeechRecognition?: ISpeechRecognitionConstructor;
+  }
+}
+
 export interface SpeechRecognitionResult {
   transcript: string;
   confidence: number;
@@ -21,7 +74,7 @@ export interface SpeechRecognitionOptions {
 }
 
 export class SpeechRecognitionService {
-  private recognition: any = null;
+  private recognition: ISpeechRecognition | null = null;
   private isListening = false;
   private onResultCallback?: (result: SpeechRecognitionResult) => void;
   private onErrorCallback?: (error: string) => void;
@@ -29,7 +82,7 @@ export class SpeechRecognitionService {
 
   constructor() {
     if (typeof window !== 'undefined') {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognition) {
         this.recognition = new SpeechRecognition();
       }
@@ -63,7 +116,7 @@ export class SpeechRecognitionService {
     this.recognition.maxAlternatives = options.maxAlternatives || 3;
 
     // 设置事件处理
-    this.recognition.onresult = (event: any) => {
+    this.recognition.onresult = (event: WebSpeechRecognitionEvent) => {
       const results = event.results;
       const lastResult = results[results.length - 1];
 
@@ -85,7 +138,7 @@ export class SpeechRecognitionService {
       this.onResultCallback?.(result);
     };
 
-    this.recognition.onerror = (event: any) => {
+    this.recognition.onerror = (event: WebSpeechRecognitionErrorEvent) => {
       this.isListening = false;
       this.onErrorCallback?.(event.error);
     };

@@ -67,7 +67,7 @@ export function InteractiveText({ text, source, className = "" }: InteractiveTex
           if (part.type === 'word') {
             return (
               <span
-                key={index}
+                key={`word-${index}-${part.content}`}
                 onClick={(e) => handleWordClick(part.content, e)}
                 className="cursor-pointer transition hover:text-brand hover:underline"
               >
@@ -75,7 +75,7 @@ export function InteractiveText({ text, source, className = "" }: InteractiveTex
               </span>
             );
           }
-          return <span key={index}>{part.content}</span>;
+          return <span key={`other-${index}`}>{part.content}</span>;
         })}
       </div>
 

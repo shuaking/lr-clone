@@ -137,8 +137,8 @@ export const usePlayerSettingsStore = create<PlayerSettingsState>()(
         knownSentences: Array.from(state.knownSentences),
       }),
       onRehydrateStorage: () => (state) => {
-        if (state && Array.isArray((state as any).knownSentences)) {
-          state.knownSentences = new Set((state as any).knownSentences);
+        if (state && Array.isArray(state.knownSentences)) {
+          state.knownSentences = new Set(state.knownSentences as string[]);
         }
         // 登录后自动从云端加载
         state?.loadFromCloud().catch(console.error);

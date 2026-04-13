@@ -121,8 +121,8 @@ export function GrammarPanel({ word, context, language = 'zh' }: GrammarPanelPro
             <h3 className="font-semibold">例句</h3>
           </div>
           <div className="space-y-2">
-            {grammarInfo.examples.map((example, index) => (
-              <div key={index} className="rounded-lg bg-white/5 p-3 text-sm">
+            {grammarInfo.examples.map((example) => (
+              <div key={example} className="rounded-lg bg-white/5 p-3 text-sm">
                 {example}
               </div>
             ))}
@@ -143,9 +143,9 @@ export function GrammarPanel({ word, context, language = 'zh' }: GrammarPanelPro
             <h3 className="font-semibold">常见搭配</h3>
           </div>
           <div className="flex flex-wrap gap-2">
-            {grammarInfo.collocations.map((collocation, index) => (
+            {grammarInfo.collocations.map((collocation) => (
               <span
-                key={index}
+                key={collocation}
                 className="rounded-lg bg-brand/10 px-3 py-1 text-sm text-brand"
               >
                 {collocation}
@@ -168,8 +168,8 @@ export function GrammarPanel({ word, context, language = 'zh' }: GrammarPanelPro
             <h3 className="font-semibold text-red-400">常见错误</h3>
           </div>
           <div className="space-y-2">
-            {grammarInfo.commonMistakes.map((mistake, index) => (
-              <div key={index} className="text-sm text-red-300">
+            {grammarInfo.commonMistakes.map((mistake) => (
+              <div key={mistake} className="text-sm text-red-300">
                 {mistake}
               </div>
             ))}
@@ -192,7 +192,7 @@ export function GrammarPanel({ word, context, language = 'zh' }: GrammarPanelPro
           <div className="flex flex-wrap gap-2">
             {sentenceAnalysis.map((item, index) => (
               <div
-                key={index}
+                key={`${index}-${item.word}`}
                 className="flex flex-col items-center gap-1"
               >
                 <span className="text-sm">{item.word}</span>
@@ -218,8 +218,8 @@ export function GrammarPanel({ word, context, language = 'zh' }: GrammarPanelPro
             <h3 className="font-semibold text-yellow-400">可能的语法问题</h3>
           </div>
           <div className="space-y-2">
-            {grammarErrors.map((error, index) => (
-              <div key={index} className="text-sm">
+            {grammarErrors.map((error) => (
+              <div key={error.error} className="text-sm">
                 <span className="text-yellow-300">⚠️ {error.error}</span>
                 <br />
                 <span className="text-yellow-200">{error.suggestion}</span>

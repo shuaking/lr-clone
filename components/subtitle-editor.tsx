@@ -351,7 +351,7 @@ export function SubtitleEditor({
             <div className="space-y-3">
               {subtitles.map((subtitle, index) => (
                 <div
-                  key={index}
+                  key={subtitle.index}
                   className="rounded-xl border border-[rgb(var(--border-color))] bg-white/5 p-4"
                 >
                   <div className="mb-3 flex items-center justify-between">

@@ -297,7 +297,7 @@ export function AdminVideoManager() {
                 <label className="mb-2 block text-sm text-muted">难度 *</label>
                 <select
                   value={manualForm.difficulty}
-                  onChange={(e) => setManualForm({ ...manualForm, difficulty: e.target.value as any })}
+                  onChange={(e) => setManualForm({ ...manualForm, difficulty: e.target.value as 'beginner' | 'intermediate' | 'advanced' })}
                   className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-2 outline-none focus:border-brand"
                 >
                   {difficulties.filter(d => d.value !== 'all').map(d => (

@@ -125,7 +125,7 @@ export function useSubtitles({
         start: sub.start,
         end: sub.end,
         text: sub.text,
-        translation: (sub as any).translation
+        translation: sub.translation
       }));
 
       log('[useSubtitles] Setting formatted subtitles:', formattedSubs.length);

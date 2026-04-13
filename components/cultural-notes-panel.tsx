@@ -159,8 +159,8 @@ export function CulturalNotesPanel({ word, context, language = 'zh' }: CulturalN
                 <span>例句</span>
               </div>
               <div className="space-y-2">
-                {culturalNote.examples.map((example, index) => (
-                  <div key={index} className="rounded-lg bg-white/5 p-3 text-sm">
+                {culturalNote.examples.map((example) => (
+                  <div key={example} className="rounded-lg bg-white/5 p-3 text-sm">
                     {example}
                   </div>
                 ))}
@@ -173,8 +173,8 @@ export function CulturalNotesPanel({ word, context, language = 'zh' }: CulturalN
             <div className="mb-3">
               <div className="mb-2 text-sm font-medium">替代表达</div>
               <div className="flex flex-wrap gap-2">
-                {culturalNote.alternatives.map((alt, index) => (
-                  <span key={index} className="rounded-lg bg-brand/10 px-3 py-1 text-sm text-brand">
+                {culturalNote.alternatives.map((alt) => (
+                  <span key={alt} className="rounded-lg bg-brand/10 px-3 py-1 text-sm text-brand">
                     {alt}
                   </span>
                 ))}
@@ -190,9 +190,9 @@ export function CulturalNotesPanel({ word, context, language = 'zh' }: CulturalN
                 <span>相关术语</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {relatedNotes.map((note, index) => (
+                {relatedNotes.map((note) => (
                   <span
-                    key={index}
+                    key={note.word}
                     className="cursor-pointer rounded-lg bg-white/10 px-3 py-1 text-sm transition hover:bg-white/20"
                     title={note.explanation}
                   >
@@ -218,8 +218,8 @@ export function CulturalNotesPanel({ word, context, language = 'zh' }: CulturalN
             <h3 className="font-semibold">句子中的文化词汇</h3>
           </div>
           <div className="space-y-3">
-            {contextNotes.map((note, index) => (
-              <div key={index} className="rounded-lg border border-[rgb(var(--border-color))] bg-white/5 p-3">
+            {contextNotes.map((note) => (
+              <div key={note.word} className="rounded-lg border border-[rgb(var(--border-color))] bg-white/5 p-3">
                 <div className="mb-2 flex items-center gap-2">
                   <span className="font-medium">{note.word}</span>
                   <span className={`rounded px-2 py-0.5 text-xs ${getTypeColor(note.type)}`}>
