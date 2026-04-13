@@ -117,7 +117,7 @@ export function SubtitlePanel({
 
   return (
     <aside
-      className="border-l border-white/5 bg-[#0d1117] flex flex-col relative"
+      className="border-l border-white/5 bg-[#0d1117] flex flex-col relative mt-4"
       style={{ width: `${sidebarWidth}px` }}
     >
       {/* 拖拽调整宽度手柄 */}
