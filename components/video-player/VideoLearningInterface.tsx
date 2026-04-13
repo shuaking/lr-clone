@@ -176,7 +176,7 @@ export function VideoLearningInterface({
         {/* 中间视频区域 */}
         <main className="flex-1 flex flex-col">
           {/* 视频播放器 */}
-          <div className="relative w-[685px] h-[383px] bg-black mx-auto mt-4">
+          <div className="relative w-[685px] h-[383px] bg-black ml-4 mt-4">
             {player.isPlayerLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
                 <div className="flex flex-col items-center gap-3">
