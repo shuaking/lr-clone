@@ -233,18 +233,22 @@ export function useYouTubePlayer({
 
       log('[useYouTubePlayer] togglePlayPause called, React isPlaying:', isPlaying, 'Player state:', playerState, 'isCurrentlyPlaying:', isCurrentlyPlaying);
 
-      // 详细的调用栈信息
-      console.log('=== TOGGLE PLAY/PAUSE CALLED ===');
-      console.log('Time:', new Date().toISOString());
-      console.log('React isPlaying:', isPlaying);
-      console.log('Player state:', playerState);
-      console.log('isCurrentlyPlaying:', isCurrentlyPlaying);
-      console.trace('FULL CALL STACK:');
-      console.log('================================');
+      if (DEBUG) {
+        // 详细的调用栈信息
+        console.log('=== TOGGLE PLAY/PAUSE CALLED ===');
+        console.log('Time:', new Date().toISOString());
+        console.log('React isPlaying:', isPlaying);
+        console.log('Player state:', playerState);
+        console.log('isCurrentlyPlaying:', isCurrentlyPlaying);
+        console.trace('FULL CALL STACK:');
+        console.log('================================');
+      }
 
       if (isCurrentlyPlaying) {
         log('[useYouTubePlayer] Calling pauseVideo()');
-        console.trace('[useYouTubePlayer] PAUSE CALL STACK:'); // 添加调用栈追踪
+        if (DEBUG) {
+          console.trace('[useYouTubePlayer] PAUSE CALL STACK:');
+        }
         playerRef.current.pauseVideo();
       } else {
         log('[useYouTubePlayer] Calling playVideo()');
