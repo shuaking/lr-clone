@@ -83,9 +83,13 @@ export function useSubtitleSync({
 
       // 检测刚结束的字幕，触发自动暂停或跳过
       // 注意：只有在 autoPauseEnabled 为 true 时才执行此逻辑
-      console.log('[useSubtitleSync] Checking auto-pause. autoPauseEnabled:', autoPauseEnabled, 'currentTime:', currentTime);
+      if (DEBUG) {
+        console.log('[useSubtitleSync] Checking auto-pause. autoPauseEnabled:', autoPauseEnabled, 'currentTime:', currentTime);
+      }
       if (autoPauseEnabled) {
-        console.log('[useSubtitleSync] AUTO-PAUSE IS ENABLED - checking for ended subtitles');
+        if (DEBUG) {
+          console.log('[useSubtitleSync] AUTO-PAUSE IS ENABLED - checking for ended subtitles');
+        }
         const justEnded = subtitles.find(
           sub => adjustedTime > sub.end &&
                  adjustedTime < sub.end + PAUSE_TOLERANCE
