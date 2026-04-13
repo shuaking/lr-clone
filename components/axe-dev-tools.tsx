@@ -7,9 +7,13 @@ import ReactDOM from 'react-dom';
 export function AxeDevTools() {
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
-      import('@axe-core/react').then((axe) => {
-        axe.default(React, ReactDOM, 1000);
-      });
+      import('@axe-core/react')
+        .then((axe) => {
+          axe.default(React, ReactDOM, 1000);
+        })
+        .catch((error) => {
+          console.error('Failed to load axe-core:', error);
+        });
     }
   }, []);
 
