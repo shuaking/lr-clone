@@ -13,6 +13,7 @@ import {
   isWordSavedInCloud,
   getCloudVocabularyByVideo,
 } from './supabase/vocabulary-sync';
+import { safeStorage } from './safe-storage';
 
 export interface SavedVocabulary {
   id: string;
@@ -52,13 +53,13 @@ export async function getSavedVocabulary(): Promise<SavedVocabulary[]> {
     }
 
     // 使用本地存储
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    const result = safeStorage.getJSON<SavedVocabulary[]>(STORAGE_KEY);
+    return result.success && result.data ? result.data : [];
   } catch (error) {
     console.error('Failed to load vocabulary:', error);
     // 降级到本地存储
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    const result = safeStorage.getJSON<SavedVocabulary[]>(STORAGE_KEY);
+    return result.success && result.data ? result.data : [];
   }
 }
 
@@ -69,13 +70,8 @@ export async function getSavedVocabulary(): Promise<SavedVocabulary[]> {
 export function getSavedVocabularySync(): SavedVocabulary[] {
   if (typeof window === 'undefined') return [];
 
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch (error) {
-    console.error('Failed to load vocabulary:', error);
-    return [];
-  }
+  const result = safeStorage.getJSON<SavedVocabulary[]>(STORAGE_KEY);
+  return result.success && result.data ? result.data : [];
 }
 
 /**
@@ -111,12 +107,12 @@ function saveVocabularyLocal(item: Omit<SavedVocabulary, 'id' | 'savedAt'>): Sav
 
   vocabulary.unshift(newItem); // 最新的在前面
 
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(vocabulary));
-  } catch (error: any) {
-    if (error?.name === 'QuotaExceededError') {
+  const result = safeStorage.setJSON(STORAGE_KEY, vocabulary);
+
+  if (!result.success) {
+    if (result.error === 'QUOTA_EXCEEDED') {
       throw new Error('STORAGE_QUOTA_EXCEEDED');
-    } else if (error?.name === 'SecurityError') {
+    } else if (result.error === 'SECURITY_ERROR') {
       throw new Error('STORAGE_DISABLED');
     }
     throw new Error('STORAGE_UNKNOWN_ERROR');
@@ -152,12 +148,12 @@ function removeVocabularyLocal(id: string): void {
   const vocabulary = getSavedVocabularySync();
   const filtered = vocabulary.filter(item => item.id !== id);
 
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
-  } catch (error: any) {
-    if (error?.name === 'QuotaExceededError') {
+  const result = safeStorage.setJSON(STORAGE_KEY, filtered);
+
+  if (!result.success) {
+    if (result.error === 'QUOTA_EXCEEDED') {
       throw new Error('STORAGE_QUOTA_EXCEEDED');
-    } else if (error?.name === 'SecurityError') {
+    } else if (result.error === 'SECURITY_ERROR') {
       throw new Error('STORAGE_DISABLED');
     }
     throw new Error('STORAGE_UNKNOWN_ERROR');

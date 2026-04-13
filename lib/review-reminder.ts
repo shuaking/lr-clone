@@ -4,6 +4,8 @@
  * 浏览器通知 + 首页提醒
  */
 
+import { safeStorage } from './safe-storage';
+
 /**
  * 请求通知权限
  */
@@ -80,7 +82,7 @@ export function shouldSendReminder(lastReminderTime: number | null): boolean {
  */
 export function saveLastReminderTime(): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem('last-review-reminder', Date.now().toString());
+  safeStorage.setItem('last-review-reminder', Date.now().toString());
 }
 
 /**
@@ -89,7 +91,7 @@ export function saveLastReminderTime(): void {
 export function getLastReminderTime(): number | null {
   if (typeof window === 'undefined') return null;
 
-  const saved = localStorage.getItem('last-review-reminder');
+  const saved = safeStorage.getItem('last-review-reminder');
   return saved ? parseInt(saved, 10) : null;
 }
 
@@ -145,12 +147,8 @@ export function getReminderPreferences(): ReminderPreferences {
     return { enabled: true, hour: 20, minute: 0 }; // 默认晚上 8 点
   }
 
-  try {
-    const saved = localStorage.getItem('reminder-preferences');
-    return saved ? JSON.parse(saved) : { enabled: true, hour: 20, minute: 0 };
-  } catch {
-    return { enabled: true, hour: 20, minute: 0 };
-  }
+  const result = safeStorage.getJSON<ReminderPreferences>('reminder-preferences');
+  return result.success && result.data ? result.data : { enabled: true, hour: 20, minute: 0 };
 }
 
 /**
@@ -158,5 +156,5 @@ export function getReminderPreferences(): ReminderPreferences {
  */
 export function saveReminderPreferences(prefs: ReminderPreferences): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem('reminder-preferences', JSON.stringify(prefs));
+  safeStorage.setJSON('reminder-preferences', prefs);
 }

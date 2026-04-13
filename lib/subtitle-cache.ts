@@ -3,6 +3,8 @@
  * 实现字幕预加载和缓存策略
  */
 
+import { safeStorage } from './safe-storage';
+
 interface CachedSubtitle {
   videoId: string;
   data: any;
@@ -28,22 +30,19 @@ class SubtitleCacheManager {
     }
 
     // 检查 localStorage 缓存
-    try {
-      const key = CACHE_KEY_PREFIX + videoId;
-      const cached = localStorage.getItem(key);
-      if (cached) {
-        const parsed: CachedSubtitle = JSON.parse(cached);
-        if (Date.now() - parsed.timestamp < MAX_CACHE_AGE) {
-          // 恢复到内存缓存
-          this.memoryCache.set(videoId, parsed);
-          return parsed.data;
-        } else {
-          // 过期，删除
-          localStorage.removeItem(key);
-        }
+    const key = CACHE_KEY_PREFIX + videoId;
+    const result = safeStorage.getJSON<CachedSubtitle>(key);
+
+    if (result.success && result.data) {
+      const parsed = result.data;
+      if (Date.now() - parsed.timestamp < MAX_CACHE_AGE) {
+        // 恢复到内存缓存
+        this.memoryCache.set(videoId, parsed);
+        return parsed.data;
+      } else {
+        // 过期，删除
+        safeStorage.removeItem(key);
       }
-    } catch (error) {
-      console.error('[SubtitleCache] Failed to get from localStorage:', error);
     }
 
     return null;
@@ -65,13 +64,9 @@ class SubtitleCacheManager {
     this.memoryCache.set(videoId, cached);
 
     // 存入 localStorage
-    try {
-      await this.ensureCacheSpace(size);
-      const key = CACHE_KEY_PREFIX + videoId;
-      localStorage.setItem(key, JSON.stringify(cached));
-    } catch (error) {
-      console.error('[SubtitleCache] Failed to set to localStorage:', error);
-    }
+    await this.ensureCacheSpace(size);
+    const key = CACHE_KEY_PREFIX + videoId;
+    safeStorage.setJSON(key, cached);
   }
 
   /**
@@ -108,17 +103,13 @@ class SubtitleCacheManager {
 
     // 需要清理空间，按时间戳排序
     const entries: CachedSubtitle[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith(CACHE_KEY_PREFIX)) {
-        try {
-          const item = localStorage.getItem(key);
-          if (item) {
-            const cached = JSON.parse(item);
-            entries.push(cached);
-          }
-        } catch {
-          // 忽略损坏的条目
+    const keys = safeStorage.keys();
+
+    for (const key of keys) {
+      if (key.startsWith(CACHE_KEY_PREFIX)) {
+        const result = safeStorage.getJSON<CachedSubtitle>(key);
+        if (result.success && result.data) {
+          entries.push(result.data);
         }
       }
     }
@@ -132,7 +123,7 @@ class SubtitleCacheManager {
         break;
       }
       const key = CACHE_KEY_PREFIX + entry.videoId;
-      localStorage.removeItem(key);
+      safeStorage.removeItem(key);
       this.memoryCache.delete(entry.videoId);
       freedSpace += entry.size;
     }
@@ -143,17 +134,13 @@ class SubtitleCacheManager {
    */
   private getCurrentCacheSize(): number {
     let totalSize = 0;
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith(CACHE_KEY_PREFIX)) {
-        try {
-          const item = localStorage.getItem(key);
-          if (item) {
-            const cached = JSON.parse(item);
-            totalSize += cached.size;
-          }
-        } catch {
-          // 忽略损坏的条目
+    const keys = safeStorage.keys();
+
+    for (const key of keys) {
+      if (key.startsWith(CACHE_KEY_PREFIX)) {
+        const result = safeStorage.getJSON<CachedSubtitle>(key);
+        if (result.success && result.data) {
+          totalSize += result.data.size;
         }
       }
     }
@@ -165,14 +152,13 @@ class SubtitleCacheManager {
    */
   async clear(): Promise<void> {
     this.memoryCache.clear();
-    const keys: string[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith(CACHE_KEY_PREFIX)) {
-        keys.push(key);
+    const keys = safeStorage.keys();
+
+    for (const key of keys) {
+      if (key.startsWith(CACHE_KEY_PREFIX)) {
+        safeStorage.removeItem(key);
       }
     }
-    keys.forEach(key => localStorage.removeItem(key));
   }
 
   /**

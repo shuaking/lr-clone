@@ -4,6 +4,7 @@
  */
 
 import { ContentItem } from './content-data';
+import { safeStorage } from './safe-storage';
 
 const STORAGE_KEY = 'admin_videos';
 
@@ -26,13 +27,8 @@ function dispatchVideoChangeEvent() {
 export function getAdminVideos(): AdminVideo[] {
   if (typeof window === 'undefined') return [];
 
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch (error) {
-    console.error('Failed to load admin videos:', error);
-    return [];
-  }
+  const result = safeStorage.getJSON<AdminVideo[]>(STORAGE_KEY);
+  return result.success && result.data ? result.data : [];
 }
 
 /**
@@ -52,7 +48,7 @@ export function addAdminVideo(video: Omit<AdminVideo, 'addedAt'>): void {
   };
 
   videos.push(newVideo);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+  safeStorage.setJSON(STORAGE_KEY, videos);
   dispatchVideoChangeEvent();
 }
 
@@ -62,7 +58,7 @@ export function addAdminVideo(video: Omit<AdminVideo, 'addedAt'>): void {
 export function deleteAdminVideo(videoId: string): void {
   const videos = getAdminVideos();
   const filtered = videos.filter(v => v.id !== videoId);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+  safeStorage.setJSON(STORAGE_KEY, filtered);
   dispatchVideoChangeEvent();
 }
 
@@ -78,7 +74,7 @@ export function updateAdminVideo(videoId: string, updates: Partial<ContentItem>)
   }
 
   videos[index] = { ...videos[index], ...updates };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+  safeStorage.setJSON(STORAGE_KEY, videos);
   dispatchVideoChangeEvent();
 }
 
@@ -86,6 +82,6 @@ export function updateAdminVideo(videoId: string, updates: Partial<ContentItem>)
  * 清空所有管理员添加的视频
  */
 export function clearAdminVideos(): void {
-  localStorage.removeItem(STORAGE_KEY);
+  safeStorage.removeItem(STORAGE_KEY);
   dispatchVideoChangeEvent();
 }

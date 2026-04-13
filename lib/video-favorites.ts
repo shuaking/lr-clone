@@ -2,6 +2,8 @@
  * 视频收藏管理
  */
 
+import { safeStorage } from './safe-storage';
+
 export interface FavoriteVideo {
   id: string;
   videoId: string;
@@ -21,13 +23,8 @@ const FAVORITES_KEY = 'lr-favorite-videos';
 export function getFavoriteVideos(): FavoriteVideo[] {
   if (typeof window === 'undefined') return [];
 
-  try {
-    const data = localStorage.getItem(FAVORITES_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch (error) {
-    console.error('Failed to load favorite videos:', error);
-    return [];
-  }
+  const result = safeStorage.getJSON<FavoriteVideo[]>(FAVORITES_KEY);
+  return result.success && result.data ? result.data : [];
 }
 
 /**
@@ -49,7 +46,7 @@ export function addFavoriteVideo(video: Omit<FavoriteVideo, 'id' | 'addedAt'>): 
   };
 
   favorites.push(newFavorite);
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  safeStorage.setJSON(FAVORITES_KEY, favorites);
 
   return newFavorite;
 }
@@ -60,7 +57,7 @@ export function addFavoriteVideo(video: Omit<FavoriteVideo, 'id' | 'addedAt'>): 
 export function removeFavoriteVideo(videoId: string): void {
   const favorites = getFavoriteVideos();
   const filtered = favorites.filter(v => v.videoId !== videoId);
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(filtered));
+  safeStorage.setJSON(FAVORITES_KEY, filtered);
 }
 
 /**
@@ -80,6 +77,6 @@ export function updateFavoriteNotes(videoId: string, notes: string): void {
 
   if (video) {
     video.notes = notes;
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    safeStorage.setJSON(FAVORITES_KEY, favorites);
   }
 }

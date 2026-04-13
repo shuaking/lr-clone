@@ -5,6 +5,7 @@
 
 import { getTranslationService } from '@/lib/translation';
 import { Subtitle } from '@/hooks/useSubtitles';
+import { safeStorage } from './safe-storage';
 
 export interface SubtitleTranslationProgress {
   total: number;
@@ -162,28 +163,17 @@ export class SubtitleTranslationService {
    * 保存翻译后的字幕到 localStorage
    */
   saveTranslatedSubtitles(videoId: string, subtitles: TranslatedSubtitle[]) {
-    try {
-      const key = `translated_subtitles_${videoId}`;
-      localStorage.setItem(key, JSON.stringify(subtitles));
-    } catch (error) {
-      console.error('Failed to save translated subtitles:', error);
-    }
+    const key = `translated_subtitles_${videoId}`;
+    safeStorage.setJSON(key, subtitles);
   }
 
   /**
    * 从 localStorage 加载翻译后的字幕
    */
   loadTranslatedSubtitles(videoId: string): TranslatedSubtitle[] | null {
-    try {
-      const key = `translated_subtitles_${videoId}`;
-      const data = localStorage.getItem(key);
-      if (data) {
-        return JSON.parse(data);
-      }
-    } catch (error) {
-      console.error('Failed to load translated subtitles:', error);
-    }
-    return null;
+    const key = `translated_subtitles_${videoId}`;
+    const result = safeStorage.getJSON<TranslatedSubtitle[]>(key);
+    return result.success && result.data ? result.data : null;
   }
 
   /**
@@ -197,12 +187,8 @@ export class SubtitleTranslationService {
    * 清除特定视频的翻译字幕
    */
   clearTranslatedSubtitles(videoId: string) {
-    try {
-      const key = `translated_subtitles_${videoId}`;
-      localStorage.removeItem(key);
-    } catch (error) {
-      console.error('Failed to clear translated subtitles:', error);
-    }
+    const key = `translated_subtitles_${videoId}`;
+    safeStorage.removeItem(key);
   }
 
   private getCacheKey(text: string, sourceLang: string, targetLang: string): string {

@@ -1,5 +1,6 @@
 import { supabase, isSupabaseConfigured } from './client';
 import type { User, Session } from '@supabase/supabase-js';
+import { safeStorage } from '../safe-storage';
 
 export interface AuthUser {
   id: string;
@@ -31,29 +32,29 @@ const LOCAL_SESSION_KEY = 'lr-local-session';
  */
 function getLocalUsers(): LocalUser[] {
   if (typeof window === 'undefined') return [];
-  const data = localStorage.getItem(LOCAL_USERS_KEY);
-  return data ? JSON.parse(data) : [];
+  const result = safeStorage.getJSON<LocalUser[]>(LOCAL_USERS_KEY);
+  return result.success && result.data ? result.data : [];
 }
 
 function saveLocalUsers(users: LocalUser[]) {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(LOCAL_USERS_KEY, JSON.stringify(users));
+  safeStorage.setJSON(LOCAL_USERS_KEY, users);
 }
 
 function getLocalSession(): User | null {
   if (typeof window === 'undefined') return null;
-  const data = localStorage.getItem(LOCAL_SESSION_KEY);
-  return data ? JSON.parse(data) : null;
+  const result = safeStorage.getJSON<User>(LOCAL_SESSION_KEY);
+  return result.success && result.data ? result.data : null;
 }
 
 function saveLocalSession(user: User | null) {
   if (typeof window === 'undefined') return;
   if (user) {
-    localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(user));
+    safeStorage.setJSON(LOCAL_SESSION_KEY, user);
     // 同时设置 cookie 供中间件使用
     document.cookie = `auth-storage=${encodeURIComponent(JSON.stringify({ state: { user } }))}; path=/; max-age=2592000`; // 30 days
   } else {
-    localStorage.removeItem(LOCAL_SESSION_KEY);
+    safeStorage.removeItem(LOCAL_SESSION_KEY);
     // 清除 cookie
     document.cookie = 'auth-storage=; path=/; max-age=0';
   }

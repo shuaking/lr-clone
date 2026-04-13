@@ -10,6 +10,7 @@ import {
   saveDailyStatsToCloud,
   getRecentCloudStats,
 } from './supabase/stats-sync';
+import { safeStorage } from './safe-storage';
 
 export interface LearningStats {
   totalDays: number;              // 总学习天数
@@ -86,17 +87,14 @@ export async function getLearningStats(): Promise<LearningStats> {
  * 获取本地学习统计（内部函数）
  */
 function getLearningStatsLocal(): LearningStats {
-  try {
-    const data = localStorage.getItem(STATS_KEY);
-    if (!data) return getDefaultStats();
-
-    const stats = JSON.parse(data);
-    updateStreak(stats);
-    return stats;
-  } catch (error) {
-    console.error('Failed to load learning stats:', error);
+  const result = safeStorage.getJSON<LearningStats>(STATS_KEY);
+  if (!result.success || !result.data) {
     return getDefaultStats();
   }
+
+  const stats = result.data;
+  updateStreak(stats);
+  return stats;
 }
 
 /**
@@ -108,17 +106,14 @@ export function getLearningStatsSync(): LearningStats {
     return getDefaultStats();
   }
 
-  try {
-    const data = localStorage.getItem(STATS_KEY);
-    if (!data) return getDefaultStats();
-
-    const stats = JSON.parse(data);
-    updateStreak(stats);
-    return stats;
-  } catch (error) {
-    console.error('Failed to load learning stats:', error);
+  const result = safeStorage.getJSON<LearningStats>(STATS_KEY);
+  if (!result.success || !result.data) {
     return getDefaultStats();
   }
+
+  const stats = result.data;
+  updateStreak(stats);
+  return stats;
 }
 
 /**
@@ -126,7 +121,7 @@ export function getLearningStatsSync(): LearningStats {
  */
 async function saveLearningStats(stats: LearningStats): Promise<void> {
   // 始终保存到本地（作为缓存）
-  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+  safeStorage.setJSON(STATS_KEY, stats);
 
   // 如果已登录，同步到云端
   try {
@@ -148,7 +143,7 @@ async function saveLearningStats(stats: LearningStats): Promise<void> {
  * @deprecated 使用异步版本 saveLearningStats()
  */
 function saveLearningStatsSync(stats: LearningStats): void {
-  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+  safeStorage.setJSON(STATS_KEY, stats);
 }
 
 /**
@@ -411,18 +406,13 @@ export function getAchievements(): Achievement[] {
     return ACHIEVEMENT_DEFINITIONS.map(a => ({ ...a, unlocked: false }));
   }
 
-  try {
-    const data = localStorage.getItem(ACHIEVEMENTS_KEY);
-    if (!data) {
-      const achievements = ACHIEVEMENT_DEFINITIONS.map(a => ({ ...a, unlocked: false }));
-      localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(achievements));
-      return achievements;
-    }
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Failed to load achievements:', error);
-    return ACHIEVEMENT_DEFINITIONS.map(a => ({ ...a, unlocked: false }));
+  const result = safeStorage.getJSON<Achievement[]>(ACHIEVEMENTS_KEY);
+  if (!result.success || !result.data) {
+    const achievements = ACHIEVEMENT_DEFINITIONS.map(a => ({ ...a, unlocked: false }));
+    safeStorage.setJSON(ACHIEVEMENTS_KEY, achievements);
+    return achievements;
   }
+  return result.data;
 }
 
 /**
@@ -465,7 +455,7 @@ export async function checkAchievements(): Promise<Achievement[]> {
     }
   });
 
-  localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(achievements));
+  safeStorage.setJSON(ACHIEVEMENTS_KEY, achievements);
   return newlyUnlocked;
 }
 

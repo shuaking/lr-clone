@@ -4,6 +4,8 @@
  * 支持多种口音、语速调节、音标显示
  */
 
+import { safeStorage } from './safe-storage';
+
 export enum VoiceAccent {
   US = 'en-US',      // 美式英语
   GB = 'en-GB',      // 英式英语
@@ -173,7 +175,7 @@ export const RATE_OPTIONS = [
  */
 export function saveSpeechPreferences(options: Partial<SpeechOptions>): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem('speech-preferences', JSON.stringify(options));
+  safeStorage.setJSON('speech-preferences', options);
 }
 
 /**
@@ -182,10 +184,6 @@ export function saveSpeechPreferences(options: Partial<SpeechOptions>): void {
 export function loadSpeechPreferences(): Partial<SpeechOptions> {
   if (typeof window === 'undefined') return {};
 
-  try {
-    const saved = localStorage.getItem('speech-preferences');
-    return saved ? JSON.parse(saved) : {};
-  } catch {
-    return {};
-  }
+  const result = safeStorage.getJSON<Partial<SpeechOptions>>('speech-preferences');
+  return result.success && result.data ? result.data : {};
 }

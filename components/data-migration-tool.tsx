@@ -9,6 +9,7 @@ import { batchUploadVocabulary } from '@/lib/supabase/vocabulary-sync';
 import { batchUploadStats } from '@/lib/supabase/stats-sync';
 import { mergeLocalSettingsToCloud } from '@/lib/supabase/settings-sync';
 import { X, Upload, CheckCircle, AlertCircle } from 'lucide-react';
+import { safeStorage } from '@/lib/safe-storage';
 
 const MIGRATION_KEY = 'lr-migration-completed';
 
@@ -28,7 +29,7 @@ export function DataMigrationTool() {
     }
 
     // 检查是否已经迁移过
-    const migrationCompleted = localStorage.getItem(MIGRATION_KEY);
+    const migrationCompleted = safeStorage.getItem(MIGRATION_KEY);
     if (migrationCompleted === 'true') {
       setShowPrompt(false);
       return;
@@ -83,7 +84,7 @@ export function DataMigrationTool() {
       });
 
       // 标记迁移完成
-      localStorage.setItem(MIGRATION_KEY, 'true');
+      safeStorage.setItem(MIGRATION_KEY, 'true');
       setStatus('success');
 
       // 3秒后自动关闭
@@ -101,7 +102,7 @@ export function DataMigrationTool() {
 
   const handleSkip = () => {
     // 标记为已完成（跳过）
-    localStorage.setItem(MIGRATION_KEY, 'true');
+    safeStorage.setItem(MIGRATION_KEY, 'true');
     setShowPrompt(false);
   };
 

@@ -4,6 +4,7 @@
  */
 
 import { getLanguagePair, DEFAULT_LANGUAGE_PAIR } from './language-pairs';
+import { safeStorage } from './safe-storage';
 
 export interface DictionaryResult {
   word: string;
@@ -21,15 +22,10 @@ function getCurrentLanguagePair() {
     return getLanguagePair(DEFAULT_LANGUAGE_PAIR)!;
   }
 
-  try {
-    const stored = localStorage.getItem('language-pair-storage');
-    if (stored) {
-      const data = JSON.parse(stored);
-      const pairId = data.state?.currentPairId || DEFAULT_LANGUAGE_PAIR;
-      return getLanguagePair(pairId) || getLanguagePair(DEFAULT_LANGUAGE_PAIR)!;
-    }
-  } catch (error) {
-    console.error('Failed to get language pair:', error);
+  const result = safeStorage.getJSON<{ state?: { currentPairId?: string } }>('language-pair-storage');
+  if (result.success && result.data?.state?.currentPairId) {
+    const pair = getLanguagePair(result.data.state.currentPairId);
+    if (pair) return pair;
   }
 
   return getLanguagePair(DEFAULT_LANGUAGE_PAIR)!;
