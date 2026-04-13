@@ -73,24 +73,23 @@ export function VideoLearningInterface({
     subtitles: subtitlesHook.subtitles,
     currentTime: player.currentTime,
     subtitleDelay: subtitlesHook.subtitleDelay,
-    autoPauseEnabled: false, // 临时禁用自动暂停
+    autoPauseEnabled: autoPauseEnabled,
     onAutoPause: player.togglePlayPause,
-    // 完全移除 onSkipToNext 回调，避免任何可能的干扰
   });
 
-  // 循环播放当前句子 - 临时禁用
-  // useEffect(() => {
-  //   if (!loopEnabled || !sync.currentSubtitle || !player.isPlaying) return;
+  // 循环播放当前句子
+  useEffect(() => {
+    if (!loopEnabled || !sync.currentSubtitle || !player.isPlaying) return;
 
-  //   const checkLoop = setInterval(() => {
-  //     const adjustedTime = player.currentTime + subtitlesHook.subtitleDelay;
-  //     if (sync.currentSubtitle && adjustedTime > sync.currentSubtitle.end) {
-  //       player.seekTo(sync.currentSubtitle.start + subtitlesHook.subtitleDelay);
-  //     }
-  //   }, 100);
+    const checkLoop = setInterval(() => {
+      const adjustedTime = player.currentTime + subtitlesHook.subtitleDelay;
+      if (sync.currentSubtitle && adjustedTime > sync.currentSubtitle.end) {
+        player.seekTo(sync.currentSubtitle.start + subtitlesHook.subtitleDelay);
+      }
+    }, 100);
 
-  //   return () => clearInterval(checkLoop);
-  // }, [loopEnabled, sync.currentSubtitle, player, subtitlesHook.subtitleDelay]);
+    return () => clearInterval(checkLoop);
+  }, [loopEnabled, sync.currentSubtitle, player, subtitlesHook.subtitleDelay]);
 
   // 用于字幕导航的 ref
   const subtitlesRef = useRef<Subtitle[]>([]);
@@ -132,13 +131,13 @@ export function VideoLearningInterface({
     }
   }, [sync.currentSubtitle, handleSubtitleClick]);
 
-  // 键盘快捷键 - 临时禁用
-  // useKeyboardShortcuts({
-  //   onPlayPause: player.togglePlayPause,
-  //   onPrevSubtitle: () => navigateSubtitle('prev'),
-  //   onNextSubtitle: () => navigateSubtitle('next'),
-  //   onClosePopup: () => setSelectedWord(null)
-  // });
+  // 键盘快捷键
+  useKeyboardShortcuts({
+    onPlayPause: player.togglePlayPause,
+    onPrevSubtitle: () => navigateSubtitle('prev'),
+    onNextSubtitle: () => navigateSubtitle('next'),
+    onClosePopup: () => setSelectedWord(null)
+  });
 
   return (
     <div className="flex h-screen bg-[#0a0e1a] flex-col">
