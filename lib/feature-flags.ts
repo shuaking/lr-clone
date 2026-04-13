@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { safeStorage } from './safe-storage';
 
 /**
  * Feature flag hook
  * 从 localStorage 读取 feature flag 状态
  *
  * 使用方法:
- * 1. 在浏览器控制台启用: localStorage.setItem('feature_video_refactor', 'true')
- * 2. 在浏览器控制台禁用: localStorage.setItem('feature_video_refactor', 'false')
+ * 1. 在浏览器控制台启用: window.__LR_DEBUG__.enableFeature('video_refactor')
+ * 2. 在浏览器控制台禁用: window.__LR_DEBUG__.disableFeature('video_refactor')
  * 3. 刷新页面生效
  */
 export function useFeatureFlag(flag: string): boolean {
@@ -18,7 +19,7 @@ export function useFeatureFlag(flag: string): boolean {
     // 只在客户端执行
     if (typeof window === 'undefined') return;
 
-    const value = localStorage.getItem(`feature_${flag}`);
+    const value = safeStorage.getItem(`feature_${flag}`);
     setEnabled(value === 'true');
 
     // 监听 storage 事件,支持跨标签页同步
@@ -50,7 +51,7 @@ export function useFeatureFlagWithEnv(
     if (typeof window === 'undefined') return;
 
     // 1. 检查 localStorage (最高优先级)
-    const localValue = localStorage.getItem(`feature_${flag}`);
+    const localValue = safeStorage.getItem(`feature_${flag}`);
     if (localValue !== null) {
       setEnabled(localValue === 'true');
       return;
@@ -70,24 +71,43 @@ export function useFeatureFlagWithEnv(
 }
 
 /**
- * 辅助函数: 在浏览器控制台中启用 feature flag
+ * 调试工具接口
+ */
+interface DebugTools {
+  enableFeature: (flag: string) => void;
+  disableFeature: (flag: string) => void;
+  checkFeature: (flag: string) => void;
+}
+
+declare global {
+  interface Window {
+    __LR_DEBUG__?: DebugTools;
+  }
+}
+
+/**
+ * 辅助函数: 在浏览器控制台中管理 feature flags
  *
  * 示例:
- * enableFeature('video_refactor')
+ * window.__LR_DEBUG__.enableFeature('video_refactor')
+ * window.__LR_DEBUG__.disableFeature('video_refactor')
+ * window.__LR_DEBUG__.checkFeature('video_refactor')
  */
 if (typeof window !== 'undefined') {
-  (window as any).enableFeature = (flag: string) => {
-    localStorage.setItem(`feature_${flag}`, 'true');
-    console.log(`✅ Feature "${flag}" enabled. Refresh the page to apply.`);
-  };
+  window.__LR_DEBUG__ = {
+    enableFeature: (flag: string) => {
+      safeStorage.setItem(`feature_${flag}`, 'true');
+      console.log(`✅ Feature "${flag}" enabled. Refresh the page to apply.`);
+    },
 
-  (window as any).disableFeature = (flag: string) => {
-    localStorage.setItem(`feature_${flag}`, 'false');
-    console.log(`❌ Feature "${flag}" disabled. Refresh the page to apply.`);
-  };
+    disableFeature: (flag: string) => {
+      safeStorage.setItem(`feature_${flag}`, 'false');
+      console.log(`❌ Feature "${flag}" disabled. Refresh the page to apply.`);
+    },
 
-  (window as any).checkFeature = (flag: string) => {
-    const value = localStorage.getItem(`feature_${flag}`);
-    console.log(`Feature "${flag}": ${value === 'true' ? '✅ enabled' : '❌ disabled'}`);
+    checkFeature: (flag: string) => {
+      const value = safeStorage.getItem(`feature_${flag}`);
+      console.log(`Feature "${flag}": ${value === 'true' ? '✅ enabled' : '❌ disabled'}`);
+    },
   };
 }

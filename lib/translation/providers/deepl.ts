@@ -76,7 +76,8 @@ export class DeepLProvider implements ITranslationProvider {
         signal: AbortSignal.timeout(5000)
       });
       return response.ok;
-    } catch {
+    } catch (error) {
+      console.warn('[DeepL] Availability check failed:', error);
       return false;
     }
   }

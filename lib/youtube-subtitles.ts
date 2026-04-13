@@ -3,9 +3,17 @@
  * 使用第三方 API 获取 YouTube 视频字幕
  */
 
+import { safeStorage } from './safe-storage';
+
 export interface SubtitleEntry {
   start: number;
   end: number;
+  text: string;
+}
+
+interface YouTubeSubtitleItem {
+  offset: number;
+  duration: number;
   text: string;
 }
 
@@ -42,7 +50,7 @@ export async function fetchYouTubeSubtitles(
     }
 
     // 转换为标准格式
-    return data.map((item: any) => ({
+    return data.map((item: YouTubeSubtitleItem) => ({
       start: item.offset / 1000, // 转换为秒
       end: (item.offset + item.duration) / 1000,
       text: item.text
@@ -55,6 +63,7 @@ export async function fetchYouTubeSubtitles(
 
 /**
  * 翻译字幕
+ * 使用 Promise.allSettled 确保部分失败不影响其他字幕
  */
 export async function translateSubtitles(
   subtitles: SubtitleEntry[],
@@ -62,49 +71,47 @@ export async function translateSubtitles(
 ): Promise<SubtitleEntry[]> {
   const { translateSentence } = await import('./dictionary-api');
 
-  const translated = await Promise.all(
+  const results = await Promise.allSettled(
     subtitles.map(async (subtitle) => {
-      try {
-        const translation = await translateSentence(subtitle.text, 'en', targetLang);
-        return {
-          ...subtitle,
-          translation
-        };
-      } catch (error) {
-        return subtitle;
-      }
+      const translation = await translateSentence(subtitle.text, 'en', targetLang);
+      return {
+        ...subtitle,
+        translation
+      };
     })
   );
 
-  return translated;
+  return results.map((result, index) => {
+    if (result.status === 'fulfilled') {
+      return result.value;
+    } else {
+      console.warn(`Translation failed for subtitle ${index}:`, result.reason);
+      return subtitles[index]; // 返回原始字幕
+    }
+  });
 }
 
 /**
  * 缓存字幕到 localStorage
  */
 export function cacheSubtitles(videoId: string, subtitles: SubtitleEntry[]): void {
-  try {
-    const key = `subtitles_${videoId}`;
-    localStorage.setItem(key, JSON.stringify(subtitles));
-  } catch (error) {
-    if (error instanceof DOMException && error.name === 'QuotaExceededError') {
-      console.warn('localStorage quota exceeded, clearing old subtitle cache');
-      // 清除旧的字幕缓存
-      try {
-        const keys = Object.keys(localStorage);
-        const subtitleKeys = keys.filter(k => k.startsWith('subtitles_'));
-        // 保留最近的 5 个，删除其他的
-        if (subtitleKeys.length > 5) {
-          subtitleKeys.slice(0, -5).forEach(k => localStorage.removeItem(k));
-        }
-        // 重试保存
-        const key = `subtitles_${videoId}`;
-        localStorage.setItem(key, JSON.stringify(subtitles));
-      } catch (retryError) {
-        console.error('Failed to cache subtitles after cleanup:', retryError);
+  const key = `subtitles_${videoId}`;
+  const result = safeStorage.setJSON(key, subtitles);
+
+  if (!result.success && result.error === 'QUOTA_EXCEEDED') {
+    console.warn('localStorage quota exceeded, clearing old subtitle cache');
+    // 清除旧的字幕缓存
+    try {
+      const keys = safeStorage.keys();
+      const subtitleKeys = keys.filter((k: string) => k.startsWith('subtitles_'));
+      // 保留最近的 5 个，删除其他的
+      if (subtitleKeys.length > 5) {
+        subtitleKeys.slice(0, -5).forEach((k: string) => safeStorage.removeItem(k));
       }
-    } else {
-      console.error('Failed to cache subtitles:', error);
+      // 重试保存
+      safeStorage.setJSON(key, subtitles);
+    } catch (retryError) {
+      console.error('Failed to cache subtitles after cleanup:', retryError);
     }
   }
 }
@@ -113,12 +120,8 @@ export function cacheSubtitles(videoId: string, subtitles: SubtitleEntry[]): voi
  * 从缓存读取字幕
  */
 export function getCachedSubtitles(videoId: string): SubtitleEntry[] | null {
-  try {
-    const key = `subtitles_${videoId}`;
-    const cached = localStorage.getItem(key);
-    return cached ? JSON.parse(cached) : null;
-  } catch (error) {
-    console.error('Failed to get cached subtitles:', error);
-    return null;
-  }
+  const key = `subtitles_${videoId}`;
+  const result = safeStorage.getJSON<SubtitleEntry[]>(key);
+
+  return result.success ? result.data ?? null : null;
 }

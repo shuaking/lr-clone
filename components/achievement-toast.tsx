@@ -99,10 +99,10 @@ export function AchievementNotifications() {
       setNotifications(prev => [...prev, event.detail]);
     };
 
-    window.addEventListener('achievement-unlocked' as any, handleAchievement);
+    window.addEventListener('achievement-unlocked', handleAchievement as EventListener);
 
     return () => {
-      window.removeEventListener('achievement-unlocked' as any, handleAchievement);
+      window.removeEventListener('achievement-unlocked', handleAchievement as EventListener);
     };
   }, []);
 
@@ -114,7 +114,7 @@ export function AchievementNotifications() {
     <>
       {notifications.map((achievement, index) => (
         <AchievementToast
-          key={`${achievement.id}-${index}`}
+          key={achievement.id}
           achievement={achievement}
           onClose={() => handleClose(index)}
         />
