@@ -15,6 +15,7 @@ interface CachedSubtitle {
 const CACHE_KEY_PREFIX = 'subtitle-cache-';
 const MAX_CACHE_SIZE = 10 * 1024 * 1024; // 10MB
 const MAX_CACHE_AGE = 7 * 24 * 60 * 60 * 1000; // 7 天
+const DEBUG = process.env.NODE_ENV === 'development';
 
 class SubtitleCacheManager {
   private memoryCache: Map<string, CachedSubtitle> = new Map();
@@ -76,16 +77,22 @@ class SubtitleCacheManager {
     // 检查是否已缓存
     const cached = await this.get(videoId);
     if (cached) {
-      console.log('[SubtitleCache] Already cached:', videoId);
+      if (DEBUG) {
+        console.log('[SubtitleCache] Already cached:', videoId);
+      }
       return;
     }
 
     // 后台获取并缓存
     try {
-      console.log('[SubtitleCache] Preloading:', videoId);
+      if (DEBUG) {
+        console.log('[SubtitleCache] Preloading:', videoId);
+      }
       const data = await fetchFn();
       await this.set(videoId, data);
-      console.log('[SubtitleCache] Preloaded:', videoId);
+      if (DEBUG) {
+        console.log('[SubtitleCache] Preloaded:', videoId);
+      }
     } catch (error) {
       console.error('[SubtitleCache] Preload failed:', videoId, error);
     }
