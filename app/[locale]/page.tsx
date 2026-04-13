@@ -24,7 +24,7 @@ export default async function HomePage({
   return (
     <>
       <SiteHeader />
-      <main className="bg-hero">
+      <main id="main-content" className="bg-hero">
         <section className="grid-bg relative overflow-hidden border-b border-white/5">
           <div className="container grid gap-14 py-20 md:grid-cols-[1.15fr_.85fr] md:py-28">
             <div>
