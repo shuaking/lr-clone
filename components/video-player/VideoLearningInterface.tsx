@@ -141,106 +141,89 @@ export function VideoLearningInterface({
   // });
 
   return (
-    <div className="flex h-screen bg-[#0a0e1a]">
-      {/* 左侧导航 */}
-      <NavigationSidebar />
-
-      {/* 中间视频区域 */}
-      <main className="flex-1 flex flex-col">
-        {/* 视频播放器 */}
-        <div className="relative w-[685px] h-[383px] bg-black mx-auto">
-          {player.isPlayerLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
-              <div className="flex flex-col items-center gap-3">
-                <div className="h-12 w-12 animate-spin rounded-full border-4 border-brand/30 border-t-brand" />
-                <p className="text-sm text-muted">正在加载播放器...</p>
-              </div>
-            </div>
-          )}
-          {player.playerError && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
-              <div className="text-center">
-                <p className="text-red-400">{player.playerError}</p>
-              </div>
-            </div>
-          )}
-          <div id="youtube-player" className="h-full w-full" />
+    <div className="flex h-screen bg-[#0a0e1a] flex-col">
+      {/* 顶部工具栏 */}
+      <div className="flex items-center justify-between border-b border-white/5 bg-[#0d1117] px-4 py-2">
+        <div className="flex items-center gap-4">
+          <h1 className="text-sm font-medium text-white truncate max-w-md">{title}</h1>
+          <span className="text-xs text-muted">{formatTime(player.currentTime)}</span>
         </div>
+        <div className="flex items-center gap-2 text-xs">
+          <button className="px-2 py-1 rounded transition hover:bg-white/5">保存视频</button>
+          <button className="px-2 py-1 rounded transition hover:bg-white/5">添加到播放列表</button>
+          <button
+            onClick={() => setShowSubtitleEditor(true)}
+            className="flex items-center gap-1 px-2 py-1 rounded transition hover:bg-white/5"
+          >
+            <Edit3 size={12} />
+            编辑字幕
+          </button>
+          <SubtitleTranslationButton
+            videoId={videoId}
+            subtitles={subtitlesHook.subtitles}
+            onTranslationComplete={(translatedSubtitles) => {
+              subtitlesHook.setSubtitles(translatedSubtitles);
+            }}
+          />
+        </div>
+      </div>
 
-        {/* 视频信息 */}
-        <div className="border-b border-white/5 bg-[#0d1117] p-4">
-          <h1 className="text-lg font-semibold text-white">{title}</h1>
-          <div className="mt-2 flex items-center gap-4 text-sm text-muted">
-            <span>{formatTime(player.currentTime)}</span>
-            <button className="transition hover:text-white">保存视频</button>
-            <button className="transition hover:text-white">添加到播放列表</button>
-            <button
-              onClick={() => setShowSubtitleEditor(true)}
-              className="flex items-center gap-1.5 transition hover:text-white"
-            >
-              <Edit3 size={14} />
-              编辑字幕
-            </button>
-            <SubtitleTranslationButton
-              videoId={videoId}
-              subtitles={subtitlesHook.subtitles}
-              onTranslationComplete={(translatedSubtitles) => {
-                subtitlesHook.setSubtitles(translatedSubtitles);
-              }}
-            />
+      {/* 主内容区域 */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* 左侧导航 */}
+        <NavigationSidebar />
+
+        {/* 中间视频区域 */}
+        <main className="flex-1 flex flex-col">
+          {/* 视频播放器 */}
+          <div className="relative w-[685px] h-[383px] bg-black mx-auto mt-4">
+            {player.isPlayerLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="h-12 w-12 animate-spin rounded-full border-4 border-brand/30 border-t-brand" />
+                  <p className="text-sm text-muted">正在加载播放器...</p>
+                </div>
+              </div>
+            )}
+            {player.playerError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
+                <div className="text-center">
+                  <p className="text-red-400">{player.playerError}</p>
+                </div>
+              </div>
+            )}
+            <div id="youtube-player" className="h-full w-full" />
           </div>
-        </div>
 
-        {/* 控制栏 */}
-        <VideoControls
-          playbackRate={player.playbackRate}
-          onPlaybackRateChange={player.setPlaybackRate}
-          subtitleDelay={subtitlesHook.subtitleDelay}
-          onSubtitleDelayChange={subtitlesHook.adjustSubtitleDelay}
-          onResetDelay={subtitlesHook.resetSubtitleDelay}
+          {/* 控制栏 */}
+          <VideoControls
+            playbackRate={player.playbackRate}
+            onPlaybackRateChange={player.setPlaybackRate}
+            subtitleDelay={subtitlesHook.subtitleDelay}
+            onSubtitleDelayChange={subtitlesHook.adjustSubtitleDelay}
+            onResetDelay={subtitlesHook.resetSubtitleDelay}
+            subtitleMode={subtitlesHook.subtitleMode}
+            onSubtitleModeChange={subtitlesHook.setSubtitleMode}
+            autoPauseEnabled={autoPauseEnabled}
+            onAutoPauseChange={setAutoPauseEnabled}
+            onReload={subtitlesHook.reload}
+            isLoading={subtitlesHook.isLoading}
+            onPrevSubtitle={() => navigateSubtitle('prev')}
+            onNextSubtitle={() => navigateSubtitle('next')}
+          />
+        </main>
+
+        {/* 右侧字幕面板 */}
+        <SubtitlePanel
+          subtitles={subtitlesHook.subtitles}
+          currentSubtitle={sync.currentSubtitle}
+          selectedSubtitle={sync.selectedSubtitle}
           subtitleMode={subtitlesHook.subtitleMode}
-          onSubtitleModeChange={subtitlesHook.setSubtitleMode}
-          autoPauseEnabled={autoPauseEnabled}
-          onAutoPauseChange={setAutoPauseEnabled}
-          onReload={subtitlesHook.reload}
           isLoading={subtitlesHook.isLoading}
-          onPrevSubtitle={() => navigateSubtitle('prev')}
-          onNextSubtitle={() => navigateSubtitle('next')}
+          onSubtitleClick={handleSubtitleClick}
+          onWordClick={handleWordClick}
         />
-
-        {/* 学习提示 */}
-        <div className="border-b border-white/5 bg-[#0d1117] p-4">
-          <div className="flex items-start gap-3 rounded-2xl bg-brand/10 p-3">
-            <BookmarkPlus className="text-brand" size={18} />
-            <div className="flex-1 text-xs">
-              <p className="font-medium text-white">学习提示</p>
-              <p className="mt-1 text-muted">
-                点击字幕跳转播放 · 点击单词查看翻译
-                {subtitlesHook.error && (
-                  <span className="text-yellow-400"> · {subtitlesHook.error}</span>
-                )}
-              </p>
-              <p className="mt-2 text-muted">
-                <span className="inline-block rounded bg-white/10 px-1.5 py-0.5 font-mono text-[10px]">空格</span> 播放/暂停 ·
-                <span className="inline-block rounded bg-white/10 px-1.5 py-0.5 font-mono text-[10px] ml-1">←</span>
-                <span className="inline-block rounded bg-white/10 px-1.5 py-0.5 font-mono text-[10px]">→</span> 切换句子 ·
-                <span className="inline-block rounded bg-white/10 px-1.5 py-0.5 font-mono text-[10px] ml-1">Esc</span> 关闭弹窗
-              </p>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* 右侧字幕面板 */}
-      <SubtitlePanel
-        subtitles={subtitlesHook.subtitles}
-        currentSubtitle={sync.currentSubtitle}
-        selectedSubtitle={sync.selectedSubtitle}
-        subtitleMode={subtitlesHook.subtitleMode}
-        isLoading={subtitlesHook.isLoading}
-        onSubtitleClick={handleSubtitleClick}
-        onWordClick={handleWordClick}
-      />
+      </div>
 
       {/* 单词翻译弹窗 */}
       {selectedWord && (
