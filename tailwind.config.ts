@@ -11,7 +11,7 @@ const config: Config = {
         line: "rgba(255,255,255,0.09)",
         ink: "#f6f7fb",
         muted: "#9ca6b8",
-        brand: "#5b7dd4",
+        brand: "#6b8de8",
         accent: "#78f0c8",
         red: {
           400: "#f87171",
