@@ -1,8 +1,6 @@
-"use client";
-
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { BookmarkPlus, Edit3, X } from 'lucide-react';
-import { useYouTubePlayer } from '@/hooks/useYouTubePlayer';
+import { useUnifiedPlayer, detectVideoSource, VideoPlayerContainer, VideoPlatform } from '@/hooks/useUnifiedPlayer';
 import { useSubtitles, Subtitle } from '@/hooks/useSubtitles';
 import { useSubtitleSync } from '@/hooks/useSubtitleSync';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
@@ -20,6 +18,7 @@ interface VideoLearningInterfaceProps {
   videoId: string;
   title: string;
   subtitles?: Subtitle[];
+  platform?: VideoPlatform;
 }
 
 function formatTime(seconds: number): string {
@@ -34,7 +33,8 @@ function formatTime(seconds: number): string {
 export function VideoLearningInterface({
   videoId,
   title,
-  subtitles: initialSubtitles = []
+  subtitles: initialSubtitles = [],
+  platform = 'youtube'
 }: VideoLearningInterfaceProps) {
   // 本地 UI 状态
   const [selectedWord, setSelectedWord] = useState<{
@@ -51,8 +51,9 @@ export function VideoLearningInterface({
   // 播放器设置
   const loopEnabled = usePlayerSettingsStore((state) => state.loopEnabled);
 
-  // 使用自定义 hooks
-  const player = useYouTubePlayer({
+  // 使用统一播放器
+  const player = useUnifiedPlayer({
+    platform,
     videoId,
     onReady: () => {
       if (process.env.NODE_ENV === 'development') {
@@ -206,7 +207,7 @@ export function VideoLearningInterface({
                 </div>
               </div>
             )}
-            <div id="youtube-player" className="h-full w-full" />
+            <VideoPlayerContainer platform={platform} />
           </div>
 
           {/* 控制栏 */}

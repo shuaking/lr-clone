@@ -13,6 +13,7 @@ export interface UseYouTubePlayerReturn {
   isPlayerLoading: boolean;
   isPlaying: boolean;
   currentTime: number;
+  duration: number;
   playbackRate: number;
   playerError: string | null;
 
@@ -49,6 +50,7 @@ export function useYouTubePlayer({
   const [isPlayerLoading, setIsPlayerLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [playbackRate, setPlaybackRateState] = useState(1);
   const [playerError, setPlayerError] = useState<string | null>(null);
 
@@ -282,6 +284,7 @@ export function useYouTubePlayer({
     isPlayerLoading,
     isPlaying,
     currentTime,
+    duration,
     playbackRate,
     playerError,
     seekTo,
