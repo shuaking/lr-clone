@@ -10,7 +10,7 @@ const config: Config = {
         panel: "#11172a",
         line: "rgba(255,255,255,0.09)",
         ink: "#f6f7fb",
-        muted: "#9ca6b8",
+        muted: "#a8b3c5",
         brand: "#6b8de8",
         accent: "#78f0c8",
         red: {
