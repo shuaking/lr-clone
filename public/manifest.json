@@ -5,9 +5,22 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0e1a",
-  "theme_color": "#7c9cff",
+  "theme_color": "#6b8de8",
   "orientation": "portrait-primary",
-  "icons": [],
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
   "categories": ["education", "productivity"],
   "shortcuts": [
     {
