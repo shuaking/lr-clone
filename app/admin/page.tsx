@@ -41,11 +41,11 @@ export default function AdminPage() {
     return null;
   }
 
-  if (!isAuthenticated) {
-    return (
-      <>
-        <SiteHeader />
-        <main className="container flex min-h-[calc(100vh-200px)] items-center justify-center py-12">
+  return (
+    <>
+      <SiteHeader />
+      <main id="main-content" className={isAuthenticated ? "container py-12" : "container flex min-h-[calc(100vh-200px)] items-center justify-center py-12"}>
+        {!isAuthenticated ? (
           <div className="w-full max-w-md">
             <div className="panel p-8">
               <h1 className="mb-6 text-center text-2xl font-semibold">管理员登录</h1>
@@ -76,30 +76,24 @@ export default function AdminPage() {
               </form>
             </div>
           </div>
-        </main>
-        <SiteFooter />
-      </>
-    );
-  }
+        ) : (
+          <>
+            <div className="mb-8 flex items-center justify-between">
+              <div>
+                <h1 className="text-4xl font-semibold">视频管理</h1>
+                <p className="mt-2 text-muted">添加和管理 YouTube 学习视频</p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="rounded-2xl border border-white/10 bg-white/5 px-6 py-2 text-sm transition hover:bg-white/10"
+              >
+                退出登录
+              </button>
+            </div>
 
-  return (
-    <>
-      <SiteHeader />
-      <main className="container py-12">
-        <div className="mb-8 flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl font-semibold">视频管理</h1>
-            <p className="mt-2 text-muted">添加和管理 YouTube 学习视频</p>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="rounded-2xl border border-white/10 bg-white/5 px-6 py-2 text-sm transition hover:bg-white/10"
-          >
-            退出登录
-          </button>
-        </div>
-
-        <AdminVideoManager />
+            <AdminVideoManager />
+          </>
+        )}
       </main>
       <SiteFooter />
     </>
