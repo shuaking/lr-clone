@@ -68,7 +68,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a0f1e] to-[#1a1f3a] px-4">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a0f1e] to-[#1a1f3a] px-4">
       <div className="w-full max-w-md">
         <div className="bg-[#11182b] rounded-2xl border border-white/10 p-8 shadow-2xl">
           <div className="text-center mb-8">
@@ -173,6 +173,6 @@ export default function LoginPage() {
           <p>Phase 1 用户数据将自动迁移到云端</p>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

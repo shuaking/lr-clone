@@ -26,7 +26,7 @@ export function SiteHeader() {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 text-brand">LR</div>
           <span>{tCommon('appName')}</span>
         </Link>
-        <nav className="hidden items-center gap-7 text-sm text-muted md:flex">
+        <nav className="hidden items-center gap-7 text-sm text-muted md:flex" aria-label="主导航">
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="transition hover:text-gray-900 dark:hover:text-white">{link.label}</Link>
           ))}
